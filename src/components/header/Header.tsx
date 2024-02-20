@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
+import pauseIcon from "/icons/pause.png";
 
 const Header = () => {
   return (
@@ -13,7 +14,12 @@ const Header = () => {
         <a href="/">stories</a>
         <a href="/">about/Contact</a>
       </ul>
-      <GoldenButton>login</GoldenButton>
+      <div>
+        <GoldenButton>
+          <img src={pauseIcon} alt="" width={10} />
+        </GoldenButton>
+        <GoldenButton>login</GoldenButton>
+      </div>
     </HeaderContainer>
   );
 };
@@ -28,6 +34,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   z-index: 25;
   backdrop-filter: blur(5px);
+  padding: 0 5%;
   ul {
     display: flex;
     list-style: none;
