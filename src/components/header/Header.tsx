@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import GoldenButton from "../../styled-components/golden-button";
 
 const Header = () => {
   return (
@@ -10,9 +11,9 @@ const Header = () => {
         <a href="/">schedule</a>
         <a href="/">standings</a>
         <a href="/">stories</a>
-        <a href="/">About/Contact</a>
+        <a href="/">about/Contact</a>
       </ul>
-      <button>login</button>
+      <GoldenButton>login</GoldenButton>
     </HeaderContainer>
   );
 };
@@ -37,6 +38,7 @@ const HeaderContainer = styled.header`
     text-decoration: none;
     font-size: 24px;
     transition: 0.4s;
+    text-transform: capitalize;
     &:hover {
       color: goldenrod;
     }
