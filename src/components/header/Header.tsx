@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,11 +11,11 @@ const Header = () => {
     <HeaderContainer>
       <img src="" alt="logo" />
       <ul>
-        <li onClick={() => navigate("/")}>home</li>
-        <li onClick={() => navigate("/")}>schedule</li>
-        <li onClick={() => navigate("/")}>standings</li>
-        <li onClick={() => navigate("/")}>stories</li>
-        <li onClick={() => navigate("/")}>about/Contact</li>
+        <NavLink to="/">home</NavLink>
+        <NavLink to="/schedules">schedule</NavLink>
+        <NavLink to="/">standings</NavLink>
+        <NavLink to="/">stories</NavLink>
+        <NavLink to="/">about/Contact</NavLink>
       </ul>
       <div>
         <GoldenButton>
