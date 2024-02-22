@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../home/Home";
 import BgVideo from "../bg-video/BgVideo";
 import LoginPage from "../Registration/LoginPage";
+import Schedules from "../schedules/Schedules";
 
 function AllRoutes() {
   return (
@@ -25,6 +26,7 @@ function AllRoutes() {
             </>
           }
         />
+        <Route path="/schedules" element={<Schedules />} />
       </Routes>
     </div>
   );
