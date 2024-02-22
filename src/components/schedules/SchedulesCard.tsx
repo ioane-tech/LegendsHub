@@ -2,41 +2,41 @@ import styled from "styled-components";
 import FirstTeam from "/assets/schedules/firstTeam.png";
 const SchedulesCard: React.FC = () => {
   return (
-    <SchedulesCardsContainer>
-      {/* first Team */}
-      <SchedulesFirstTeam>
+      <SchedulesCardsContainer>
+        {/* first Team */}
+        <SchedulesFirstTeam>
+          <div>
+            <ScheduleTime>20:00</ScheduleTime>
+          </div>
+          <ScheduleTeamCredsContainer>
+            <ScheduleFirstTeamLogo>
+              <h1>G2 Esports</h1>
+              <p>4W-5L</p>
+            </ScheduleFirstTeamLogo>
+            <ScheduleTeamIcon src={FirstTeam} alt="fTeam" />
+          </ScheduleTeamCredsContainer>
+        </SchedulesFirstTeam>
+        {/* first Team */}
+        {/* score */}
         <div>
-          <ScheduleTime>20:00</ScheduleTime>
+          <ScoreBoard>1 : 1</ScoreBoard>
         </div>
-        <ScheduleTeamCredsContainer>
-          <ScheduleFirstTeamLogo>
-            <h1>G2 Esports</h1>
-            <p>4W-5L</p>
-          </ScheduleFirstTeamLogo>
-          <ScheduleTeamIcon src={FirstTeam} alt="fTeam" />
-        </ScheduleTeamCredsContainer>
-      </SchedulesFirstTeam>
-      {/* first Team */}
-      {/* score */}
-      <div>
-        <ScoreBoard>1 : 1</ScoreBoard>
-      </div>
-      {/* score */}
-      {/* second team */}
-      <SchedulesSecondteam>
-        <SchedulesSecondInfoContianer>
-          <ScheduleTeamIcon src={FirstTeam} alt="fTeam" />
-          <SchedulesSecondTeamLogo>
-            <h1>G2 Esports</h1>
-            <p>4W-5L</p>
-          </SchedulesSecondTeamLogo>
-        </SchedulesSecondInfoContianer>
-        <div>
-          <Season>Season 1</Season>
-        </div>
-      </SchedulesSecondteam>
-      {/* second team */}
-    </SchedulesCardsContainer>
+        {/* score */}
+        {/* second team */}
+        <SchedulesSecondteam>
+          <SchedulesSecondInfoContianer>
+            <ScheduleTeamIcon src={FirstTeam} alt="fTeam" />
+            <SchedulesSecondTeamLogo>
+              <h1>G2 Esports</h1>
+              <p>4W-5L</p>
+            </SchedulesSecondTeamLogo>
+          </SchedulesSecondInfoContianer>
+          <div>
+            <Season>Season 1</Season>
+          </div>
+        </SchedulesSecondteam>
+        {/* second team */}
+      </SchedulesCardsContainer>
   );
 };
 
