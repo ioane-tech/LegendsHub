@@ -1,28 +1,29 @@
-import React from "react";
 import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <img src="" alt="logo" />
       <ul>
-        <a href="/">home</a>
-        <a href="/">schedule</a>
-        <a href="/">standings</a>
-        <a href="/">stories</a>
-        <a href="/">about/Contact</a>
+        <NavLink to="/">home</NavLink>
+        <NavLink to="/schedules">schedule</NavLink>
+        <NavLink to="/">standings</NavLink>
+        <NavLink to="/">stories</NavLink>
+        <NavLink to="/">about/Contact</NavLink>
       </ul>
       <div>
         <GoldenButton>
           <img src={pauseIcon} alt="" width={10} />
         </GoldenButton>
-        <GoldenButton onClick={()=> navigate('/registration')}>login</GoldenButton>
+        <GoldenButton onClick={() => navigate("/registration")}>
+          login
+        </GoldenButton>
       </div>
     </HeaderContainer>
   );
