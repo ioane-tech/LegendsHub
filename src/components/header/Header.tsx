@@ -45,7 +45,7 @@ const HeaderContainer = styled.header`
     list-style: none;
     gap: 20px;
   }
-  li {
+  a {
     color: white;
     text-decoration: none;
     font-size: 24px;
