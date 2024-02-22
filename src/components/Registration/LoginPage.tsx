@@ -1,3 +1,4 @@
+
 import React from 'react'
 import LoginBg from './Loginbg/LoginBg'
 function LoginPage() {
@@ -5,7 +6,7 @@ function LoginPage() {
     <div>
         <LoginBg/>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

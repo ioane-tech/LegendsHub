@@ -45,12 +45,13 @@ const HeaderContainer = styled.header`
     list-style: none;
     gap: 20px;
   }
-  a {
+  li {
     color: white;
     text-decoration: none;
     font-size: 24px;
     transition: 0.4s;
     text-transform: capitalize;
+    cursor: pointer;
     &:hover {
       color: goldenrod;
     }
