@@ -1,47 +1,63 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
+import TopCardClan from "../top-clan-card/TopCardClan";
+import CharacterCard from "../character-story-card/CharacterCard";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
   return (
     <HomeContainer>
-      <img src={lagueOfLegendTitle} alt="" />
-      <div
-        onMouseEnter={() => {
-          setRegisterHover(true);
-        }}
-        onMouseLeave={() => {
-          setRegisterHover(false);
-        }}
-      >
-        <video autoPlay muted loop>
-          <source
-            src={"/assets/find-match-button-idle.webm"}
-            type="video/mp4"
-          />
-        </video>
-        <video autoPlay muted loop>
-          <source
-            src={"/assets/find-match-button-intro.webm"}
-            type="video/mp4"
-          />
-        </video>
-        {registerHover && (
+      <FirstSection>
+        <img src={lagueOfLegendTitle} alt="" />
+        <div
+          onMouseEnter={() => {
+            setRegisterHover(true);
+          }}
+          onMouseLeave={() => {
+            setRegisterHover(false);
+          }}
+        >
           <video autoPlay muted loop>
             <source
-              src={"/assets/find-match-button-hover.webm"}
+              src={"/assets/find-match-button-idle.webm"}
               type="video/mp4"
             />
           </video>
-        )}
-        <h1>Register Now</h1>
-      </div>
+          <video autoPlay muted loop>
+            <source
+              src={"/assets/find-match-button-intro.webm"}
+              type="video/mp4"
+            />
+          </video>
+          {registerHover && (
+            <video autoPlay muted loop>
+              <source
+                src={"/assets/find-match-button-hover.webm"}
+                type="video/mp4"
+              />
+            </video>
+          )}
+          <h1>Register Now</h1>
+        </div>
+      </FirstSection>
+      <SecondSection>
+        <TopCardClan />
+        <TopCardClan />
+        <TopCardClan />
+      </SecondSection>
+      <ThirdSection>
+        <CharacterCard />
+        <CharacterCard />
+        <CharacterCard />
+      </ThirdSection>
     </HomeContainer>
   );
 };
 
-const HomeContainer = styled.main`
+const HomeContainer = styled.main``;
+
+const FirstSection = styled.section`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -72,6 +88,18 @@ const HomeContainer = styled.main`
       width: 11ch;
     }
   }
+`;
+
+const SecondSection = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ThirdSection = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export default Home;
