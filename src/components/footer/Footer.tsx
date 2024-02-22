@@ -39,6 +39,8 @@ const FooterComponents = styled.footer`
   width: 100%;
   height: 300px;
   background-color: rgba(0, 0, 0, 0.479);
+  position: relative;
+  bottom: 0;
   display: flex;
   z-index: 1;
   flex-direction: column;
