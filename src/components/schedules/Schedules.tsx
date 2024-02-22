@@ -14,6 +14,7 @@ const Schedules: React.FC = () => {
 export default Schedules;
 
 const SchedulesContainer = styled.div`
-    min-height: 100vh;
-    background-color: #0F1519;
-`
+  padding-top: 120px;
+  min-height: 100vh;
+  background-color: #0f1519;
+`;

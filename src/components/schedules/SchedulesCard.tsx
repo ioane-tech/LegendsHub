@@ -44,11 +44,19 @@ export default SchedulesCard;
 
 const SchedulesCardsContainer = styled.div`
   color: #fff;
-  padding-top: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border-top: 1px solid #8fa3b0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #8fa3b0;
+  cursor: pointer;
+  transition: all 500ms ease;
+  &:hover {
+    background: black;
+  }
 `;
 const SchedulesFirstTeam = styled.div`
   width: 40%;
