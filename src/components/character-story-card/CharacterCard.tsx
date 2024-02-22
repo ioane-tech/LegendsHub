@@ -13,14 +13,15 @@ const CharacterCard = ({ size }: Props) => {
 
   const Container = styled.div`
     background-image: url(/assets/bloodmoon-aatrox-splash.jpg);
+    background-position: center;
+    background-size: cover;
     height: ${size === "large" ? "480px" : "400px"};
     width: ${size === "large" ? "270px" : "225px"};
-    background-position: center;
     position: relative;
     video {
       position: absolute;
-      left: -83px;
-      top: -30px;
+      left: ${size === "large" ? "-65px" : "-83px"};
+      top: ${size === "large" ? "20px" : "-30px"};
       z-index: 1;
     }
   `;
@@ -36,7 +37,8 @@ const CharacterCard = ({ size }: Props) => {
     justify-content: center;
     h1 {
       color: white;
-      margin-top: 350px;
+      margin-top: ${size === "large" ? "430px" : "350px"};
+      font-size: ${size === "large" ? "30px" : "normal"};
     }
   `;
 
@@ -52,6 +54,7 @@ const CharacterCard = ({ size }: Props) => {
     left: -80px;
     top: -100px;
     z-index: 2;
+    width: ${size === "large" ? "500px" : "400px"};
   `;
 
   return (
@@ -85,7 +88,6 @@ const CharacterCard = ({ size }: Props) => {
           <CharacterImgStyle
             src={characterImg}
             alt=""
-            width={400}
             as={motion.img}
             initial={{ opacity: 0, top: 0 }}
             animate={{ opacity: 1, top: -130 }}
