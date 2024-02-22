@@ -51,6 +51,7 @@ const HeaderContainer = styled.header`
     font-size: 24px;
     transition: 0.4s;
     text-transform: capitalize;
+    cursor: pointer;
     &:hover {
       color: goldenrod;
     }
