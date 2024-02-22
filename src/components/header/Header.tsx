@@ -6,23 +6,25 @@ import pauseIcon from "/icons/pause.png";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <img src="" alt="logo" />
       <ul>
-        <a href="/">home</a>
-        <a href="/">schedule</a>
-        <a href="/">standings</a>
-        <a href="/">stories</a>
-        <a href="/">about/Contact</a>
+        <li onClick={() => navigate("/")}>home</li>
+        <li onClick={() => navigate("/")}>schedule</li>
+        <li onClick={() => navigate("/")}>standings</li>
+        <li onClick={() => navigate("/")}>stories</li>
+        <li onClick={() => navigate("/")}>about/Contact</li>
       </ul>
       <div>
         <GoldenButton>
           <img src={pauseIcon} alt="" width={10} />
         </GoldenButton>
-        <GoldenButton onClick={()=> navigate('/registration')}>login</GoldenButton>
+        <GoldenButton onClick={() => navigate("/registration")}>
+          login
+        </GoldenButton>
       </div>
     </HeaderContainer>
   );
@@ -44,12 +46,13 @@ const HeaderContainer = styled.header`
     list-style: none;
     gap: 20px;
   }
-  a {
+  li {
     color: white;
     text-decoration: none;
     font-size: 24px;
     transition: 0.4s;
     text-transform: capitalize;
+    cursor: pointer;
     &:hover {
       color: goldenrod;
     }

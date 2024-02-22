@@ -48,7 +48,7 @@ const Home = () => {
       </SecondSection>
       <ThirdSection>
         <CharacterCard />
-        <CharacterCard />
+        <CharacterCard size="large" />
         <CharacterCard />
       </ThirdSection>
     </HomeContainer>
