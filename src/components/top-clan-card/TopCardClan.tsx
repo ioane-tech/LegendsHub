@@ -46,7 +46,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
-  height: 700px;
   position: relative;
   ul {
     display: flex;
@@ -59,11 +58,14 @@ const Container = styled.div`
       gap: 10px;
     }
   }
+  h2 {
+    margin-top: 100px;
+  }
 `;
 
 const VideoContainer = styled.div`
   position: absolute;
-  top: -150px;
+  top: -50px;
 `;
 
 export default TopCardClan;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
+import CharacterCard from "../character-story-card/CharacterCard";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
@@ -45,6 +46,11 @@ const Home = () => {
         <TopCardClan />
         <TopCardClan />
       </SecondSection>
+      <ThirdSection>
+        <CharacterCard />
+        <CharacterCard />
+        <CharacterCard />
+      </ThirdSection>
     </HomeContainer>
   );
 };
@@ -85,6 +91,13 @@ const FirstSection = styled.section`
 `;
 
 const SecondSection = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ThirdSection = styled.section`
+  height: 100vh;
   display: flex;
   justify-content: space-around;
 `;

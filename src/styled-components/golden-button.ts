@@ -21,6 +21,11 @@ const GoldenButton = styled.button`
     cursor: url(../assets/section1/hand2.png), auto;
     cursor: pointer;
   }
+  &:active {
+    text-shadow: none;
+    box-shadow: none;
+    color: #cdbe9130;
+  }
 `;
 
 export default GoldenButton;
