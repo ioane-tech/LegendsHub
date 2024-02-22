@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import CLanLogo from "/assets/theme-21-border.png";
 import PlayerIconTop from "/assets/icon-position-top.png";
