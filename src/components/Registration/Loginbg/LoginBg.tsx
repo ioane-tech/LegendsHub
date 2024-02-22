@@ -1,4 +1,3 @@
-import React from "react";
 import "../LoginCss/bgVideo.css";
 import zed from "./zed.mp4";
 
