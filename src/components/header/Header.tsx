@@ -3,7 +3,11 @@ import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 
+import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigate = useNavigate()
+
   return (
     <HeaderContainer>
       <img src="" alt="logo" />
@@ -18,7 +22,7 @@ const Header = () => {
         <GoldenButton>
           <img src={pauseIcon} alt="" width={10} />
         </GoldenButton>
-        <GoldenButton>login</GoldenButton>
+        <GoldenButton onClick={()=> navigate('/registration')}>login</GoldenButton>
       </div>
     </HeaderContainer>
   );
