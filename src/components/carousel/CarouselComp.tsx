@@ -85,6 +85,7 @@ const Container = styled.div`
   height: 300px;
   img {
     width: 150px;
+    transition: 0.3s;
     &:hover {
       scale: 1.3;
     }
