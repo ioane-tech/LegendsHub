@@ -32,6 +32,41 @@ const Standings = () => {
               <h2>7w-2L</h2>
             </div>
           </StandingList>
+          <StandingList>
+            <img src={FirstTeam} alt="fteam" />
+            <div>
+              <h1>G2 Esports</h1>
+              <h2>7w-2L</h2>
+            </div>
+          </StandingList>
+          <StandingList>
+            <img src={FirstTeam} alt="fteam" />
+            <div>
+              <h1>G2 Esports</h1>
+              <h2>7w-2L</h2>
+            </div>
+          </StandingList>
+          <StandingList>
+            <img src={FirstTeam} alt="fteam" />
+            <div>
+              <h1>G2 Esports</h1>
+              <h2>7w-2L</h2>
+            </div>
+          </StandingList>
+          <StandingList>
+            <img src={FirstTeam} alt="fteam" />
+            <div>
+              <h1>G2 Esports</h1>
+              <h2>7w-2L</h2>
+            </div>
+          </StandingList>
+          <StandingList>
+            <img src={FirstTeam} alt="fteam" />
+            <div>
+              <h1>G2 Esports</h1>
+              <h2>7w-2L</h2>
+            </div>
+          </StandingList>
         </StandingListNumberic>
       </div>
     </StandingsMainContainer>
@@ -42,6 +77,7 @@ export default Standings;
 
 const StandingsMainContainer = styled.div`
   padding-top: 60px;
+  padding-bottom: 60px;
   background: #0f1519;
   h3 {
     color: #fff;
@@ -74,15 +110,14 @@ const StandingsStageWrapper = styled.div`
   }
 `;
 
-const StandingListNumberic = styled.ol`
-  list-style: decimal;
-`;
+const StandingListNumberic = styled.ol``;
 const StandingList = styled.li`
   display: flex;
   align-items: center;
   gap: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 30px;
   color: #fff;
   border-top: 1px solid #8fa3b0;
   border-bottom: 1px solid #8fa3b0;
