@@ -4,6 +4,7 @@ import Home from "../home/Home";
 import BgVideo from "../bg-video/BgVideo";
 import LoginPage from "../Registration/LoginPage";
 import Schedules from "../schedules/Schedules";
+import Standings from "../standing/Standings";
 
 function AllRoutes() {
   return (
@@ -27,6 +28,7 @@ function AllRoutes() {
           }
         />
         <Route path="/schedules" element={<Schedules />} />
+        <Route path="/standings" element={<Standings />} />
       </Routes>
     </div>
   );
