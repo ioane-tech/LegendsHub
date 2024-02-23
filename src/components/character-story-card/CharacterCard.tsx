@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import characterImg from "/assets/_mmd_fbx__aatrox_rift_ver__dl_by_n1ghtingalez_dfmbx4l-pre.png";
 import characterBorder from "/assets/Untitled-2.png";

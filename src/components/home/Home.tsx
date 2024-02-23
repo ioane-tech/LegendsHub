@@ -3,9 +3,11 @@ import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
 import CharacterCard from "../character-story-card/CharacterCard";
+import CarouselComp from "../carousel/CarouselComp";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
+
   return (
     <HomeContainer>
       <FirstSection>
@@ -41,16 +43,19 @@ const Home = () => {
           <h1>Register Now</h1>
         </div>
       </FirstSection>
-      <SecondSection>
-        <TopCardClan />
-        <TopCardClan />
-        <TopCardClan />
-      </SecondSection>
+      <section>
+        <CarouselComp />
+      </section>
       <ThirdSection>
+        <TopCardClan />
+        <TopCardClan />
+        <TopCardClan />
+      </ThirdSection>
+      <FourthSection>
         <CharacterCard />
         <CharacterCard size="large" />
         <CharacterCard />
-      </ThirdSection>
+      </FourthSection>
     </HomeContainer>
   );
 };
@@ -90,13 +95,12 @@ const FirstSection = styled.section`
   }
 `;
 
-const SecondSection = styled.section`
-  height: 100vh;
+const ThirdSection = styled.section`
   display: flex;
   justify-content: space-around;
 `;
 
-const ThirdSection = styled.section`
+const FourthSection = styled.section`
   height: 100vh;
   display: flex;
   justify-content: space-around;
