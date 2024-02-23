@@ -1,67 +1,87 @@
 import styled from "styled-components";
 import testImg from "/assets/theme-21-border.png";
-import { Carousel } from "antd";
 import { NavLink } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const CarouselComp = () => {
   return (
     <Container>
-      <Carousel
-        arrows={false}
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={50}
+        slidesPerView={6}
         autoplay={true}
-        draggable={false}
-        dots={false}
-        slidesPerRow={6}
-        pauseOnHover={false}
-        infinite={true}
-        autoplaySpeed={7000}
-        speed={5000}
-        centerMode={true}
+        draggable={true}
       >
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-        <NavLink to="/">
-          <img src={testImg} alt="" />
-        </NavLink>
-      </Carousel>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+        <SwiperSlide>
+          <NavLink to="/">
+            <img src={testImg} alt="" />
+          </NavLink>
+        </SwiperSlide>
+      </Swiper>
     </Container>
   );
 };
 
 const Container = styled.div`
-  background-color: black;
-  transition: ease 1;
   height: 300px;
   img {
     width: 150px;
