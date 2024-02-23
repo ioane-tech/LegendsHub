@@ -3,9 +3,11 @@ import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
 import CharacterCard from "../character-story-card/CharacterCard";
+import CarouselComp from "../carousel/CarouselComp";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
+
   return (
     <HomeContainer>
       <FirstSection>
@@ -51,6 +53,9 @@ const Home = () => {
         <CharacterCard size="large" />
         <CharacterCard />
       </ThirdSection>
+      <section>
+        <CarouselComp />
+      </section>
     </HomeContainer>
   );
 };
