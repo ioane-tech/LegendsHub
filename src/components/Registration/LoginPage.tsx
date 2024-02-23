@@ -11,6 +11,7 @@ function LoginPage() {
 
   const [email, setEmail]=useState("")
 
+  console.log(email)
   return (
     <div>
         <LoginBg/>

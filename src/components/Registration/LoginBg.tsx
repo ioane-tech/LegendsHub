@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from "react";
 
 import zedRegisterBg from '../../../public/assets/zedRegisterBg.mp4'
 

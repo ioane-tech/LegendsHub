@@ -21,8 +21,9 @@ const Header = () => {
     if (audioRef.current) {
       audioRef.current.volume = isMuted ? 0 : 0.15;
     }
-  }, [isMuted]);
+  },[isMuted])  
 
+console.log(isMuted)
   return (
     <HeaderContainer>
 
