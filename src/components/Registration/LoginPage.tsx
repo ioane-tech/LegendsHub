@@ -12,8 +12,10 @@ function LoginPage() {
   const [confirmPassword, setConfirmPassword]=useState("")
 
   const [email, setEmail]=useState("")
+  const [userName, setUsername]=useState("")
 
   console.log(email)
+  console.log(userName)
   return (
     <div>
         <LoginBg/>
@@ -21,9 +23,10 @@ function LoginPage() {
 
           <FormContainer >
             <Title>Become a legend</Title>
-            <Inputs onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="Enter email..."/>
-            <Inputs onChange={(e)=>setPassword(e.target.value)} type="text" placeholder="Enter password..."/>
-            <Inputs onChange={(e)=>setConfirmPassword(e.target.value)} type="text" placeholder="Confirm password..."/>
+            <Inputs onChange={(e)=>setUsername(e.target.value)} type="text" placeholder="Enter user name..." required/>
+            <Inputs onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="Enter email..." required/>
+            <Inputs onChange={(e)=>setPassword(e.target.value)} type="text" placeholder="Enter password..." required/>
+            <Inputs onChange={(e)=>setConfirmPassword(e.target.value)} type="text" placeholder="Confirm password..." required/>
             {(confirmPassword != "" && confirmPassword != password) &&
               <Error >Password does not match!</Error>
             }
@@ -50,7 +53,7 @@ const FormContainer = styled.div`
 const Inputs = styled.input`
   width:300px;
   height:30px;
-  margin-bottom:10px;
+  margin-bottom:15px;
   padding-left: 5px;
 `;
 
@@ -72,7 +75,7 @@ const Title = styled.h2`
   color: #C89B3C;
   font-size: 50px;
   margin-top:-80px;
-  padding-bottom:70px;
+  padding-bottom:50px;
 `;
 
 const Error = styled.p`
