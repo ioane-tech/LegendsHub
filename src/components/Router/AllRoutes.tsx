@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "../home/Home";
 import BgVideo from "../bg-video/BgVideo";
-import LoginPage from "../Registration/LoginPage";
+import LoginPage from "../login&registration/LoginPage";
 import Schedules from "../schedules/Schedules";
 import Standings from "../standing/Standings";
 

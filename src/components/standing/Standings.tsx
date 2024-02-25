@@ -1,75 +1,81 @@
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
 import FirstTeam from "/assets/schedules/firstTeam.png";
 import styled from "styled-components";
 const Standings = () => {
   return (
-    <StandingsMainContainer>
-      <StandingsStageWrapper>
-        <span>STAGE:</span>
-        <h2>REGULAR SEASON</h2>
-        <h2>PLAYOFFS</h2>
-      </StandingsStageWrapper>
-      <h3>Standings</h3>
-      <div>
-        <StandingListNumberic>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-          <StandingList>
-            <img src={FirstTeam} alt="fteam" />
-            <div>
-              <h1>G2 Esports</h1>
-              <h2>7w-2L</h2>
-            </div>
-          </StandingList>
-        </StandingListNumberic>
-      </div>
-    </StandingsMainContainer>
+    <>
+      <Header />
+      <StandingsMainContainer>
+        <StandingsStageWrapper>
+          <span>STAGE:</span>
+          <h2>REGULAR SEASON</h2>
+          <h2>PLAYOFFS</h2>
+        </StandingsStageWrapper>
+        <h3>Standings</h3>
+        <div>
+          <StandingListNumberic>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+            <StandingList>
+              <img src={FirstTeam} alt="fteam" />
+              <div>
+                <h1>G2 Esports</h1>
+                <h2>7w-2L</h2>
+              </div>
+            </StandingList>
+          </StandingListNumberic>
+        </div>
+      </StandingsMainContainer>
+      <Footer />
+    </>
   );
 };
 
