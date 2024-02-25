@@ -55,6 +55,10 @@ const Inputs = styled.input`
   height:30px;
   margin-bottom:15px;
   padding-left: 5px;
+
+  background-color:#0f0f29;
+  border:1px solid #C89B3C;
+  color:#C89B3C;
 `;
 
 const SumbitButton = styled.button`
