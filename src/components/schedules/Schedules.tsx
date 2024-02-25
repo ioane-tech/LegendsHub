@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import SchedulesCard from "./SchedulesCard";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const Schedules: React.FC = () => {
   return (
     <div>
+      <Header />
       <SchedulesContainer>
         <ScheduleTitle>Game Schedules</ScheduleTitle>
         <SchedulesCard />
@@ -13,6 +16,7 @@ const Schedules: React.FC = () => {
         <SchedulesCard />
         <SchedulesCard />
       </SchedulesContainer>
+      <Footer />
     </div>
   );
 };

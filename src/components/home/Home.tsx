@@ -4,12 +4,15 @@ import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
 import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
 
   return (
     <HomeContainer>
+      <Header />
       <FirstSection>
         <img src={lagueOfLegendTitle} alt="" />
         <div
@@ -79,6 +82,7 @@ const Home = () => {
         <CharacterCard size="large" />
         <CharacterCard />
       </FourthSection>
+      <Footer />
     </HomeContainer>
   );
 };
