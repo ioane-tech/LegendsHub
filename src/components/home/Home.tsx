@@ -6,9 +6,11 @@ import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [registerHover, setRegisterHover] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <HomeContainer>
@@ -16,6 +18,9 @@ const Home = () => {
       <FirstSection>
         <img src={lagueOfLegendTitle} alt="" />
         <div
+          onClick={() => {
+            navigate("/registration");
+          }}
           onMouseEnter={() => {
             setRegisterHover(true);
           }}
