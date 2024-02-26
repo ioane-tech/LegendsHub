@@ -15,86 +15,44 @@ const CarouselComp = () => {
         slidesPerView={9}
         autoplay={true}
         draggable={true}
+        loop={true}
       >
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
-        <SwiperSlide>
-          <NavLink to="/">
-            <img src={testImg} alt="" />
-          </NavLink>
-        </SwiperSlide>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <SwiperSlide key={index}>
+            <NavLink to="/">
+              <img src={testImg} alt="" />
+            </NavLink>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: 300px;
   background-color: #1f0101;
   display: flex;
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   padding: 0 50px;
+  div {
+    height: 300px;
+    display: flex;
+    align-items: center;
+  }
   img {
     width: 150px;
     transition: 0.3s;
     &:hover {
       scale: 1.3;
     }
+    &:active {
+      cursor: grab;
+    }
+  }
+  &:active {
+    cursor: grab;
   }
 `;
 

@@ -2,9 +2,10 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "../home/Home";
 import BgVideo from "../bg-video/BgVideo";
-import LoginPage from "../login&registration/registration/RegistrationPage";
+import RegistrationPage from "../login&registration/registration/RegistrationPage";
 import Schedules from "../schedules/Schedules";
 import Standings from "../standing/Standings";
+import LoginPage from "../login&registration/login/LoginPage";
 
 function AllRoutes() {
   return (
@@ -23,10 +24,11 @@ function AllRoutes() {
           path="/registration"
           element={
             <>
-              <LoginPage />
+              <RegistrationPage />
             </>
           }
         />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/schedules" element={<Schedules />} />
         <Route path="/standings" element={<Standings />} />
       </Routes>
