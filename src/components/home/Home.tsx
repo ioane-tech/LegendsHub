@@ -102,7 +102,7 @@ const FirstSection = styled.section`
   align-items: center;
   flex-direction: column;
   img {
-    width: 550px;
+    width: 350px;
   }
   div {
     width: 230px;
