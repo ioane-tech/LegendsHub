@@ -1,7 +1,15 @@
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import LoginBg from "../LoginBg";
 import GoldenButton from "../../../styled-components/golden-button";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  Title,
+  FormContainer,
+  FLexStyled,
+  ErrorPara,
+  Input,
+  Container,
+} from "../styles";
 
 type DataType = {
   gameName: string;
@@ -11,7 +19,7 @@ type DataType = {
   confirmPassword: string;
 };
 
-function LoginPage() {
+function RegistrationPage() {
   const {
     register,
     handleSubmit,
@@ -23,8 +31,13 @@ function LoginPage() {
 
   const onSubmit = () => {};
 
+  const navigate = useNavigate();
+
   return (
     <Container>
+      <NavLink to="/" style={{ position: "absolute", left: "5%", top: "40px" }}>
+        <GoldenButton>back</GoldenButton>
+      </NavLink>
       <LoginBg />
       <div>
         <Title>Become a legend</Title>
@@ -46,7 +59,7 @@ function LoginPage() {
                   : {}
               }
             />
-            <Error>{errors.gameName?.message}</Error>
+            <ErrorPara>{errors.gameName?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
             <Input
@@ -67,7 +80,7 @@ function LoginPage() {
                 errors.name?.message ? { borderBottom: "2px solid red" } : {}
               }
             />
-            <Error>{errors.name?.message}</Error>
+            <ErrorPara>{errors.name?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
             <Input
@@ -85,7 +98,7 @@ function LoginPage() {
                 errors.email?.message ? { borderBottom: "2px solid red" } : {}
               }
             />
-            <Error>{errors.email?.message}</Error>
+            <ErrorPara>{errors.email?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
             <Input
@@ -104,7 +117,7 @@ function LoginPage() {
                   : {}
               }
             />
-            <Error>{errors.password?.message}</Error>
+            <ErrorPara>{errors.password?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
             <Input
@@ -121,11 +134,18 @@ function LoginPage() {
                   : {}
               }
             />
-            <Error>{errors.confirmPassword?.message}</Error>
+            <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
           </div>
           <FLexStyled>
             <GoldenButton type="submit">Register</GoldenButton>
-            <GoldenButton type="button">Already Have An Account?</GoldenButton>
+            <GoldenButton
+              type="button"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Already Have An Account?
+            </GoldenButton>
           </FLexStyled>
         </FormContainer>
       </div>
@@ -133,59 +153,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
-
-const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.514);
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-`;
-
-const Input = styled.input`
-  width: 330px;
-  height: 50px;
-  padding-left: 20px;
-  background-color: white;
-  font-weight: 800;
-  font-family: inherit;
-  outline: none;
-  border-width: 2px;
-  &::placeholder {
-    font-weight: 800;
-  }
-  &:focus {
-    border-bottom: 3px solid goldenrod;
-  }
-`;
-
-const Title = styled.h2`
-  color: #c89b3c;
-  font-size: 50px;
-  margin-top: -80px;
-  margin-bottom: 30px;
-`;
-
-const Error = styled.p`
-  position: absolute;
-  color: red;
-  font-size: 14px;
-  bottom: -20px;
-  left: 23px;
-`;
-
-const FLexStyled = styled.div`
-  margin-top: 5px;
-  display: flex;
-  gap: 5px;
-`;
+export default RegistrationPage;
