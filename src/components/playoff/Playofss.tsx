@@ -1,6 +1,7 @@
 import Header from "../header/Header";
 import styled from "styled-components";
 import StandingsHeader from "../standing/StandingsHeader";
+
 const Playofss: React.FC = () => {
   return (
     <PlayoffsMainContainer>
