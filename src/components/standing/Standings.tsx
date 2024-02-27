@@ -1,5 +1,6 @@
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
+import StandingsHeader from "./StandingsHeader";
 import FirstTeam from "/assets/schedules/firstTeam.png";
 import styled from "styled-components";
 const Standings = () => {
@@ -7,7 +8,7 @@ const Standings = () => {
     <>
       <Header />
       <StandingsMainContainer>
-        
+        <StandingsHeader />
         <h3>Standings</h3>
         <div>
           <StandingListNumberic>
@@ -87,7 +88,6 @@ const StandingsMainContainer = styled.div`
     padding-bottom: 20px;
   }
 `;
-
 
 const StandingListNumberic = styled.ol``;
 const StandingList = styled.li`

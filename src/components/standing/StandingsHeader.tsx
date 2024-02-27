@@ -35,4 +35,7 @@ const StandingsStageWrapper = styled.div`
   a:hover {
     color: #00c8c8;
   }
+  a.active {
+    color: #00c8c8;
+  }
 `;
