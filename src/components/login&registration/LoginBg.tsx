@@ -1,7 +1,9 @@
 
-import zedRegisterBg from '/assets/zedRegisterBg.mp4'
+// import zedRegisterBg from '/assets/zedRegisterBg.mp4'
 
 import BgVideo from "../../styled-components/bgVideo";
+
+import aatroxBg from '/assets/aatroxBg.mp4'
 
 const LoginBg = () => {
 
@@ -9,7 +11,7 @@ const LoginBg = () => {
   return (
 
     <div>
-      <BgVideo src={zedRegisterBg} autoPlay muted loop />
+      <BgVideo src={aatroxBg} autoPlay muted loop />
     </div>
   );
 };

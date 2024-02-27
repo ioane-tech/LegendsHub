@@ -1,5 +1,6 @@
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
+import StandingsHeader from "./StandingsHeader";
 import FirstTeam from "/assets/schedules/firstTeam.png";
 import styled from "styled-components";
 const Standings = () => {
@@ -7,11 +8,7 @@ const Standings = () => {
     <>
       <Header />
       <StandingsMainContainer>
-        <StandingsStageWrapper>
-          <span>STAGE:</span>
-          <h2>REGULAR SEASON</h2>
-          <h2>PLAYOFFS</h2>
-        </StandingsStageWrapper>
+        <StandingsHeader />
         <h3>Standings</h3>
         <div>
           <StandingListNumberic>
@@ -89,30 +86,6 @@ const StandingsMainContainer = styled.div`
     color: #fff;
     font-weight: bold;
     padding-bottom: 20px;
-  }
-`;
-const StandingsStageWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: #0f1519;
-  height: 120px;
-  span {
-    font-weight: bold;
-    color: #8fa3b0;
-    font-size: 18px;
-  }
-  h1,
-  h2 {
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    transition: all 500ms ease;
-  }
-  h1,
-  h2:hover {
-    color: #00c8c8;
   }
 `;
 
