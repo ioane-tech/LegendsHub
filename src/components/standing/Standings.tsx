@@ -10,8 +10,8 @@ const Standings = () => {
       <StandingsMainContainer>
         <StandingsStageWrapper>
           <span>STAGE:</span>
-          <NavLink to="/">REGULAR SEASON</NavLink>
-          <NavLink to="/">PLAYOFFS</NavLink>
+          <NavLink to="/standings">REGULAR SEASON</NavLink>
+          <NavLink to="/playoffs">PLAYOFFS</NavLink>
         </StandingsStageWrapper>
         <h3>Standings</h3>
         <div>

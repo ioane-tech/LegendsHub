@@ -1,7 +1,10 @@
+import Header from "../header/Header";
+
 const Playofss: React.FC = () => {
   return (
     <div>
-      <div>playoffs</div>
+      <Header />
+      <div></div>
     </div>
   );
 };
