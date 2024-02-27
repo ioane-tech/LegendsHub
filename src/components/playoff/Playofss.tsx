@@ -1,7 +1,7 @@
 const Playofss: React.FC = () => {
   return (
     <div>
-      <div></div>
+      <div>playoffs</div>
     </div>
   );
 };
