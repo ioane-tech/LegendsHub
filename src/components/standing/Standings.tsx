@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import FirstTeam from "/assets/schedules/firstTeam.png";
@@ -8,11 +7,7 @@ const Standings = () => {
     <>
       <Header />
       <StandingsMainContainer>
-        <StandingsStageWrapper>
-          <span>STAGE:</span>
-          <NavLink to="/standings">REGULAR SEASON</NavLink>
-          <NavLink to="/playoffs">PLAYOFFS</NavLink>
-        </StandingsStageWrapper>
+        
         <h3>Standings</h3>
         <div>
           <StandingListNumberic>
@@ -92,30 +87,7 @@ const StandingsMainContainer = styled.div`
     padding-bottom: 20px;
   }
 `;
-const StandingsStageWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: #0f1519;
-  height: 120px;
 
-  span {
-    font-weight: bold;
-    color: #8fa3b0;
-    font-size: 18px;
-  }
-  a {
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    transition: all 500ms ease;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #00c8c8;
-  }
-`;
 
 const StandingListNumberic = styled.ol``;
 const StandingList = styled.li`
