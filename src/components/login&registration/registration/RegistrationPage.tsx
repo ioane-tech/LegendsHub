@@ -137,7 +137,6 @@ function RegistrationPage() {
             <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
           </div>
           <FLexStyled>
-            <GoldenButton type="submit">Register</GoldenButton>
             <GoldenButton
               type="button"
               onClick={() => {
@@ -146,6 +145,7 @@ function RegistrationPage() {
             >
               Already Have An Account?
             </GoldenButton>
+            <GoldenButton type="submit">Register</GoldenButton>
           </FLexStyled>
         </FormContainer>
       </div>
