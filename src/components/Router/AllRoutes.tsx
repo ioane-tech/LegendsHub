@@ -6,6 +6,7 @@ import RegistrationPage from "../login&registration/registration/RegistrationPag
 import Schedules from "../schedules/Schedules";
 import Standings from "../standing/Standings";
 import LoginPage from "../login&registration/login/LoginPage";
+import Playofss from "../playoff/Playofss";
 
 function AllRoutes() {
   return (
@@ -31,6 +32,7 @@ function AllRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/schedules" element={<Schedules />} />
         <Route path="/standings" element={<Standings />} />
+        <Route path="/playoffs" element={<Playofss />} />
       </Routes>
     </div>
   );
