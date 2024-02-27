@@ -73,7 +73,6 @@ const LoginPage = () => {
             <ErrorPara>{errors.password?.message}</ErrorPara>
           </div>
           <FLexStyled>
-            <GoldenButton type="submit">login</GoldenButton>
             <GoldenButton
               type="button"
               onClick={() => {
@@ -82,6 +81,7 @@ const LoginPage = () => {
             >
               register
             </GoldenButton>
+            <GoldenButton type="submit">login</GoldenButton>
           </FLexStyled>
         </FormContainer>
       </div>
