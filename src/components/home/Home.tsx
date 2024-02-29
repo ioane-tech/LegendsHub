@@ -9,7 +9,7 @@ import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
 import HomeThirdSection from "./third-section/HomeThirdSection";
-import Footer from "../footer/Footer";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const Home = () => {
         <CarouselComp />
       </section>
       <HomeThirdSection />
-      <Footer />
+
     </HomeContainer>
   );
 };

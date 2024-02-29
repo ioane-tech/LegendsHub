@@ -49,10 +49,11 @@ const FooterComponents = styled.footer`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 85;
 `;
 
 const Socials = styled.div`
-  background-color: transparent;
+  background-color: red;
   border-radius: 10px;
   color: rgb(156, 112, 0);
   font-size: xx-large;
@@ -61,6 +62,8 @@ const Socials = styled.div`
   gap: 25px;
   align-items: center;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
 `;
 
 const SocialsHover = styled.div`

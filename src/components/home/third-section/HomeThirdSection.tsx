@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TopCardClan from "../../top-clan-card/TopCardClan";
+import Footer from "../../footer/Footer";
 
 
 const HomeThirdSection = () => {
@@ -14,6 +15,7 @@ const HomeThirdSection = () => {
           </ThirdSection>
         </TransparentDiv>
       </ThirdContainer>
+      <Footer />
     </>
   );
 };
@@ -26,13 +28,14 @@ const ThirdContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
   width: 100%;
 `;
+
 const ThirdSection = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-top: 15%;
 `;
 
 const TransparentDiv = styled.div`
@@ -40,4 +43,5 @@ const TransparentDiv = styled.div`
   min-height: 100vh;
   width: 100%;
   position: relative;
+  z-index: 1;
 `;
