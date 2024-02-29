@@ -110,7 +110,7 @@ const FirstSection = styled.section`
   div:nth-child(3) {
     width: 100%;
     position: absolute;
-    bottom: -30px;
+    bottom: -0;
     display: flex;
     justify-content: center;
     img:nth-child(1) {
@@ -119,8 +119,9 @@ const FirstSection = styled.section`
       bottom: 0;
     }
     img:nth-child(2) {
-      width: 80px;
-      height: 82px;
+      /* width: 80px;
+      height: 82px; */
+      width: 5%;
       z-index: 1;
       margin-bottom: 2.5%;
     }

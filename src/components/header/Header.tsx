@@ -11,6 +11,16 @@ import loginBgMusic from "/assets/loginBgMusic.mp4";
 const Header = () => {
   const navigate = useNavigate();
 
+  const [scroll, setScroll] = useState(false);
+  const changePosition = () => {
+    if (window.scrollY >= 900) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+  window.addEventListener("scroll", changePosition);
+
   const [isPlaying, setIsPlaying] = useState(true);
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -27,6 +37,53 @@ const Header = () => {
       audioRef.current.volume = 0.15;
     }
   }, [isPlaying]);
+
+  const HeaderContainer = styled.header`
+    font-family: "Cormorant Unicase", serif;
+    background-color: ${() => (scroll ? "rgba(0, 0, 0, 0.562)" : "")};
+    backdrop-filter: ${() => (scroll ? "blur(5px)" : "")};
+    font-weight: 500;
+    font-style: normal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85px;
+    position: ${() => (scroll ? "fixed" : "absolute")};
+    z-index: 25;
+    padding: ${() => (scroll ? "60px 20px" : "80px 50px")};
+    span {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin-right: auto;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+      transition: 0.4s;
+      text-transform: capitalize;
+      cursor: pointer;
+      &:hover {
+        color: goldenrod;
+      }
+    }
+    div {
+      gap: 20px;
+      display: flex;
+    }
+  `;
+
+  const LogoImg = styled.img`
+    width: 107px;
+    height: 95px;
+  `;
 
   return (
     <HeaderContainer>
@@ -54,50 +111,5 @@ const Header = () => {
     </HeaderContainer>
   );
 };
-
-const HeaderContainer = styled.header`
-  font-family: "Cormorant Unicase", serif;
-  font-weight: 500;
-  font-style: normal;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 85px;
-  position: absolute;
-  z-index: 25;
-  padding: 80px 50px;
-  span {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-    margin-right: auto;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    transition: 0.4s;
-    text-transform: capitalize;
-    cursor: pointer;
-    &:hover {
-      color: goldenrod;
-    }
-  }
-  div {
-    gap: 20px;
-    display: flex;
-  }
-`;
-
-const LogoImg = styled.img`
-  width: 107px;
-  height: 95px;
-`;
 
 export default Header;
