@@ -31,18 +31,16 @@ const Header = () => {
   return (
     <HeaderContainer>
       <audio ref={audioRef} src={loginBgMusic} loop />
-
-      <img
-        src="assets/logo.png"
-        alt="logo"
-        style={{ width: "50px", marginRight: "40px" }}
-      />
-      <ul>
-        <NavLink to="/">home</NavLink>
-        <NavLink to="/schedules">schedule</NavLink>
-        <NavLink to="/standings">standings</NavLink>
-        <NavLink to="/">about/Contact</NavLink>
-      </ul>
+      <span>
+        <LogoImg src="assets/logo.png" alt="logo" />
+        <ul>
+          <NavLink to="/">home</NavLink>
+          <NavLink to="/schedules">schedule</NavLink>
+          <NavLink to="/standings">standings</NavLink>
+          <NavLink to="/">stories</NavLink>
+          <NavLink to="/">about/Contact</NavLink>
+        </ul>
+      </span>
       <div>
         <GoldenButton onClick={() => setIsPlaying(!isPlaying)}>
           {isPlaying ? (
@@ -58,16 +56,22 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.header`
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 500;
+  font-style: normal;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 85px;
-  background-color: rgba(0, 0, 0, 0.562);
-  position: fixed;
+  position: absolute;
   z-index: 25;
-  backdrop-filter: blur(5px);
-  padding: 0 5%;
+  padding: 80px 50px;
+  span {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
   ul {
     display: flex;
     list-style: none;
@@ -77,7 +81,7 @@ const HeaderContainer = styled.header`
   a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 22px;
     transition: 0.4s;
     text-transform: capitalize;
     cursor: pointer;
@@ -85,6 +89,15 @@ const HeaderContainer = styled.header`
       color: goldenrod;
     }
   }
+  div {
+    gap: 20px;
+    display: flex;
+  }
+`;
+
+const LogoImg = styled.img`
+  width: 107px;
+  height: 95px;
 `;
 
 export default Header;
