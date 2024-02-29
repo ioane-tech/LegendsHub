@@ -18,12 +18,24 @@ const Footer: React.FC = () => {
           <CookiesATag href="information">Who we are?</CookiesATag>
         </Cookies>
         <img src={Flogo} alt="Flogo" />
-        <div>
-          <img src={gmail} alt="gmail" />
-          <img src={tiktok} alt="tiktok" />
-          <img src={fb} alt="fb" />
-          <img src={discord} alt="discord" />
-        </div>
+        <FooterSocialsWrapper>
+          <span>
+            <a href="#">
+              <img src={gmail} alt="gmail" />
+            </a>
+            <a href="#">
+              <img src={tiktok} alt="tiktok" />
+            </a>
+          </span>
+          <span>
+            <a href="#">
+              <img src={fb} alt="fb" />
+            </a>
+            <a href="#">
+              <img src={discord} alt="discord" />
+            </a>
+          </span>
+        </FooterSocialsWrapper>
         <img src={talon} alt="talon" />
       </FooterMainWrapper>
     </FooterComponents>
@@ -42,11 +54,24 @@ const FooterComponents = styled.footer`
     rgba(35, 39, 6, 0.812789) 113.36%,
     rgba(8, 55, 33, 0.61) 170.67%
   );
+
 `;
 const FooterMainWrapper = styled.div`
+padding-top: 3%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+const FooterSocialsWrapper = styled.div`
+  display: flex;
+  gap: 80px;
+  span {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
 `;
 
 const Cookies = styled.div`
