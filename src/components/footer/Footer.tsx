@@ -44,7 +44,8 @@ export default Footer;
 const FooterComponents = styled.footer`
   width: 100%;
   height: 300px;
-  background-color: rgba(0, 0, 0, 0.479);
+  background: linear-gradient(180deg, rgba(1, 1, 1, 0.93) 11.88%, #754112 61.72%, rgba(35, 39, 6, 0.812789) 113.36%, rgba(8, 55, 33, 0.61) 170.67%);
+
   display: flex;
   flex-direction: row;
   align-items: center;
