@@ -6,7 +6,6 @@ const BgVideo = () => {
       <video autoPlay muted loop>
         <source src={"/assets/animated-ivern.webm"} type="video/mp4" />
       </video>
-      <h2>awed</h2>
     </Background>
   );
 };

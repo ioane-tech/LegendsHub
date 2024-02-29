@@ -12,7 +12,7 @@ const CarouselComp = () => {
       <Swiper
         modules={[Autoplay]}
         spaceBetween={50}
-        slidesPerView={9}
+        slidesPerView={6}
         autoplay={true}
         draggable={true}
         loop={true}
@@ -41,12 +41,12 @@ const Container = styled.div`
   align-items: center;
   padding: 0 50px;
   div {
-    height: 300px;
+    height: 180px;
     display: flex;
     align-items: center;
   }
   img {
-    width: 150px;
+    width: 130px;
     transition: 0.3s;
     &:hover {
       scale: 1.3;

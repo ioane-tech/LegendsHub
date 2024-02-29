@@ -3,13 +3,13 @@ import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
 import Apng from "/assets/a.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
 import CharacterCard from "../character-story-card/CharacterCard";
-import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
+import HomeSecondSection from "./second-section/HomeSecondSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -36,31 +36,8 @@ const Home = () => {
         </div>
       </FirstSection>
 
-      <section>
-        <AnnouncementContainer>
-          <h2>Announcement</h2>
-          <Announcement>
-            <img src="assets/announcementImg.jpg" alt="" />
-            <div>
-              <p>
-                Who holds the championship:{" "}
-                <span style={{ fontFamily: "italic" }}>Nikusha Xulordava</span>
-              </p>
-              <p>
-                Start Date:
-                <span style={{ fontFamily: "italic" }}> 3/23/2024</span>
-              </p>
-              <p>
-                Duration:<span style={{ fontFamily: "italic" }}> 4 Month</span>
-              </p>
-            </div>
-          </Announcement>
-        </AnnouncementContainer>
-      </section>
+      <HomeSecondSection />
 
-      <section>
-        <CarouselComp />
-      </section>
       <ThirdSection>
         <TopCardClan />
         <TopCardClan />
@@ -110,7 +87,7 @@ const FirstSection = styled.section`
   div:nth-child(3) {
     width: 100%;
     position: absolute;
-    bottom: -0;
+    bottom: 0;
     display: flex;
     justify-content: center;
     img:nth-child(1) {
@@ -119,8 +96,6 @@ const FirstSection = styled.section`
       bottom: 0;
     }
     img:nth-child(2) {
-      /* width: 80px;
-      height: 82px; */
       width: 5%;
       z-index: 1;
       margin-bottom: 2.5%;
@@ -173,44 +148,6 @@ const FourthSection = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
-`;
-
-const Announcement = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    margin-top: 20px;
-    width: 200px;
-    height: 200px;
-  }
-  div {
-    width: 100%;
-    text-align: left;
-  }
-  p {
-    margin-left: 30px;
-    margin-bottom: 20px;
-    color: white;
-  }
-`;
-
-const AnnouncementContainer = styled.section`
-  width: 50%;
-
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
-
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  h2 {
-    color: #c89b3c;
-    font-size: 30px;
-  }
 `;
 
 export default Home;
