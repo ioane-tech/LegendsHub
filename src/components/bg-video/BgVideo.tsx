@@ -4,7 +4,7 @@ const BgVideo = () => {
   return (
     <Background>
       <video autoPlay muted loop>
-        <source src={"/assets/out.mp4"} type="video/mp4" />
+        <source src={"/assets/animated-ivern.webm"} type="video/mp4" />
       </video>
       <h2>awed</h2>
     </Background>
@@ -14,7 +14,7 @@ const BgVideo = () => {
 const Background = styled.div`
   width: 100%;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   z-index: -1;
   top: 0;
   video {

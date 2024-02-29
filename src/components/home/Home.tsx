@@ -1,55 +1,25 @@
-import { useState } from "react";
 import styled from "styled-components";
-import lagueOfLegendTitle from "/assets/leagueOfLegends.png";
+import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
+import Apng from "/assets/a.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
 import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { useNavigate } from "react-router-dom";
+import BgVideo from "../bg-video/BgVideo";
 
 const Home = () => {
-  const [registerHover, setRegisterHover] = useState(false);
-  const navigate = useNavigate();
-
   return (
     <HomeContainer>
+      <BgVideo />
       <Header />
       <FirstSection>
-        <img src={lagueOfLegendTitle} alt="" />
-        <div
-          onClick={() => {
-            navigate("/registration");
-          }}
-          onMouseEnter={() => {
-            setRegisterHover(true);
-          }}
-          onMouseLeave={() => {
-            setRegisterHover(false);
-          }}
-        >
-          <video autoPlay muted loop>
-            <source
-              src={"/assets/find-match-button-idle.webm"}
-              type="video/mp4"
-            />
-          </video>
-          <video autoPlay muted loop>
-            <source
-              src={"/assets/find-match-button-intro.webm"}
-              type="video/mp4"
-            />
-          </video>
-          {registerHover && (
-            <video autoPlay muted loop>
-              <source
-                src={"/assets/find-match-button-hover.webm"}
-                type="video/mp4"
-              />
-            </video>
-          )}
-          <h1>Register Now</h1>
-        </div>
+        <BecomeALegendContainer>
+          <img src={lagueOfLegendTitle} />
+          <AImg src={Apng} />
+        </BecomeALegendContainer>
+
+        <h2>Register Now</h2>
       </FirstSection>
 
       <section>
@@ -101,9 +71,6 @@ const FirstSection = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  img {
-    width: 350px;
-  }
   div {
     width: 230px;
     height: 100px;
@@ -115,7 +82,7 @@ const FirstSection = styled.section`
       left: -15px;
       transition: 0.4s;
     }
-    h1 {
+    h2 {
       position: absolute;
       font-size: medium;
       color: white;
@@ -127,6 +94,21 @@ const FirstSection = styled.section`
   }
 `;
 
+const BecomeALegendContainer = styled.span`
+  position: relative;
+  img {
+    width: 760px;
+    height: 432px;
+  }
+`;
+
+const AImg = styled.img`
+  position: absolute !important;
+  width: 115px !important;
+  height: 130px !important;
+  top: 133px !important;
+  left: 320px !important;
+`;
 const ThirdSection = styled.section`
   display: flex;
   justify-content: space-around;

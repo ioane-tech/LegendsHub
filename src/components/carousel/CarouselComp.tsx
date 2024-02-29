@@ -30,11 +30,15 @@ const CarouselComp = () => {
 };
 
 const Container = styled.div`
-  background-color: #1f0101;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.19) -12.5%,
+    #1b4a36 37.34%,
+    rgba(7, 8, 8, 0.32) 115.21%
+  );
+
   display: flex;
   align-items: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   padding: 0 50px;
   div {
     height: 300px;
