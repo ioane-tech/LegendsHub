@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import HomeSecondSection from "./second-section/HomeSecondSection";
 import HomeThirdSection from "./third-section/HomeThirdSection";
 
-
 const Home = () => {
   const navigate = useNavigate();
   return (
@@ -35,41 +34,6 @@ const Home = () => {
         </div>
       </FirstSection>
       <HomeSecondSection />
-      <ThirdSection>
-        <TopCardClan />
-        <TopCardClan />
-        <TopCardClan />
-      </ThirdSection>
-      <FourthSection>
-        <CharacterCard />
-        <CharacterCard size="large" />
-        <CharacterCard />
-      </FourthSection>
-      <Footer />
-      <section>
-        <AnnouncementContainer>
-          <h2>Announcement</h2>
-          <Announcement>
-            <img src="assets/announcementImg.jpg" alt="" />
-            <div>
-              <p>
-                Who holds the championship:{" "}
-                <span style={{ fontFamily: "italic" }}>Nikusha Xulordava</span>
-              </p>
-              <p>
-                Start Date:
-                <span style={{ fontFamily: "italic" }}> 3/23/2024</span>
-              </p>
-              <p>
-                Duration:<span style={{ fontFamily: "italic" }}> 4 Month</span>
-              </p>
-            </div>
-          </Announcement>
-        </AnnouncementContainer>
-      </section>
-      <section>
-        <CarouselComp />
-      </section>
       <HomeThirdSection />
     </HomeContainer>
   );
@@ -160,11 +124,5 @@ const AImg = styled.img`
   top: 110px !important;
   left: 250px !important;
 `;
-// const FourthSection = styled.section`
-//   height: 100vh;
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-// `;
 
 export default Home;
