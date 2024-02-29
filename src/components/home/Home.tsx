@@ -4,12 +4,12 @@ import Apng from "/assets/a.png";
 // import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
 import HomeThirdSection from "./third-section/HomeThirdSection";
+import Footer from "../footer/Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -57,10 +57,10 @@ const Home = () => {
           </Announcement>
         </AnnouncementContainer>
       </section>
-      <HomeThirdSection />
       <section>
         <CarouselComp />
       </section>
+      <HomeThirdSection />
       <Footer />
     </HomeContainer>
   );

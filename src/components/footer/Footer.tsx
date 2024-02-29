@@ -10,32 +10,31 @@ import styled from "styled-components";
 const Footer: React.FC = () => {
   return (
     <FooterComponents>
-      <div> 
-          <Cookies>
-            <CookiesATag href="notice">Privacy Notice</CookiesATag>
-            <CookiesATag href="terms">Terms Of Service</CookiesATag>
-            <CookiesATag href="cookie">Cookie Policy</CookiesATag>
-            <CookiesATag href="information">Who we are?</CookiesATag>
-          </Cookies>
-      </div>
-      
       <div>
-        <Socials>
-            <SocialsHover>
-              <FontAwesomeIcon icon={faDiscord} />
-            </SocialsHover>
-            <SocialsHover>
-              <FontAwesomeIcon icon={faYoutube} />
-            </SocialsHover>
-            <SocialsHover>
-              <FontAwesomeIcon icon={faInstagramSquare} />
-            </SocialsHover>
-            <SocialsHover>
-              <FontAwesomeIcon icon={faFacebook} />
-            </SocialsHover>
-          </Socials>
+        <Cookies>
+          <CookiesATag href="notice">Privacy Notice</CookiesATag>
+          <CookiesATag href="terms">Terms Of Service</CookiesATag>
+          <CookiesATag href="cookie">Cookie Policy</CookiesATag>
+          <CookiesATag href="information">Who we are?</CookiesATag>
+        </Cookies>
       </div>
 
+      <div>
+        <Socials>
+          <SocialsHover>
+            <FontAwesomeIcon icon={faDiscord} />
+          </SocialsHover>
+          <SocialsHover>
+            <FontAwesomeIcon icon={faYoutube} />
+          </SocialsHover>
+          <SocialsHover>
+            <FontAwesomeIcon icon={faInstagramSquare} />
+          </SocialsHover>
+          <SocialsHover>
+            <FontAwesomeIcon icon={faFacebook} />
+          </SocialsHover>
+        </Socials>
+      </div>
     </FooterComponents>
   );
 };
@@ -47,11 +46,9 @@ const FooterComponents = styled.footer`
   height: 300px;
   background-color: rgba(0, 0, 0, 0.479);
   display: flex;
-  z-index: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  
 `;
 
 const Socials = styled.div`
@@ -63,7 +60,7 @@ const Socials = styled.div`
   display: flex;
   gap: 25px;
   align-items: center;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 const SocialsHover = styled.div`
