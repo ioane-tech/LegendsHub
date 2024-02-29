@@ -13,7 +13,9 @@ const HomeSecondSection = () => {
         <img src={border} />
         <img src={borderIcon} />
       </BorderContainer>
-      <CarouselComp />
+      <CarouselCont>
+        <CarouselComp />
+      </CarouselCont>
       <Announcement>
         <h2>Announcement</h2>
         <section>
@@ -24,40 +26,40 @@ const HomeSecondSection = () => {
                 <h3>Nikusha Xulordava</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Registration start date</p>
+                <h3>3/23/2024</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Duration</p>
+                <h3>4 Month</h3>
               </AnnouncementComp>
               <AnnouncementComp>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Team size</p>
+                <h3>5 vs 5 + 2 Sub</h3>
               </AnnouncementComp>
             </AnnouncementCompCont>
             <AnnouncementCompCont>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Format</p>
+                <h3>BO 3 / BO 5</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Region</p>
+                <h3>Eune</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Map</p>
+                <h3>Summoner’s Rift</h3>
               </AnnouncementComp>
               <AnnouncementComp>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Team limit</p>
+                <h3>Unlimited</h3>
               </AnnouncementComp>
             </AnnouncementCompCont>
           </FirstSide>
           <RightSide>
             <KnightStyle src={knight} />
-            <Light src={light} />
+            <img src={light} />
           </RightSide>
         </section>
       </Announcement>
@@ -72,7 +74,7 @@ const Section = styled.section`
   background-position: center;
   background-size: cover;
   position: relative;
-  height: 100vh;
+  height: 120vh;
   padding-top: 170px;
   color: white;
 `;
@@ -95,10 +97,14 @@ const BorderContainer = styled.div`
   }
 `;
 
+const CarouselCont = styled.div`
+  margin-top: 50px;
+`;
+
 const BottomBorder = styled.img`
   width: 100%;
   position: absolute;
-  top: 91vh;
+  top: 110vh;
 `;
 
 const Announcement = styled.div`
@@ -150,7 +156,5 @@ const KnightStyle = styled.img`
   left: 20px;
   top: 50px;
 `;
-
-const Light = styled.img``;
 
 export default HomeSecondSection;
