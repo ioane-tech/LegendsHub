@@ -1,40 +1,31 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDiscord,
-  faYoutube,
-  faInstagramSquare,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
 import styled from "styled-components";
-
+import garen from "/footer/garen.png";
+import talon from "/footer/talon.png";
+import Flogo from "/footer/footerLogo.png";
+import gmail from "/footer/mdi_gmail.png";
+import tiktok from "/footer/mage_tiktok-circle.png";
+import fb from "/footer/ic_outline-facebook.png";
+import discord from "/footer/ic_outline-discord.png";
 const Footer: React.FC = () => {
   return (
     <FooterComponents>
-      <div>
+      <FooterMainWrapper>
+        <img src={garen} alt="garen" />
         <Cookies>
           <CookiesATag href="notice">Privacy Notice</CookiesATag>
           <CookiesATag href="terms">Terms Of Service</CookiesATag>
           <CookiesATag href="cookie">Cookie Policy</CookiesATag>
           <CookiesATag href="information">Who we are?</CookiesATag>
         </Cookies>
-      </div>
-
-      <div>
-        <Socials>
-          <SocialsHover>
-            <FontAwesomeIcon icon={faDiscord} />
-          </SocialsHover>
-          <SocialsHover>
-            <FontAwesomeIcon icon={faYoutube} />
-          </SocialsHover>
-          <SocialsHover>
-            <FontAwesomeIcon icon={faInstagramSquare} />
-          </SocialsHover>
-          <SocialsHover>
-            <FontAwesomeIcon icon={faFacebook} />
-          </SocialsHover>
-        </Socials>
-      </div>
+        <img src={Flogo} alt="Flogo" />
+        <div>
+          <img src={gmail} alt="gmail" />
+          <img src={tiktok} alt="tiktok" />
+          <img src={fb} alt="fb" />
+          <img src={discord} alt="discord" />
+        </div>
+        <img src={talon} alt="talon" />
+      </FooterMainWrapper>
     </FooterComponents>
   );
 };
@@ -44,40 +35,23 @@ export default Footer;
 const FooterComponents = styled.footer`
   width: 100%;
   height: 300px;
-  background: linear-gradient(180deg, rgba(1, 1, 1, 0.93) 11.88%, #754112 61.72%, rgba(35, 39, 6, 0.812789) 113.36%, rgba(8, 55, 33, 0.61) 170.67%);
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  z-index: 85;
+  background: linear-gradient(
+    180deg,
+    rgba(1, 1, 1, 0.93) 11.88%,
+    #754112 61.72%,
+    rgba(35, 39, 6, 0.812789) 113.36%,
+    rgba(8, 55, 33, 0.61) 170.67%
+  );
 `;
-
-const Socials = styled.div`
-  background-color: red;
-  border-radius: 10px;
-  color: rgb(156, 112, 0);
-  font-size: xx-large;
-  padding: 10px;
+const FooterMainWrapper = styled.div`
   display: flex;
-  gap: 25px;
   align-items: center;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-`;
-
-const SocialsHover = styled.div`
-  &:hover {
-    color: gold;
-  }
+  justify-content: space-between;
 `;
 
 const Cookies = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 40px;
+  flex-direction: column;
 `;
 
 const CookiesATag = styled.a`
