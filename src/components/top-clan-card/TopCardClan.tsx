@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CLanLogo from "/assets/theme-21-border.png";
+import CLanLogo from "/icons/borderPlayer.png";
 import PlayerIconTop from "/assets/icon-position-top.png";
 import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
