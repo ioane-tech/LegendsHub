@@ -6,7 +6,6 @@ import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { useNavigate } from "react-router-dom";
 import BgVideo from "../bg-video/BgVideo";
 
 const Home = () => {
