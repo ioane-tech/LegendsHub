@@ -2,7 +2,7 @@ import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
 import Apng from "/assets/a.png";
 import TopCardClan from "../top-clan-card/TopCardClan";
-import CharacterCard from "../character-story-card/CharacterCard";
+// import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -66,11 +66,6 @@ const Home = () => {
         <TopCardClan />
         <TopCardClan />
       </ThirdSection>
-      <FourthSection>
-        <CharacterCard />
-        <CharacterCard size="large" />
-        <CharacterCard />
-      </FourthSection>
       <Footer />
     </HomeContainer>
   );
@@ -168,12 +163,12 @@ const ThirdSection = styled.section`
   justify-content: space-around;
 `;
 
-const FourthSection = styled.section`
-  height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
+// const FourthSection = styled.section`
+//   height: 100vh;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+// `;
 
 const Announcement = styled.section`
   width: 100%;
