@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
 import Apng from "/assets/a.png";
-import TopCardClan from "../top-clan-card/TopCardClan";
 // import CharacterCard from "../character-story-card/CharacterCard";
 import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
@@ -10,6 +9,7 @@ import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
+import HomeThirdSection from "./third-section/HomeThirdSection";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -57,15 +57,10 @@ const Home = () => {
           </Announcement>
         </AnnouncementContainer>
       </section>
-
+      <HomeThirdSection />
       <section>
         <CarouselComp />
       </section>
-      <ThirdSection>
-        <TopCardClan />
-        <TopCardClan />
-        <TopCardClan />
-      </ThirdSection>
       <Footer />
     </HomeContainer>
   );
@@ -158,11 +153,6 @@ const AImg = styled.img`
   top: 110px !important;
   left: 250px !important;
 `;
-const ThirdSection = styled.section`
-  display: flex;
-  justify-content: space-around;
-`;
-
 // const FourthSection = styled.section`
 //   height: 100vh;
 //   display: flex;

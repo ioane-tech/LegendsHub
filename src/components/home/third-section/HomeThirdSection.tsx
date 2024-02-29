@@ -1,6 +1,15 @@
 import styled from "styled-components";
+import TopCardClan from "../../top-clan-card/TopCardClan";
 const HomeThirdSection = () => {
-  return <ThirdContainer></ThirdContainer>;
+  return (
+    <ThirdContainer>
+      <ThirdSection>
+        <TopCardClan />
+        <TopCardClan />
+        <TopCardClan />
+      </ThirdSection>
+    </ThirdContainer>
+  );
 };
 
 export default HomeThirdSection;
@@ -10,4 +19,8 @@ const ThirdContainer = styled.div`
   width: 100%;
   padding-left: 10%;
   padding-right: 10%;
+`;
+const ThirdSection = styled.section`
+  display: flex;
+  justify-content: space-around;
 `;
