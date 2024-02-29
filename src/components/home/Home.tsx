@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
 import Apng from "/assets/a.png";
-import TopCardClan from "../top-clan-card/TopCardClan";
-import CharacterCard from "../character-story-card/CharacterCard";
 import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
 import HomeSecondSection from "./second-section/HomeSecondSection";
+import HomeThirdSection from "./third-section/HomeThirdSection";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -35,9 +34,7 @@ const Home = () => {
           <img src={FirstHomeBorderIcon} />
         </div>
       </FirstSection>
-
       <HomeSecondSection />
-
       <ThirdSection>
         <TopCardClan />
         <TopCardClan />
@@ -49,6 +46,31 @@ const Home = () => {
         <CharacterCard />
       </FourthSection>
       <Footer />
+      <section>
+        <AnnouncementContainer>
+          <h2>Announcement</h2>
+          <Announcement>
+            <img src="assets/announcementImg.jpg" alt="" />
+            <div>
+              <p>
+                Who holds the championship:{" "}
+                <span style={{ fontFamily: "italic" }}>Nikusha Xulordava</span>
+              </p>
+              <p>
+                Start Date:
+                <span style={{ fontFamily: "italic" }}> 3/23/2024</span>
+              </p>
+              <p>
+                Duration:<span style={{ fontFamily: "italic" }}> 4 Month</span>
+              </p>
+            </div>
+          </Announcement>
+        </AnnouncementContainer>
+      </section>
+      <section>
+        <CarouselComp />
+      </section>
+      <HomeThirdSection />
     </HomeContainer>
   );
 };
@@ -138,16 +160,11 @@ const AImg = styled.img`
   top: 110px !important;
   left: 250px !important;
 `;
-const ThirdSection = styled.section`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const FourthSection = styled.section`
-  height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
+// const FourthSection = styled.section`
+//   height: 100vh;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+// `;
 
 export default Home;
