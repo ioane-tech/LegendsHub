@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import CLanLogo from "/assets/theme-21-border.png";
 import PlayerIconTop from "/assets/icon-position-top.png";
+import PlayerIconMid from "/lanes/position_mid.png";
+import PlayerIconJungle from "/lanes/position_jungle.png";
+import PlayerIconBot from "/lanes/position_bottom.png";
+import PlayerIconSup from "/lanes/position_support.png";
 
 const TopCardClan = () => {
   return (
@@ -20,19 +24,19 @@ const TopCardClan = () => {
           Player Name
         </li>
         <li>
-          <img src={PlayerIconTop} width={30} alt="" />
+          <img src={PlayerIconMid} width={30} alt="" />
           Player Name
         </li>
         <li>
-          <img src={PlayerIconTop} width={30} alt="" />
+          <img src={PlayerIconJungle} width={30} alt="" />
           Player Name
         </li>
         <li>
-          <img src={PlayerIconTop} width={30} alt="" />
+          <img src={PlayerIconBot} width={30} alt="" />
           Player Name
         </li>
         <li>
-          <img src={PlayerIconTop} width={30} alt="" />
+          <img src={PlayerIconSup} width={30} alt="" />
           Player Name
         </li>
       </ul>
