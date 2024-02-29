@@ -16,8 +16,6 @@ body {
   font-family: "BeaufortforLOL-BoldItalic";
 }
 
-
-
 /*scrollbar */
 ::-webkit-scrollbar {
   width: 3px;
@@ -25,17 +23,17 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: goldenrod; 
+  background: goldenrod;
   transition: 0.3s;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(141, 107, 20); 
+  background: rgb(141, 107, 20);
   transition: 0.3s;
 }

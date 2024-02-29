@@ -17,7 +17,6 @@ function AllRoutes() {
           element={
             <>
               <Home />
-              <BgVideo />
             </>
           }
         />
