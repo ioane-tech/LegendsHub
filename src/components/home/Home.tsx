@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
 import Apng from "/assets/a.png";
-// import CharacterCard from "../character-story-card/CharacterCard";
-import CarouselComp from "../carousel/CarouselComp";
 import Header from "../header/Header";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
 import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
+import HomeSecondSection from "./second-section/HomeSecondSection";
 import HomeThirdSection from "./third-section/HomeThirdSection";
 
 
@@ -35,7 +34,18 @@ const Home = () => {
           <img src={FirstHomeBorderIcon} />
         </div>
       </FirstSection>
-
+      <HomeSecondSection />
+      <ThirdSection>
+        <TopCardClan />
+        <TopCardClan />
+        <TopCardClan />
+      </ThirdSection>
+      <FourthSection>
+        <CharacterCard />
+        <CharacterCard size="large" />
+        <CharacterCard />
+      </FourthSection>
+      <Footer />
       <section>
         <AnnouncementContainer>
           <h2>Announcement</h2>
@@ -61,7 +71,6 @@ const Home = () => {
         <CarouselComp />
       </section>
       <HomeThirdSection />
-
     </HomeContainer>
   );
 };
@@ -100,7 +109,7 @@ const FirstSection = styled.section`
   div:nth-child(3) {
     width: 100%;
     position: absolute;
-    bottom: -0;
+    bottom: 0;
     display: flex;
     justify-content: center;
     img:nth-child(1) {
@@ -109,8 +118,6 @@ const FirstSection = styled.section`
       bottom: 0;
     }
     img:nth-child(2) {
-      /* width: 80px;
-      height: 82px; */
       width: 5%;
       z-index: 1;
       margin-bottom: 2.5%;
@@ -159,43 +166,5 @@ const AImg = styled.img`
 //   justify-content: space-around;
 //   align-items: center;
 // `;
-
-const Announcement = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    margin-top: 20px;
-    width: 200px;
-    height: 200px;
-  }
-  div {
-    width: 100%;
-    text-align: left;
-  }
-  p {
-    margin-left: 30px;
-    margin-bottom: 20px;
-    color: white;
-  }
-`;
-
-const AnnouncementContainer = styled.section`
-  width: 50%;
-
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
-
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  h2 {
-    color: #c89b3c;
-    font-size: 30px;
-  }
-`;
 
 export default Home;

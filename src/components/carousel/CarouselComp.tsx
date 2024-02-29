@@ -12,7 +12,7 @@ const CarouselComp = () => {
       <Swiper
         modules={[Autoplay]}
         spaceBetween={50}
-        slidesPerView={9}
+        slidesPerView={6}
         autoplay={true}
         draggable={true}
         loop={true}
@@ -21,6 +21,7 @@ const CarouselComp = () => {
           <SwiperSlide key={index}>
             <NavLink to="/">
               <img src={testImg} alt="" />
+              <h2>Team</h2>
             </NavLink>
           </SwiperSlide>
         ))}
@@ -41,12 +42,12 @@ const Container = styled.div`
   align-items: center;
   padding: 0 50px;
   div {
-    height: 300px;
+    height: 200px;
     display: flex;
     align-items: center;
   }
   img {
-    width: 150px;
+    width: 140px;
     transition: 0.3s;
     &:hover {
       scale: 1.3;
@@ -57,6 +58,16 @@ const Container = styled.div`
   }
   &:active {
     cursor: grab;
+  }
+  a {
+    text-decoration: none;
+    font-family: "Cormorant Unicase", serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
   }
 `;
 
