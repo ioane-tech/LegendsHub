@@ -54,10 +54,9 @@ const FooterComponents = styled.footer`
     rgba(35, 39, 6, 0.812789) 113.36%,
     rgba(8, 55, 33, 0.61) 170.67%
   );
-
 `;
 const FooterMainWrapper = styled.div`
-padding-top: 3%;
+  padding-top: 3%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,14 +74,20 @@ const FooterSocialsWrapper = styled.div`
 `;
 
 const Cookies = styled.div`
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 23.74px;
   display: flex;
   flex-direction: column;
+  gap: 17px;
 `;
 
 const CookiesATag = styled.a`
-  color: white;
+  color: #FFFFFF;
   text-decoration: none;
-  padding: 15px;
+
+
   &:hover {
     color: gold;
   }
