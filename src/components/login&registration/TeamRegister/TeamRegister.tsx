@@ -56,7 +56,7 @@ function TeamRegister() {
               type="file"
               placeholder="upload img..."
               {...register("teamLogo", {
-                required: "Password is required",
+                required: "logo is required",
               })}
               style={
                 {
