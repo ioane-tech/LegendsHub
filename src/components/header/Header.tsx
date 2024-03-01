@@ -40,7 +40,7 @@ const Header = () => {
 
   const HeaderContainer = styled.header`
     font-family: "Cormorant Unicase", serif;
-    background-color: ${() => (scroll ? "rgba(0, 0, 0, 0.562)" : "")};
+    background-color: transparent;
     backdrop-filter: ${() => (scroll ? "blur(5px)" : "")};
     font-weight: 500;
     font-style: normal;
@@ -49,9 +49,9 @@ const Header = () => {
     align-items: center;
     width: 100%;
     height: 85px;
-    position: ${() => (scroll ? "fixed" : "absolute")};
+    position: ${() => ("absolute")};
     z-index: 25;
-    padding: ${() => (scroll ? "60px 20px" : "80px 50px")};
+    padding: 80px 50px;
     span {
       display: flex;
       align-items: center;
@@ -81,8 +81,8 @@ const Header = () => {
   `;
 
   const LogoImg = styled.img`
-    width: 107px;
-    height: 95px;
+    width: 90px;
+    height: 80px;
   `;
 
   return (
@@ -94,7 +94,6 @@ const Header = () => {
           <NavLink to="/">home</NavLink>
           <NavLink to="/schedules">schedule</NavLink>
           <NavLink to="/standings">standings</NavLink>
-          <NavLink to="/">stories</NavLink>
           <NavLink to="/">about/Contact</NavLink>
         </ul>
       </span>

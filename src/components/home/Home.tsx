@@ -88,13 +88,13 @@ const FirstSection = styled.section`
     }
   }
   button {
-    margin-top: 100px;
+    margin-top: 60px;
     background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
-    padding: 10px 70px;
+    padding: 7px 40px;
     border: none;
     font-family: "Cormorant Unicase", serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 17px;
     cursor: pointer;
     transition: 0.3s;
     &:hover {
@@ -110,8 +110,8 @@ const FirstSection = styled.section`
 const BecomeALegendContainer = styled.span`
   position: relative;
   img {
-    width: 600px;
-    height: 352px;
+    width: 480px;
+    height: 260px;
     font-size: 24px;
     font-weight: 600;
   }
@@ -119,10 +119,10 @@ const BecomeALegendContainer = styled.span`
 
 const AImg = styled.img`
   position: absolute !important;
-  width: 100px !important;
-  height: 100px !important;
-  top: 110px !important;
-  left: 250px !important;
+  width: 70px !important;
+  height: 70px !important;
+  top: 80px !important;
+  left: 210px !important;
 `;
 
 export default Home;
