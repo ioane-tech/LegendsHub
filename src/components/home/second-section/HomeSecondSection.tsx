@@ -5,6 +5,7 @@ import borderIcon from "/assets/Content2.png";
 import bottomBorder from "/assets/Vector3.png";
 import knight from "/assets/knight.png";
 import light from "/assets/light.png";
+import { Link } from "react-router-dom";
 
 const HomeSecondSection = () => {
   return (
@@ -60,6 +61,7 @@ const HomeSecondSection = () => {
           <RightSide>
             <KnightStyle src={knight} />
             <img src={light} />
+            <Link to="/teamRegister"><GroupRegisterButton>create Team</GroupRegisterButton></Link>
           </RightSide>
         </section>
       </Announcement>
@@ -71,6 +73,8 @@ const HomeSecondSection = () => {
 const Section = styled.section`
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(${"/assets/mandilosani.jpg"});
+
+
   background-position: center;
   background-size: cover;
   position: relative;
@@ -119,7 +123,7 @@ const BottomBorder = styled.img`
 const Announcement = styled.div`
   margin-top: 50px;
   h2 {
-    font-size: 40px;
+    font-size: 38px;
     width: 12ch;
     margin: 0 auto;
   }
@@ -127,7 +131,7 @@ const Announcement = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: -40px;
+    margin-top: -80px;
   }
 `;
 
@@ -143,7 +147,7 @@ const AnnouncementCompCont = styled.div<{ $right?: boolean }>`
 
 const AnnouncementComp = styled.div<{ $bottom?: boolean }>`
   border-bottom: ${(props) => (props.$bottom ? "solid #52463b 1px" : "")};
-  padding: 15px 200px 15px 15px;
+  padding: 15px 170px 15px 15px;
   p {
     font-size: 14px;
     font-weight: 300;
@@ -151,7 +155,7 @@ const AnnouncementComp = styled.div<{ $bottom?: boolean }>`
   }
   h3 {
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 10px;
   }
 `;
@@ -166,4 +170,24 @@ const KnightStyle = styled.img`
   top: 50px;
 `;
 
+const GroupRegisterButton = styled.button`
+  position:absolute;
+  top: 400px;
+  left:-120px;
+
+  width:120px;
+  height:30px;
+
+  font-size:14px;
+  color:white;
+  background-color:transparent;
+  border:1px solid #52463b;
+
+  cursor:pointer;
+  transition:0.3s;
+  &:hover{
+    transition:0.3s;
+    scale:1.1;
+  }
+`
 export default HomeSecondSection;

@@ -6,6 +6,7 @@ import Schedules from "../schedules/Schedules";
 import Standings from "../standing/Standings";
 import LoginPage from "../login&registration/login/LoginPage";
 import Playofss from "../playoff/Playofss";
+import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 
 function AllRoutes() {
   return (
@@ -27,6 +28,7 @@ function AllRoutes() {
             </>
           }
         />
+        <Route path="/teamRegister" element={<TeamRegister />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/schedules" element={<Schedules />} />
         <Route path="/standings" element={<Standings />} />
