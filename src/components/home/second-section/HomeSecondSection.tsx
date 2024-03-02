@@ -81,6 +81,9 @@ const Section = styled.section`
   height: 120vh;
   padding-top: 170px;
   color: white;
+  @media (max-height: 900px) {
+    height: 130vh;
+  }
 `;
 
 const BorderContainer = styled.div`
@@ -102,13 +105,19 @@ const BorderContainer = styled.div`
 `;
 
 const CarouselCont = styled.div`
-  margin-top: -35px;
+  margin-top: 50px;
+  @media (max-height: 900px) {
+    margin-top: 0;
+  }
 `;
 
 const BottomBorder = styled.img`
   width: 100%;
   position: absolute;
   top: 110vh;
+  @media (max-height: 900px) {
+    top: 120vh;
+  }
 `;
 
 const Announcement = styled.div`
