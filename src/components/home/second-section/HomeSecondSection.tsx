@@ -61,7 +61,9 @@ const HomeSecondSection = () => {
           <RightSide>
             <KnightStyle src={knight} />
             <img src={light} />
-            <Link to="/teamRegister"><GroupRegisterButton>create Team</GroupRegisterButton></Link>
+            <Link to="/teamRegister">
+              <GroupRegisterButton>create Team</GroupRegisterButton>
+            </Link>
           </RightSide>
         </section>
       </Announcement>
@@ -73,8 +75,6 @@ const HomeSecondSection = () => {
 const Section = styled.section`
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(${"/assets/mandilosani.jpg"});
-
-
   background-position: center;
   background-size: cover;
   position: relative;
@@ -171,23 +171,23 @@ const KnightStyle = styled.img`
 `;
 
 const GroupRegisterButton = styled.button`
-  position:absolute;
+  position: absolute;
   top: 400px;
-  left:-120px;
+  left: -120px;
 
-  width:120px;
-  height:30px;
+  width: 120px;
+  height: 30px;
 
-  font-size:14px;
-  color:white;
-  background-color:transparent;
-  border:1px solid #52463b;
+  font-size: 14px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid #52463b;
 
-  cursor:pointer;
-  transition:0.3s;
-  &:hover{
-    transition:0.3s;
-    scale:1.1;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transition: 0.3s;
+    scale: 1.1;
   }
-`
+`;
 export default HomeSecondSection;
