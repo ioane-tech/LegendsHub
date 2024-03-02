@@ -84,9 +84,8 @@ const Cookies = styled.div`
 `;
 
 const CookiesATag = styled.a`
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
-
 
   &:hover {
     color: gold;
