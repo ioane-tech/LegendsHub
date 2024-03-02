@@ -6,13 +6,11 @@ const HomeThirdSection = () => {
   return (
     <>
       <ThirdContainer>
-        {/* <TransparentDiv> */}
         <ThirdSection>
           <TopCardClan />
           <TopCardClan />
           <TopCardClan />
         </ThirdSection>
-        {/* </TransparentDiv> */}
       </ThirdContainer>
       <Footer />
     </>
@@ -37,10 +35,4 @@ const ThirdSection = styled.section`
   padding-top: 15%;
 `;
 
-// const TransparentDiv = styled.div`
-//   background-color: rgba(0, 0, 0, 0.83);
-//   min-height: 100vh;
-//   width: 100%;
-//   position: relative;
-//   z-index: 1;
-// `;
+

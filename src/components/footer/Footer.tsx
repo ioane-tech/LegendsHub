@@ -56,10 +56,10 @@ const FooterComponents = styled.footer`
   );
 `;
 const FooterMainWrapper = styled.div`
-  padding-top: 3%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 40px;
 `;
 const FooterSocialsWrapper = styled.div`
   display: flex;
