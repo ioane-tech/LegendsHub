@@ -13,7 +13,7 @@ const Header = () => {
 
   const [scroll, setScroll] = useState(false);
   const changePosition = () => {
-    if (window.scrollY >= 900) {
+    if (window.scrollY >= 50) {
       setScroll(true);
     } else {
       setScroll(false);
