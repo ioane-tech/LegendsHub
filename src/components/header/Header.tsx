@@ -49,9 +49,10 @@ const Header = () => {
     align-items: center;
     width: 100%;
     height: 85px;
-    position: ${() => ("absolute")};
+    position: ${() => ("fixed")};
     z-index: 25;
     padding: 80px 50px;
+    /* background-color:rgba(0,0,0,0.5); */
     span {
       display: flex;
       align-items: center;

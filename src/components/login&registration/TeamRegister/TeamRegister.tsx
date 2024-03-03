@@ -45,7 +45,7 @@ function TeamRegister() {
               type="file"
               placeholder="upload img..."
               {...register("teamLogo", {
-                required: "Password is required",
+                required: "logo is required",
               })}
               style={{
                 width: "330px",
@@ -82,11 +82,6 @@ function TeamRegister() {
               placeholder="Team slogan..."
               {...register("teamSlogan", {
                 required: "slogan cannot be empty",
-                pattern: {
-                  value:
-                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                  message: "Looks like this is not an email",
-                },
               })}
               style={
                 errors.teamSlogan?.message
