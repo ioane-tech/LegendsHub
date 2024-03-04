@@ -3,10 +3,6 @@ import { useForm } from "react-hook-form";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink } from "react-router-dom";
 
-import BgVideo from "../../../styled-components/bgVideo";
-
-import animatedOrnn from "/assets/animatedOrnn.webm";
-
 import { Title, FormContainer, ErrorPara, Input, Container } from "../styles";
 import LoginBg from "../LoginBg";
 
