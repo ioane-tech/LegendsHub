@@ -10,7 +10,6 @@ import animatedOrnn from "/assets/animatedOrnn.webm";
 import {
   Title,
   FormContainer,
-  FlexStyled,
   ErrorPara,
   Input,
   Container,
@@ -95,11 +94,11 @@ function TeamRegister() {
           </div>
 
             <GoldenButton type="submit">Create</GoldenButton>
-          </FlexStyled>
+          
         </FormContainer>
       </div>
     </Container>
   );
-}
+};
 
 export default TeamRegister;
