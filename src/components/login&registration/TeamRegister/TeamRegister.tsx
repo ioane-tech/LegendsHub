@@ -95,7 +95,7 @@ function TeamRegister() {
           </div>
 
             <GoldenButton type="submit">Create</GoldenButton>
-          </FlexStyled>
+          
         </FormContainer>
       </div>
     </Container>
