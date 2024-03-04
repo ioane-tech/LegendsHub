@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
   width: 50%;
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
   text-align: center;
   position: relative;
 `;
 export const Form = styled.div`
-  margin-top: 200px;
+  margin-top: 20vh;
 `;
 
 export const FormContainer = styled.form`
@@ -19,15 +19,13 @@ export const FormContainer = styled.form`
   align-items: center;
   justify-content: center;
   gap: 25px;
+
   button {
     font-size: 18px;
     font-family: "Roboto Slab", serif;
-
     font-weight: 600;
-
     width: 468px;
     height: 54px;
-
     background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
     padding: 10px, 60px, 10px, 60px;
     border: none;
@@ -49,6 +47,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input`
+  font-size: 14px;
   width: 468px;
   height: 54px;
   padding-left: 20px;
@@ -68,7 +67,7 @@ export const Input = styled.input`
     color: #5c4e41;
   }
   &:focus {
-    border-bottom: 2px solid goldenrod;
+    border: 1px solid goldenrod;
   }
 `;
 
@@ -77,6 +76,7 @@ export const Label = styled.label`
   position: absolute;
   top: -5px;
   font-family: "Roboto Slab", serif;
+  font-size: 18px;
 `;
 
 export const Title = styled.h2`
@@ -139,4 +139,13 @@ export const LineContainer = styled.div`
     margin-left: 10px;
     margin-right: 10px;
   }
+`;
+
+export const BackdropFilter = styled.div`
+  position: absolute;
+  left: 0;
+  width: 50vw;
+  backdrop-filter: blur(8px);
+  height: 100%;
+  z-index: -1;
 `;

@@ -19,7 +19,7 @@ const Background = styled.div`
   video {
     width: 100%;
     height: 100%;
-    object-fit:  cover;
+    object-fit: cover;
     transition: 0.6s;
   }
   &::before {

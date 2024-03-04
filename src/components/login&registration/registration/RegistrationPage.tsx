@@ -12,11 +12,12 @@ import {
   LineContainer,
   Form,
   Label,
+  BackdropFilter,
 } from "../styles";
 
 type DataType = {
   gameName: string;
-  name: string;
+  fullName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -38,10 +39,11 @@ function RegistrationPage() {
 
   return (
     <Container>
+      <LoginBg />
+      <BackdropFilter></BackdropFilter>
       <NavLink to="/" style={{ position: "absolute", left: "5%", top: "40px" }}>
         <GoldenButton>back</GoldenButton>
       </NavLink>
-      <LoginBg />
       <Form>
         <Title>Become a legend</Title>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -58,20 +60,18 @@ function RegistrationPage() {
                 },
               })}
               style={
-                errors.gameName?.message
-                  ? { borderBottom: "2px solid red" }
-                  : {}
+                errors.gameName?.message ? { border: "1px solid red" } : {}
               }
             />
             <ErrorPara>{errors.gameName?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
-            <Label htmlFor="name">Username</Label>
+            <Label htmlFor="name">Full name</Label>
             <Input
               type="text"
               placeholder="Enter Your Name..."
-              {...register("name", {
-                required: "Name cannot be empty",
+              {...register("fullName", {
+                required: "Full Name cannot be empty",
                 pattern: {
                   value: /^[^\d]+$/,
                   message: "Name cannot contain numbers",
@@ -82,10 +82,10 @@ function RegistrationPage() {
                 },
               })}
               style={
-                errors.name?.message ? { borderBottom: "2px solid red" } : {}
+                errors.fullName?.message ? { border: "1px solid red" } : {}
               }
             />
-            <ErrorPara>{errors.name?.message}</ErrorPara>
+            <ErrorPara>{errors.fullName?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
             <Label htmlFor="email">Email</Label>
@@ -100,9 +100,7 @@ function RegistrationPage() {
                   message: "Looks like this is not an email",
                 },
               })}
-              style={
-                errors.email?.message ? { borderBottom: "2px solid red" } : {}
-              }
+              style={errors.email?.message ? { border: "1px solid red" } : {}}
             />
             <ErrorPara>{errors.email?.message}</ErrorPara>
           </div>
@@ -119,9 +117,7 @@ function RegistrationPage() {
                 },
               })}
               style={
-                errors.password?.message
-                  ? { borderBottom: "2px solid red" }
-                  : {}
+                errors.password?.message ? { border: "1px solid red" } : {}
               }
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
@@ -132,22 +128,22 @@ function RegistrationPage() {
               type="password"
               placeholder="Confirm Password..."
               {...register("confirmPassword", {
-                required: "Password is required",
+                required: "Confirm Password is required",
                 validate: (value) =>
                   value === password || "Passwords do not match",
               })}
               style={
                 errors.confirmPassword?.message
-                  ? { borderBottom: "2px solid red" }
+                  ? { border: "1px solid red" }
                   : {}
               }
             />
             <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
           </div>
-          <GoldenButton type="submit">Register</GoldenButton>
+          <button type="submit">Register</button>
 
           <LineContainer>
-            <hr/>
+            <hr />
             <p>Or</p>
             <hr />
           </LineContainer>
@@ -159,7 +155,7 @@ function RegistrationPage() {
                 navigate("/login");
               }}
             >
-             Login
+              Login
             </p>
           </FlexStyled>
         </FormContainer>
