@@ -13,6 +13,7 @@ import {
   Label,
   LineContainer,
   Form,
+  BackdropFilter,
 } from "../styles";
 
 type DataType = {
@@ -32,10 +33,11 @@ const LoginPage = () => {
   const navigate = useNavigate();
   return (
     <Container>
+      <LoginBg />
+      <BackdropFilter></BackdropFilter>
       <NavLink to="/" style={{ position: "absolute", left: "5%", top: "40px" }}>
         <GoldenButton>back</GoldenButton>
       </NavLink>
-      <LoginBg />
       <Form>
         <Title>Login</Title>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -52,9 +54,7 @@ const LoginPage = () => {
                   message: "Looks like this is not an email",
                 },
               })}
-              style={
-                errors.email?.message ? { borderBottom: "2px solid red" } : {}
-              }
+              style={errors.email?.message ? { border: "1px solid red" } : {}}
             />
             <ErrorPara>{errors.email?.message}</ErrorPara>
           </InputWrapper>
@@ -71,9 +71,7 @@ const LoginPage = () => {
                 },
               })}
               style={
-                errors.password?.message
-                  ? { borderBottom: "2px solid red" }
-                  : {}
+                errors.password?.message ? { border: "1px solid red" } : {}
               }
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
