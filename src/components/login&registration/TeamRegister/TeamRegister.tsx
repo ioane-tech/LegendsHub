@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink } from "react-router-dom";
 
@@ -9,7 +10,7 @@ import animatedOrnn from "/assets/animatedOrnn.webm";
 import {
   Title,
   FormContainer,
-  FLexStyled,
+  FlexStyled,
   ErrorPara,
   Input,
   Container,
@@ -30,6 +31,7 @@ function TeamRegister() {
   } = useForm<DataType>();
 
   const onSubmit = () => {};
+
 
   return (
     <Container>
@@ -92,9 +94,8 @@ function TeamRegister() {
             <ErrorPara>{errors.teamSlogan?.message}</ErrorPara>
           </div>
 
-          <FLexStyled>
             <GoldenButton type="submit">Create</GoldenButton>
-          </FLexStyled>
+          </FlexStyled>
         </FormContainer>
       </div>
     </Container>

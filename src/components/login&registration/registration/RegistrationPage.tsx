@@ -5,10 +5,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import {
   Title,
   FormContainer,
-  FLexStyled,
+  FlexStyled,
   ErrorPara,
   Input,
   Container,
+  LineContainer,
+  Form,
+  Label,
 } from "../styles";
 
 type DataType = {
@@ -39,10 +42,11 @@ function RegistrationPage() {
         <GoldenButton>back</GoldenButton>
       </NavLink>
       <LoginBg />
-      <div>
+      <Form>
         <Title>Become a legend</Title>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <div style={{ position: "relative" }}>
+            <Label htmlFor="gameName">Your game name</Label>
             <Input
               type="text"
               placeholder="Enter Your Game Name..."
@@ -62,6 +66,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.gameName?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
+            <Label htmlFor="name">Username</Label>
             <Input
               type="text"
               placeholder="Enter Your Name..."
@@ -83,6 +88,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.name?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
+            <Label htmlFor="email">Email</Label>
             <Input
               type="email"
               placeholder="Enter Email..."
@@ -101,6 +107,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.email?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
+            <Label htmlFor="password">Password</Label>
             <Input
               type="password"
               placeholder="Enter Password..."
@@ -120,6 +127,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.password?.message}</ErrorPara>
           </div>
           <div style={{ position: "relative" }}>
+            <Label htmlFor="confirmPassword">Confirm password</Label>
             <Input
               type="password"
               placeholder="Confirm Password..."
@@ -136,19 +144,26 @@ function RegistrationPage() {
             />
             <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
           </div>
-          <FLexStyled>
-            <GoldenButton
-              type="button"
+          <GoldenButton type="submit">Register</GoldenButton>
+
+          <LineContainer>
+            <hr/>
+            <p>Or</p>
+            <hr />
+          </LineContainer>
+
+          <FlexStyled>
+            <span>Already Have An Account?</span>
+            <p
               onClick={() => {
                 navigate("/login");
               }}
             >
-              Already Have An Account?
-            </GoldenButton>
-            <GoldenButton type="submit">Register</GoldenButton>
-          </FLexStyled>
+             Login
+            </p>
+          </FlexStyled>
         </FormContainer>
-      </div>
+      </Form>
     </Container>
   );
 }
