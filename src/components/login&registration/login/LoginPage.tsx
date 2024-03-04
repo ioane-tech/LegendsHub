@@ -78,15 +78,14 @@ const LoginPage = () => {
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
           </InputWrapper>
-          <button type="submit">login</button>
+          <button type="submit">Login</button>
 
           <LineContainer>
-            <hr/>
+            <hr />
             <p>Or</p>
             <hr />
           </LineContainer>
 
-          
           <FlexStyled>
             <span>Don`t have any account?</span>
             <p

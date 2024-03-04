@@ -7,13 +7,8 @@ import BgVideo from "../../../styled-components/bgVideo";
 
 import animatedOrnn from "/assets/animatedOrnn.webm";
 
-import {
-  Title,
-  FormContainer,
-  ErrorPara,
-  Input,
-  Container,
-} from "../styles";
+import { Title, FormContainer, ErrorPara, Input, Container } from "../styles";
+import LoginBg from "../LoginBg";
 
 type DataType = {
   teamName: string;
@@ -31,13 +26,12 @@ function TeamRegister() {
 
   const onSubmit = () => {};
 
-
   return (
     <Container>
       <NavLink to="/" style={{ position: "absolute", left: "5%", top: "40px" }}>
         <GoldenButton>back</GoldenButton>
       </NavLink>
-      <BgVideo src={animatedOrnn} autoPlay muted loop />
+      <LoginBg />
       <div>
         <Title>Create team</Title>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -93,12 +87,11 @@ function TeamRegister() {
             <ErrorPara>{errors.teamSlogan?.message}</ErrorPara>
           </div>
 
-            <GoldenButton type="submit">Create</GoldenButton>
-          
+          <GoldenButton type="submit">Create</GoldenButton>
         </FormContainer>
       </div>
     </Container>
   );
-};
+}
 
 export default TeamRegister;
