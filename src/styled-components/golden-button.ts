@@ -9,9 +9,10 @@ const GoldenButton = styled.button`
   letter-spacing: 1px;
   padding: 5px 15px;
   background: inherit;
-  color: #cdbe91;
+  /* color: #cdbe91; */
+  color:white;
   box-shadow: inset 0 0 2px #000000;
-  border-image: linear-gradient(to bottom, #c8aa6d, #7a5c29);
+  border-image: linear-gradient(to bottom,rgba(240, 128, 24, 1), rgba(241, 224, 133, 1));
   border-image-slice: 1;
   border-width: 2px;
   transition: 0.3s;

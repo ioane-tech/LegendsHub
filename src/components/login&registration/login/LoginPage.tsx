@@ -5,10 +5,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import {
   Title,
   FormContainer,
-  FLexStyled,
+  FlexStyled,
   ErrorPara,
   Input,
   Container,
+  InputWrapper,
+  Label,
+  LineContainer,
+  Form,
 } from "../styles";
 
 type DataType = {
@@ -32,10 +36,11 @@ const LoginPage = () => {
         <GoldenButton>back</GoldenButton>
       </NavLink>
       <LoginBg />
-      <div>
+      <Form>
         <Title>Login</Title>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
-          <div style={{ position: "relative" }}>
+          <InputWrapper>
+            <Label htmlFor="email">Email</Label>
             <Input
               type="email"
               placeholder="Enter Email..."
@@ -52,8 +57,9 @@ const LoginPage = () => {
               }
             />
             <ErrorPara>{errors.email?.message}</ErrorPara>
-          </div>
-          <div style={{ position: "relative" }}>
+          </InputWrapper>
+          <InputWrapper>
+            <Label htmlFor="password">Password</Label>
             <Input
               type="password"
               placeholder="Enter Password..."
@@ -71,20 +77,28 @@ const LoginPage = () => {
               }
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
-          </div>
-          <FLexStyled>
-            <GoldenButton
-              type="button"
+          </InputWrapper>
+          <button type="submit">login</button>
+
+          <LineContainer>
+            <hr/>
+            <p>Or</p>
+            <hr />
+          </LineContainer>
+
+          
+          <FlexStyled>
+            <span>Don`t have any account?</span>
+            <p
               onClick={() => {
                 navigate("/registration");
               }}
             >
-              register
-            </GoldenButton>
-            <GoldenButton type="submit">login</GoldenButton>
-          </FLexStyled>
+              Register
+            </p>
+          </FlexStyled>
         </FormContainer>
-      </div>
+      </Form>
     </Container>
   );
 };

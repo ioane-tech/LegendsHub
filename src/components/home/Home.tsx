@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import lagueOfLegendTitle from "/assets/BECOME LEGEND.png";
-import Apng from "/assets/a.png";
+import lagueOfLegendTitle from "/assets/springSplit.png";
+
+
+// import Apng from "/assets/a.png";
 import Header from "../header/Header";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
@@ -18,7 +20,7 @@ const Home = () => {
       <FirstSection>
         <BecomeALegendContainer>
           <img src={lagueOfLegendTitle} />
-          <AImg src={Apng} />
+          {/* <AImg src={Apng} /> */}
         </BecomeALegendContainer>
 
         <button

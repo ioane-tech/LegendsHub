@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import LoginBg from "../LoginBg";
+
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import animatedOrnn from '/assets/animatedOrnn.webm'
 import {
   Title,
   FormContainer,
-  FLexStyled,
+  FlexStyled,
   ErrorPara,
   Input,
   Container,
@@ -36,7 +36,7 @@ function TeamRegister() {
 
   const onSubmit = () => {};
 
-  const navigate = useNavigate();
+
 
   return (
     <Container>
@@ -105,9 +105,9 @@ function TeamRegister() {
           </div>
         
           
-          <FLexStyled>
+          <FlexStyled>
             <GoldenButton type="submit">Create</GoldenButton>
-          </FLexStyled>
+          </FlexStyled>
         </FormContainer>
       </div>
     </Container>
