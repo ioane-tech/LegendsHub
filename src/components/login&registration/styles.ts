@@ -64,7 +64,7 @@ export const Input = styled.input`
   font-weight: 800;
   font-family: inherit;
   outline: none;
-  margin-top: 10px;
+  margin-top: 25px;
 
   &::placeholder {
     font-weight: 800;
@@ -77,7 +77,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   color: white;
   position: absolute;
-  top: -20px; 
+  top:0px; 
 `;
 
 export const Title = styled.h2`
