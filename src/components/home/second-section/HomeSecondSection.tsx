@@ -61,7 +61,9 @@ const HomeSecondSection = () => {
           <RightSide>
             <KnightStyle src={knight} />
             <img src={light} />
-            <Link to="/teamRegister"><GroupRegisterButton>create Team</GroupRegisterButton></Link>
+            <Link to="/teamRegister">
+              <GroupRegisterButton>create Team</GroupRegisterButton>
+            </Link>
           </RightSide>
         </section>
       </Announcement>
@@ -73,14 +75,15 @@ const HomeSecondSection = () => {
 const Section = styled.section`
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(${"/assets/mandilosani.jpg"});
-
-
   background-position: center;
   background-size: cover;
   position: relative;
   height: 120vh;
   padding-top: 170px;
   color: white;
+  @media (max-height: 900px) {
+    height: 130vh;
+  }
 `;
 
 const BorderContainer = styled.div`
@@ -102,13 +105,19 @@ const BorderContainer = styled.div`
 `;
 
 const CarouselCont = styled.div`
-  margin-top: -35px;
+  margin-top: 50px;
+  @media (max-height: 900px) {
+    margin-top: 0;
+  }
 `;
 
 const BottomBorder = styled.img`
   width: 100%;
   position: absolute;
   top: 110vh;
+  @media (max-height: 900px) {
+    top: 120vh;
+  }
 `;
 
 const Announcement = styled.div`
@@ -162,6 +171,7 @@ const KnightStyle = styled.img`
 `;
 
 const GroupRegisterButton = styled.button`
+
     position:absolute;
     top:420px;
     left:70px;
@@ -182,4 +192,5 @@ const GroupRegisterButton = styled.button`
       scale: 0.95;
     }
 `
+
 export default HomeSecondSection;
