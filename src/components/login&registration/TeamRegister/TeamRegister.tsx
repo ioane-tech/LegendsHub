@@ -10,7 +10,6 @@ import animatedOrnn from "/assets/animatedOrnn.webm";
 import {
   Title,
   FormContainer,
-  FlexStyled,
   ErrorPara,
   Input,
   Container,
@@ -100,6 +99,6 @@ function TeamRegister() {
       </div>
     </Container>
   );
-}
+};
 
 export default TeamRegister;
