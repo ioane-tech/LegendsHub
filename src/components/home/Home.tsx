@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import lagueOfLegendTitle from "/assets/springSplit.png";
 
-
-// import Apng from "/assets/a.png";
 import Header from "../header/Header";
 import BgVideo from "../bg-video/BgVideo";
 import FirstHomeBorder from "/assets/Vector.png";
@@ -10,6 +8,7 @@ import FirstHomeBorderIcon from "/assets/Content.png";
 import { useNavigate } from "react-router-dom";
 import HomeSecondSection from "./second-section/HomeSecondSection";
 import HomeThirdSection from "./third-section/HomeThirdSection";
+import { RegisterButton } from "../../styled-components/register-button";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,16 +19,15 @@ const Home = () => {
       <FirstSection>
         <BecomeALegendContainer>
           <img src={lagueOfLegendTitle} />
-          {/* <AImg src={Apng} /> */}
         </BecomeALegendContainer>
 
-        <button
+        <RegisterButton
           onClick={() => {
             navigate("/registration");
           }}
         >
           Register Now
-        </button>
+        </RegisterButton>
         <div>
           <img src={FirstHomeBorder} />
           <img src={FirstHomeBorderIcon} />
@@ -51,27 +49,6 @@ const FirstSection = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  div:nth-child(1) {
-    width: 230px;
-    height: 100px;
-    cursor: pointer;
-    position: relative;
-    video {
-      position: absolute;
-      top: 0;
-      left: -15px;
-      transition: 0.4s;
-    }
-    h2 {
-      position: absolute;
-      font-size: medium;
-      color: white;
-      z-index: 1;
-      top: 38px;
-      left: 53px;
-      width: 11ch;
-    }
-  }
   div:nth-child(3) {
     width: 100%;
     position: absolute;
@@ -89,42 +66,18 @@ const FirstSection = styled.section`
       margin-bottom: 2.5%;
     }
   }
-  button {
-    margin-top: 60px;
-    background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
-    padding: 7px 40px;
-    border: none;
-    font-family: "Cormorant Unicase", serif;
-    font-weight: 600;
-    font-size: 17px;
-    cursor: pointer;
-    transition: 0.3s;
-    &:hover {
-      scale: 1.05;
-      background: linear-gradient(to bottom, #ffbb00, #ffa600);
-    }
-    &:active {
-      scale: 0.95;
-    }
-  }
 `;
 
 const BecomeALegendContainer = styled.span`
   position: relative;
   img {
-    width: 480px;
-    height: 260px;
-    font-size: 24px;
-    font-weight: 600;
+    width: 1050px;
+  }
+  @media (max-width: 1500px) {
+    img {
+      width: 850px;
+    }
   }
 `;
-
-// const AImg = styled.img`
-//   position: absolute !important;
-//   width: 70px !important;
-//   height: 70px !important;
-//   top: 80px !important;
-//   left: 210px !important;
-// `;
 
 export default Home;

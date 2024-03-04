@@ -1,17 +1,13 @@
-
 // import zedRegisterBg from '/assets/zedRegisterBg.mp4'
 
 import BgVideo from "../../styled-components/bgVideo";
 
-import aatroxBg from '/assets/aatroxBg.mp4'
+import animatedOrnn from "/assets/animatedOrnn.webm";
 
 const LoginBg = () => {
-
-
   return (
-
     <div>
-      <BgVideo src={aatroxBg} autoPlay muted loop />
+      <BgVideo src={animatedOrnn} autoPlay muted loop />
     </div>
   );
 };
