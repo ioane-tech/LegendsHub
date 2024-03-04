@@ -119,12 +119,12 @@ const BecomeALegendContainer = styled.span`
   }
 `;
 
-const AImg = styled.img`
-  position: absolute !important;
-  width: 70px !important;
-  height: 70px !important;
-  top: 80px !important;
-  left: 210px !important;
-`;
+// const AImg = styled.img`
+//   position: absolute !important;
+//   width: 70px !important;
+//   height: 70px !important;
+//   top: 80px !important;
+//   left: 210px !important;
+// `;
 
 export default Home;
