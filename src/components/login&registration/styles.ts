@@ -5,8 +5,8 @@ export const Container = styled.div`
   min-height: 100vh;
   padding-bottom: 50px;
   display: flex;
-  justify-content: center;
   text-align: center;
+  justify-content: center;
   position: relative;
 `;
 export const Form = styled.div`
@@ -16,7 +16,6 @@ export const Form = styled.div`
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 25px;
 
@@ -44,10 +43,16 @@ export const FormContainer = styled.form`
 
 export const InputWrapper = styled.div`
   position: relative;
+  .hidden {
+    position: absolute;
+    right: 20px;
+    top: 44px;
+    cursor: pointer;
+  }
 `;
 
 export const Input = styled.input`
-  font-size: 14px;
+  font-size: 16px;
   width: 468px;
   height: 54px;
   padding-left: 20px;
@@ -65,9 +70,13 @@ export const Input = styled.input`
     font-weight: 800;
     font-family: "Roboto Slab", serif;
     color: #5c4e41;
+    font-size: 14px;
   }
   &:focus {
     border: 1px solid goldenrod;
+    &::placeholder {
+      color: #f18018;
+    }
   }
 `;
 
