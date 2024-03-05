@@ -2,7 +2,9 @@ import { useForm } from "react-hook-form";
 import LoginBg from "../LoginBg";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
+import unvisible from "/icons/unvisible.png";
 import {
+  InputWrapper,
   Title,
   FormContainer,
   FlexStyled,
@@ -14,6 +16,7 @@ import {
   Label,
   BackdropFilter,
 } from "../styles";
+import { useState } from "react";
 
 type DataType = {
   gameName: string;
@@ -36,6 +39,11 @@ function RegistrationPage() {
   const onSubmit = () => {};
 
   const navigate = useNavigate();
+
+  const [visible, setVisible] = useState(true);
+  const visibleHandler = () => {
+    setVisible(!visible);
+  };
 
   return (
     <Container>
@@ -104,10 +112,10 @@ function RegistrationPage() {
             />
             <ErrorPara>{errors.email?.message}</ErrorPara>
           </div>
-          <div style={{ position: "relative" }}>
+          <InputWrapper>
             <Label htmlFor="password">Password</Label>
             <Input
-              type="password"
+              type={visible ? "password" : "text"}
               placeholder="Enter Password..."
               {...register("password", {
                 required: "Password cannot be empty",
@@ -121,11 +129,16 @@ function RegistrationPage() {
               }
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
-          </div>
-          <div style={{ position: "relative" }}>
+            <img
+              className="hidden"
+              src={unvisible}
+              onClick={() => visibleHandler()}
+            />
+          </InputWrapper>
+          <InputWrapper>
             <Label htmlFor="confirmPassword">Confirm password</Label>
             <Input
-              type="password"
+              type={visible ? "password" : "text"}
               placeholder="Confirm Password..."
               {...register("confirmPassword", {
                 required: "Confirm Password is required",
@@ -139,7 +152,12 @@ function RegistrationPage() {
               }
             />
             <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
-          </div>
+            <img
+              className="hidden"
+              src={unvisible}
+              onClick={() => visibleHandler()}
+            />
+          </InputWrapper>
           <button type="submit">Register</button>
 
           <LineContainer>

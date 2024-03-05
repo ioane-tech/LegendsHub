@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink } from "react-router-dom";
-
+import uploadIcon from "/icons/upload-icon.png";
+import checkedIcon from "/icons/checked-icon.png";
 import {
   Title,
   FormContainer,
@@ -13,10 +13,11 @@ import {
   Form,
 } from "../styles";
 import LoginBg from "../LoginBg";
+import styled from "styled-components";
+import { ChangeEvent, useState } from "react";
 
 type DataType = {
   teamName: string;
-  teamSlogan: string;
   teamLogo: string;
 };
 
@@ -28,6 +29,35 @@ function TeamRegister() {
   } = useForm<DataType>();
 
   const onSubmit = () => {};
+
+  const UploadWrapper = styled.div`
+    text-align: left;
+    .upload-label {
+      border: 1px solid #f18018;
+      display: flex;
+      align-items: center;
+      width: 210px;
+      padding: 10px;
+      gap: 10px;
+      cursor: pointer;
+      span {
+        font-size: 14px;
+        color: #f08018;
+      }
+    }
+    .upload-input {
+      display: none;
+    }
+  `;
+
+  const [file, setFile] = useState<File>();
+  const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  console.log(file);
 
   return (
     <>
@@ -45,22 +75,6 @@ function TeamRegister() {
             <Title>Create team</Title>
             <FormContainer onSubmit={handleSubmit(onSubmit)}>
               <div style={{ position: "relative" }}>
-                <input
-                  type="file"
-                  placeholder="upload img..."
-                  {...register("teamLogo", {
-                    required: "Logo is required",
-                  })}
-                  style={{
-                    width: "330px",
-                    color: "white",
-                    cursor: "pointer",
-                  }}
-                />
-                <ErrorPara>{errors.teamLogo?.message}</ErrorPara>
-              </div>
-
-              <div style={{ position: "relative" }}>
                 <Input
                   type="text"
                   placeholder="Team name..."
@@ -77,23 +91,22 @@ function TeamRegister() {
                 />
                 <ErrorPara>{errors.teamName?.message}</ErrorPara>
               </div>
-
-              <div style={{ position: "relative" }}>
-                <Input
-                  type="text"
-                  placeholder="Team slogan..."
-                  {...register("teamSlogan", {
-                    required: "Slogan cannot be empty",
+              <UploadWrapper>
+                <label className="upload-label" htmlFor="file-upload">
+                  <img src={file ? checkedIcon : uploadIcon} />
+                  <span>{file ? file.name : "Choose your team logo"}</span>
+                </label>
+                <input
+                  id="file-upload"
+                  className="upload-input"
+                  type="file"
+                  {...register("teamLogo", {
+                    required: "Logo is required",
                   })}
-                  style={
-                    errors.teamSlogan?.message
-                      ? { border: "1px solid red" }
-                      : {}
-                  }
+                  onChange={fileHandler}
                 />
-                <ErrorPara>{errors.teamSlogan?.message}</ErrorPara>
-              </div>
-
+                <ErrorPara>{errors.teamLogo?.message}</ErrorPara>
+              </UploadWrapper>
               <button type="submit">Create</button>
             </FormContainer>
           </div>

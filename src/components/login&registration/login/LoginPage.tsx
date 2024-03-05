@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import LoginBg from "../LoginBg";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
+import unvisible from "/icons/unvisible.png";
 import {
   Title,
   FormContainer,
@@ -15,6 +16,7 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
+import { useState } from "react";
 
 type DataType = {
   email: string;
@@ -31,6 +33,12 @@ const LoginPage = () => {
   const onSubmit = () => {};
 
   const navigate = useNavigate();
+
+  const [visible, setVisible] = useState(true);
+  const visibleHandler = () => {
+    setVisible(!visible);
+  };
+
   return (
     <Container>
       <LoginBg />
@@ -61,7 +69,7 @@ const LoginPage = () => {
           <InputWrapper>
             <Label htmlFor="password">Password</Label>
             <Input
-              type="password"
+              type={visible ? "password" : "text"}
               placeholder="Enter Password..."
               {...register("password", {
                 required: "Password cannot be empty",
@@ -75,6 +83,11 @@ const LoginPage = () => {
               }
             />
             <ErrorPara>{errors.password?.message}</ErrorPara>
+            <img
+              className="hidden"
+              src={unvisible}
+              onClick={() => visibleHandler()}
+            />
           </InputWrapper>
           <button type="submit">Login</button>
 
