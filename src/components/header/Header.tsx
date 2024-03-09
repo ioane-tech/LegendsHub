@@ -49,7 +49,7 @@ const Header = () => {
     align-items: center;
     width: 100%;
     height: 85px;
-    position: ${() => ("fixed")};
+    position: ${() => "fixed"};
     z-index: 25;
     padding: 80px 50px;
     /* background-color:rgba(0,0,0,0.5); */
@@ -90,7 +90,7 @@ const Header = () => {
     <HeaderContainer>
       <audio ref={audioRef} src={loginBgMusic} loop />
       <span>
-        <LogoImg src="assets/logo.png" alt="logo" />
+        <LogoImg src="/assets/logo.png" alt="logo" />
         <ul>
           <NavLink to="/">home</NavLink>
           <NavLink to="/schedules">schedule</NavLink>
