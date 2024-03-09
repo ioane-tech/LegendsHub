@@ -68,7 +68,6 @@ const Header = () => {
       color: white;
       text-decoration: none;
       font-size: 22px;
-      transition: 0.4s;
       text-transform: capitalize;
       cursor: pointer;
       &:hover {
