@@ -2,6 +2,7 @@ import Header from "../header/Header";
 import styled from "styled-components";
 import StandingsHeader from "../standing/StandingsHeader";
 import grayball from "/playoffs/grayBall.png";
+import Footer from "../footer/Footer";
 const Playofss: React.FC = () => {
   return (
     <>
@@ -11,9 +12,12 @@ const Playofss: React.FC = () => {
           <StandingsHeader />
           <hr />
           {/* playoffs */}
-          <div>
+          <PlayoffsTitle>
+            <h1>Semi final</h1>
+            <h1>Final</h1>
+          </PlayoffsTitle>
+          <Playoffscontainer>
             <PlayOffsMainWrapper>
-              <h1>Semi final</h1>
               <PlayOffHalfWrapper>
                 <PlayoffsBoxDivider>
                   <PlayoffBox>
@@ -41,9 +45,25 @@ const Playofss: React.FC = () => {
                 </PlayoffsBoxDivider>
               </PlayOffHalfWrapper>
             </PlayOffsMainWrapper>
-          </div>
+            {/* finals */}
+            <PlayoffsFinalContainer>
+              <PlayoffsBoxDivider>
+                <PlayoffBox>
+                  <img src={grayball} alt="grayball" />
+                  <h2>TBD</h2>
+                  <h3>0</h3>
+                </PlayoffBox>
+                <PlayoffBox>
+                  <img src={grayball} alt="grayball" />
+                  <h2>TBD</h2>
+                  <h3>0</h3>
+                </PlayoffBox>
+              </PlayoffsBoxDivider>
+            </PlayoffsFinalContainer>
+          </Playoffscontainer>
         </PlayoffsBlur>
       </PlayoffsMainContainer>
+      <Footer />
     </>
   );
 };
@@ -62,8 +82,19 @@ const PlayoffsMainContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const Playoffscontainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 131px;
+  padding-left: 40px;
+  padding-right: 40px;
+`;
 
 const PlayoffsBlur = styled.div`
+  margin-top: 160px;
+  margin-bottom: 160px;
+  width: 60%;
   background-color: #00000059;
   color: #fff;
   backdrop-filter: blur(2px);
@@ -99,9 +130,7 @@ const PlayOffHalfWrapper = styled.div`
   flex-direction: column;
   gap: 55px;
 `;
-const PlayoffsBoxDivider = styled.div`
-  
-`
+const PlayoffsBoxDivider = styled.div``;
 const PlayOffsMainWrapper = styled.div`
   h1 {
     font-family: "Roboto Slab", serif;
@@ -112,3 +141,19 @@ const PlayOffsMainWrapper = styled.div`
     padding-top: 55px;
   }
 `;
+const PlayoffsTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 55px;
+  padding-left: 40px;
+  padding-right: 310px;
+  padding-bottom: 73px;
+  h1 {
+    font-family: "Roboto Slab", serif;
+    font-size: 22px;
+    line-height: 29.01px;
+    font-weight: 500;
+  }
+`;
+const PlayoffsFinalContainer = styled.div``;
