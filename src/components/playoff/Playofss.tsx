@@ -87,11 +87,10 @@ const Playoffscontainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 131px;
-  padding-left: 40px;
-  padding-right: 40px;
 `;
 
 const PlayoffsBlur = styled.div`
+  padding: 10px 40px 0;
   margin-top: 160px;
   margin-bottom: 160px;
   width: 60%;
@@ -146,8 +145,7 @@ const PlayoffsTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 55px;
-  padding-left: 40px;
-  padding-right: 310px;
+  padding-right: 270px;
   padding-bottom: 73px;
   h1 {
     font-family: "Roboto Slab", serif;
