@@ -7,7 +7,7 @@ import Standings from "../standing/Standings";
 import LoginPage from "../login&registration/login/LoginPage";
 import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
-import PreTournament from "../stage-one/PreTournamentPage";
+import PreTournament from "../pre-tournament/PreTournamentPage";
 
 function AllRoutes() {
   return (
