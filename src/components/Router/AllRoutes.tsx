@@ -7,6 +7,7 @@ import Standings from "../standing/Standings";
 import LoginPage from "../login&registration/login/LoginPage";
 import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
+import PreTournament from "../stage-one/PreTournamentPage";
 
 function AllRoutes() {
   return (
@@ -33,6 +34,10 @@ function AllRoutes() {
         <Route path="/schedules" element={<Schedules />} />
         <Route path="/standings" element={<Standings />} />
         <Route path="/playoffs" element={<Playofss />} />
+        <Route
+          path="/standings/pre-tournament-brackets"
+          element={<PreTournament />}
+        />
       </Routes>
     </div>
   );
