@@ -5,8 +5,9 @@ const StandingsHeader: React.FC = () => {
   return (
     <StandingsStageWrapper>
       <span>STAGE:</span>
-      <NavLink to="/standings">REGULAR SEASON</NavLink>
-      <NavLink to="/playoffs">PLAYOFFS</NavLink>
+      <NavLink to="/standings">Regular season</NavLink>
+      <NavLink to="/playoffs">Playoffs</NavLink>
+      <NavLink to="/">Pre tournament brackets</NavLink>
     </StandingsStageWrapper>
   );
 };
@@ -16,26 +17,27 @@ const StandingsStageWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  background: #0f1519;
-  height: 120px;
-
+  height: 60px;
+  margin-top: 100px;
+  font-family: "Cormorant Unicase", serif !important;
   span {
     font-weight: bold;
-    color: #8fa3b0;
+    color: #8F8881;
     font-size: 18px;
   }
   a {
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
+    line-height: 26.64px;
     transition: all 500ms ease;
     text-decoration: none;
   }
   a:hover {
-    color: #00c8c8;
+    color: #FF7A00;
   }
   a.active {
-    color: #00c8c8;
+    color: #FF7A00;
   }
 `;
