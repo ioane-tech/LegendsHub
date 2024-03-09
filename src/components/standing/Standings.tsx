@@ -79,7 +79,7 @@ const Standings = () => {
 export default Standings;
 
 const StandingsMainContainer = styled.div`
-  padding-top: 60px;
+  padding-top: 160px;
   padding-bottom: 60px;
   background: #0f1519;
   h3 {
