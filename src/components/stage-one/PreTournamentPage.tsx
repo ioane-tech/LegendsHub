@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Header from "../header/Header";
 import FirstBracket from "./FirstBracket";
 import SecondBracket from "./SecondBracket";
-import bracket from "/assets/pre-tournament/Vector-171.png";
 import ThirdBracket from "./ThirdBracket";
 import FourthBracket from "./FourthBracket";
 import FifthBracket from "./FifthBracket";
