@@ -3,6 +3,7 @@ import LoginBg from "../LoginBg";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
 import unvisible from "/icons/unvisible.png";
+import visibleImg from "/icons/visible.png";
 import {
   InputWrapper,
   Title,
@@ -131,7 +132,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.password?.message}</ErrorPara>
             <img
               className="hidden"
-              src={unvisible}
+              src={visible ? unvisible : visibleImg}
               onClick={() => visibleHandler()}
             />
           </InputWrapper>
@@ -154,7 +155,7 @@ function RegistrationPage() {
             <ErrorPara>{errors.confirmPassword?.message}</ErrorPara>
             <img
               className="hidden"
-              src={unvisible}
+              src={visible ? unvisible : visibleImg}
               onClick={() => visibleHandler()}
             />
           </InputWrapper>

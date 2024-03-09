@@ -151,6 +151,11 @@ export const LineContainer = styled.div`
 `;
 
 export const BackdropFilter = styled.div`
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.5) 80.65%,
+    rgba(0, 0, 0, 0) 100%
+  );
   position: absolute;
   left: 0;
   width: 50vw;
