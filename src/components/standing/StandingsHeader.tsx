@@ -18,7 +18,6 @@ const StandingsStageWrapper = styled.div`
   align-items: center;
   gap: 20px;
   height: 60px;
-  margin-top: 100px;
   font-family: "Cormorant Unicase", serif !important;
   span {
     font-weight: bold;

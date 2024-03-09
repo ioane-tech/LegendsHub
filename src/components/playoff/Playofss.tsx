@@ -31,6 +31,7 @@ const PlayoffsMainContainer = styled.div`
 `;
 
 const PlayoffsBlur = styled.div`
-  width: 50%;
-  min-height: 50%;
+
+  background-color: #00000059;
+  backdrop-filter: blur(2px);
 `;
