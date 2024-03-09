@@ -12,21 +12,35 @@ const Playofss: React.FC = () => {
           <hr />
           {/* playoffs */}
           <div>
-            <div>
+            <PlayOffsMainWrapper>
               <h1>Semi final</h1>
               <PlayOffHalfWrapper>
-                <PlayoffBox>
-                  <img src={grayball} alt="grayball" />
-                  <h2>TBD</h2>
-                  <h3>0</h3>
-                </PlayoffBox>
-                <PlayoffBox>
-                  <img src={grayball} alt="grayball" />
-                  <h2>TBD</h2>
-                  <h3>0</h3>
-                </PlayoffBox>
+                <PlayoffsBoxDivider>
+                  <PlayoffBox>
+                    <img src={grayball} alt="grayball" />
+                    <h2>TBD</h2>
+                    <h3>0</h3>
+                  </PlayoffBox>
+                  <PlayoffBox>
+                    <img src={grayball} alt="grayball" />
+                    <h2>TBD</h2>
+                    <h3>0</h3>
+                  </PlayoffBox>
+                </PlayoffsBoxDivider>
+                <PlayoffsBoxDivider>
+                  <PlayoffBox>
+                    <img src={grayball} alt="grayball" />
+                    <h2>TBD</h2>
+                    <h3>0</h3>
+                  </PlayoffBox>
+                  <PlayoffBox>
+                    <img src={grayball} alt="grayball" />
+                    <h2>TBD</h2>
+                    <h3>0</h3>
+                  </PlayoffBox>
+                </PlayoffsBoxDivider>
               </PlayOffHalfWrapper>
-            </div>
+            </PlayOffsMainWrapper>
           </div>
         </PlayoffsBlur>
       </PlayoffsMainContainer>
@@ -73,10 +87,28 @@ const PlayoffBox = styled.div`
     font-size: 22px;
     line-height: 26.64px;
     font-family: "Cormorant Unicase", serif !important;
+    font-weight: 500;
   }
   h3 {
     color: #ff7a00;
     font-size: 24px;
   }
 `;
-const PlayOffHalfWrapper = styled.div``;
+const PlayOffHalfWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+`;
+const PlayoffsBoxDivider = styled.div`
+  
+`
+const PlayOffsMainWrapper = styled.div`
+  h1 {
+    font-family: "Roboto Slab", serif;
+    font-size: 22px;
+    line-height: 29.01px;
+    font-weight: 500;
+    padding-bottom: 73px;
+    padding-top: 55px;
+  }
+`;
