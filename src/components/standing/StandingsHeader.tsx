@@ -7,7 +7,7 @@ const StandingsHeader: React.FC = () => {
       <span>STAGE:</span>
       <NavLink to="/standings">Regular season</NavLink>
       <NavLink to="/playoffs">Playoffs</NavLink>
-      <NavLink to="/">Pre tournament brackets</NavLink>
+      <NavLink to="/standings/pre-tournament-brackets">Pre tournament brackets</NavLink>
     </StandingsStageWrapper>
   );
 };

@@ -61,6 +61,7 @@ const PlayoffsBlur = styled.div`
 
 const PlayoffBox = styled.div`
   width: 325px;
+  min-height: 70px;
   max-width: 100%;
   border: 0.5px solid rgba(240, 128, 24, 0.15);
   margin-bottom: 1px;
