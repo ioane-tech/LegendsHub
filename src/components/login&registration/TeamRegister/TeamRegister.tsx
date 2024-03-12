@@ -57,8 +57,6 @@ function TeamRegister() {
     }
   };
 
-  console.log(file);
-
   return (
     <>
       <LoginBg />
