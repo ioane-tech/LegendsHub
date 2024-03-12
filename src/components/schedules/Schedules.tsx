@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import SchedulesHeader from "./SchedulesHeader";
+import SchedulesCard from "./SchedulesCard";
 
 const Schedules: React.FC = () => {
   return (
@@ -13,26 +14,19 @@ const Schedules: React.FC = () => {
       <Header />
       <Container>
         <div className="schedules-container">
-          <div className="schedules-header">
-            <Swiper
-              modules={[Navigation]}
-              navigation={true}
-              slidesPerView={1}
-              draggable={true}
-              centeredSlides={true}
-              className="swiper-container"
-            >
-              <SwiperSlide>
-                <h1>Game schedules</h1>
-                <p>3/23/2024</p>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h1>Game schedules</h1>
-                <p>4/23/2024</p>
-              </SwiperSlide>
-            </Swiper>
-            <div className="left-arrow"></div>
-            <div className="right-arrow"></div>
+          <SchedulesHeader />
+          <div className="cards-container-wrapper">
+            <div className="cards-container">
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+              <SchedulesCard />
+            </div>
           </div>
         </div>
       </Container>
@@ -42,6 +36,7 @@ const Schedules: React.FC = () => {
 };
 
 const Container = styled.div`
+  padding-top: 100px;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(/backgrounds/69c883748f181c7d29138a90ac38b8df.png);
@@ -51,51 +46,26 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
+
   .schedules-container {
+    width: 75%;
     background: #00000059;
     backdrop-filter: blur(2px);
-    width: 75%;
-    .schedules-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .left-arrow,
-      .right-arrow {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        background-image: url("/assets/schedules/Vector-schedule.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        transition: opacity 0.3s ease;
+    .cards-container-wrapper {
+      padding: 0 50px 0 50px;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 2px;
       }
-      .left-arrow {
-        left: 292px;
+      &::-webkit-scrollbar-track {
+        background: #888888;
       }
-      .right-arrow {
-        transform: rotate(180deg);
-        right: 292px;
+      &::-webkit-scrollbar-thumb {
+        background: #f18018;
+        transition: 0.3s;
       }
-      .swiper-container {
-        width: 500px;
-        text-align: center;
-        position: relative;
-
-        h1 {
-          font-family: "Cormorant Unicase", serif;
-          font-weight: 700;
-          font-size: 50px;
-        }
-        p {
-          font-weight: 500;
-          font-size: 26px;
-          font-family: "Roboto Slab", serif;
-        }
-        .swiper-button-prev,
-        .swiper-button-next {
-          opacity: 0;
-        }
+      .cards-container {
+        height: 400px;
       }
     }
   }
