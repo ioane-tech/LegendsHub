@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../header/Header";
 import StandingsHeader from "./StandingsHeader";
 import StandingsList from "./StandingsList";
+import Footer from "../footer/Footer";
 const Standings = () => {
   return (
     <>
@@ -10,11 +11,25 @@ const Standings = () => {
         <div className="standings-blurr">
           <StandingsHeader />
           <hr />
+          <h1 className="standings-title">Standings</h1>
           <div className="standings-scrollabel">
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
             <StandingsList />
           </div>
         </div>
       </StandingsMainContainer>
+        <Footer />
     </>
   );
 };
@@ -37,13 +52,31 @@ const StandingsMainContainer = styled.div`
     padding: 10px 40px 0;
     margin-top: 160px;
     margin-bottom: 160px;
-    width: 60%;
+    width: 1046px;
+    max-width: 100%;
     background-color: #00000059;
     color: #fff;
     backdrop-filter: blur(2px);
     hr {
       width: 100%;
       border: 0.3px solid rgba(240, 128, 24, 0.1);
+    }
+    .standings-scrollabel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 520px;
+    }
+    .standings-title {
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 34.29px;
+      font-family: "Roboto Slab", serif;
+      text-align: center;
+      padding-top: 47px;
+      padding-bottom: 46px;
     }
   }
 `;
