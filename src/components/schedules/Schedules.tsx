@@ -1,14 +1,110 @@
 import styled from "styled-components";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import SchedulesHeader from "./SchedulesHeader";
 import SchedulesCard from "./SchedulesCard";
+import { useState } from "react";
+
+const teams = [
+  {
+    id: 0,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "10",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "10",
+  },
+  {
+    id: 1,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 2,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 3,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 4,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 5,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 6,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 7,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+];
 
 const Schedules: React.FC = () => {
+  const [file, setFile] = useState<File>();
+  const handleFileChange = (newFile: File | undefined) => {
+    setFile(newFile);
+  };
+
+  const [blur, setBlur] = useState<number | boolean>(false);
+  const blurHandler = (id: number) => {
+    if (blur === id) {
+      setBlur(false);
+    } else {
+      setBlur(id);
+    }
+  };
   return (
     <>
       <Header />
@@ -17,15 +113,23 @@ const Schedules: React.FC = () => {
           <SchedulesHeader />
           <div className="cards-container-wrapper">
             <div className="cards-container">
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
-              <SchedulesCard />
+              {teams.map((team) => (
+                <SchedulesCard
+                  key={team.id}
+                  id={team.id}
+                  blur={blur}
+                  blurHandler={blurHandler}
+                  file={file}
+                  fileHandler={handleFileChange}
+                  time={team.time}
+                  firstTeam={team.firstTeam}
+                  firstTeamWins={team.firstTeamWins}
+                  FirstTeamScore={team.FirstTeamScore}
+                  secondTeam={team.secondTeam}
+                  secondTeamWins={team.secondTeamWins}
+                  secondTeamScore={team.secondTeamScore}
+                />
+              ))}
             </div>
           </div>
         </div>
