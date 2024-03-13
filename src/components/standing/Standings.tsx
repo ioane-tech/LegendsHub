@@ -1,77 +1,35 @@
-import Footer from "../footer/Footer";
+import styled from "styled-components";
 import Header from "../header/Header";
 import StandingsHeader from "./StandingsHeader";
-import FirstTeam from "/assets/schedules/firstTeam.png";
-import styled from "styled-components";
+import StandingsList from "./StandingsList";
+import Footer from "../footer/Footer";
 const Standings = () => {
   return (
     <>
       <Header />
       <StandingsMainContainer>
-        <StandingsHeader />
-        <h3>Standings</h3>
-        <div>
-          <StandingListNumberic>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-            <StandingList>
-              <img src={FirstTeam} alt="fteam" />
-              <div>
-                <h1>G2 Esports</h1>
-                <h2>7w-2L</h2>
-              </div>
-            </StandingList>
-          </StandingListNumberic>
+        <div className="standings-blurr">
+          <StandingsHeader />
+          <hr />
+          <h1 className="standings-title">Standings</h1>
+          <div className="standings-scrollabel">
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+            <StandingsList />
+          </div>
         </div>
       </StandingsMainContainer>
-      <Footer />
+        <Footer />
     </>
   );
 };
@@ -79,40 +37,46 @@ const Standings = () => {
 export default Standings;
 
 const StandingsMainContainer = styled.div`
-  padding-top: 160px;
-  padding-bottom: 60px;
-  background: #0f1519;
-  h3 {
-    color: #fff;
-    font-weight: bold;
-    padding-bottom: 20px;
-  }
-`;
-
-const StandingListNumberic = styled.ol``;
-const StandingList = styled.li`
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("/backgrounds/playoffs-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
+  max-width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 30px;
-  color: #fff;
-  border-top: 1px solid #8fa3b0;
-  border-bottom: 1px solid #8fa3b0;
-  transition: all 500ms ease;
-  img {
-    width: 70px;
-    height: 70px;
-  }
-  div > h1 {
-    font-size: 19px;
-  }
-  div > h2 {
-    font-size: 14px;
-    color: #8fa3b0;
-  }
-  &:hover {
-    background-color: black;
+
+  .standings-blurr {
+    padding: 10px 40px 0;
+    margin-top: 160px;
+    margin-bottom: 160px;
+    width: 1046px;
+    max-width: 100%;
+    background-color: #00000059;
+    color: #fff;
+    backdrop-filter: blur(2px);
+    hr {
+      width: 100%;
+      border: 0.3px solid rgba(240, 128, 24, 0.1);
+    }
+    .standings-scrollabel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 520px;
+    }
+    .standings-title {
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 34.29px;
+      font-family: "Roboto Slab", serif;
+      text-align: center;
+      padding-top: 47px;
+      padding-bottom: 46px;
+    }
   }
 `;
