@@ -72,7 +72,7 @@ export default Playofss;
 
 const PlayoffsMainContainer = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("./backgrounds/playoffs-bg.png");
+    url("/backgrounds/playoffs-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

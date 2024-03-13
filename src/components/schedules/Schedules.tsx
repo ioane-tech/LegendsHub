@@ -89,6 +89,26 @@ const teams = [
     secondTeamWins: "4W-5L",
     secondTeamScore: "1",
   },
+  {
+    id: 8,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
+  {
+    id: 9,
+    time: "20:00",
+    firstTeam: "G2 Esports",
+    firstTeamWins: "4W-5L",
+    FirstTeamScore: "1",
+    secondTeam: "G2 Esports",
+    secondTeamWins: "4W-5L",
+    secondTeamScore: "1",
+  },
 ];
 
 const Schedules: React.FC = () => {

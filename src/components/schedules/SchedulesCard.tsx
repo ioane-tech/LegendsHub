@@ -2,6 +2,11 @@ import styled from "styled-components";
 import uploadIcon from "/icons/upload-icon.png";
 import checkedIcon from "/icons/checked-icon.png";
 import { ChangeEvent } from "react";
+import PlayerIconTop from "/assets/icon-position-top.png";
+import PlayerIconMid from "/lanes/position_mid.png";
+import PlayerIconJungle from "/lanes/position_jungle.png";
+import PlayerIconBot from "/lanes/position_bottom.png";
+import PlayerIconSup from "/lanes/position_support.png";
 
 interface SchedulesCardProps {
   id: number;
@@ -33,17 +38,6 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
   blur,
 }) => {
   const SchedulesCardsContainer = styled.div`
-    .blur {
-      position: absolute;
-      left: 0;
-      top: 0;
-      background-color: #161616e0;
-      width: 100%;
-      height: 100%;
-      display: ${() => (blur === id || blur === false ? "none" : "block")};
-    }
-    background-color: ${() =>
-      blur === id || blur === false ? "inherit" : "black"};
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -56,6 +50,50 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
         ? "1px solid #f18018"
         : "1px solid #161616e0"};
     position: relative;
+    .before,
+    .after {
+      position: absolute;
+      background: linear-gradient(
+        0.5deg,
+        #042f1b 50.58%,
+        rgba(119, 142, 42, 0.11) 107.22%
+      );
+      top: 65px;
+      display: ${() => (blur === id ? "block" : "none")};
+      z-index: 1;
+      padding: 25px 15px;
+      ul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          p {
+            font-family: "Cormorant Unicase", serif;
+            font-size: 22px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .before {
+      left: 12%;
+    }
+    .after {
+      right: 15%;
+    }
+    .blur {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #161616e0;
+      width: 100%;
+      height: 100%;
+      display: ${() => (blur === id || blur === false ? "none" : "block")};
+    }
     .first-div {
       display: flex;
       align-items: center;
@@ -148,6 +186,58 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
   return (
     <SchedulesCardsContainer>
       <div className="blur"></div>
+      {blur === id ? (
+        <div className="before">
+          <ul>
+            <li>
+              <img src={PlayerIconTop} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconMid} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconJungle} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconBot} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconSup} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+          </ul>
+        </div>
+      ) : null}
+      {blur === id ? (
+        <div className="after">
+          <ul>
+            <li>
+              <img src={PlayerIconTop} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconMid} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconJungle} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconBot} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+            <li>
+              <img src={PlayerIconSup} alt="" width={40} />
+              <p>Player Name</p>
+            </li>
+          </ul>
+        </div>
+      ) : null}
       <div className="first-div">
         <h2>{time}</h2>
         <button>Vote</button>

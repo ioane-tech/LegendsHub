@@ -1,13 +1,35 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const StandingsHeader: React.FC = () => {
+  const location = useLocation();
+  const pathname = location.pathname;
   return (
     <StandingsStageWrapper>
       <span>Stage:</span>
-      <NavLink to="/standings">Regular season</NavLink>
-      <NavLink to="/playoffs">Playoffs</NavLink>
-      <NavLink to="/standings/pre-tournament-brackets">
+      <NavLink
+        to="/standings/regular-season"
+        style={
+          pathname === "/standings/regular-season" ? { color: "#FF7A00" } : {}
+        }
+      >
+        Regular season
+      </NavLink>
+      <NavLink
+        to="/standings/playoffs"
+        style={pathname === "/standings/playoffs" ? { color: "#FF7A00" } : {}}
+      >
+        Playoffs
+      </NavLink>
+      <NavLink
+        to="/standings/pre-tournament-brackets"
+        style={
+          pathname === "/standings/pre-tournament-brackets"
+            ? { color: "#FF7A00" }
+            : {}
+        }
+      >
         Pre tournament brackets
       </NavLink>
     </StandingsStageWrapper>
@@ -37,9 +59,6 @@ const StandingsStageWrapper = styled.div`
     text-decoration: none;
   }
   a:hover {
-    color: #ff7a00;
-  }
-  a.active {
     color: #ff7a00;
   }
 `;

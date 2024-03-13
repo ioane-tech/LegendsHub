@@ -5,7 +5,7 @@ import startIcon from "/icons/start.png";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-
+import { useLocation } from "react-router-dom";
 import loginBgMusic from "/assets/loginBgMusic.mp4";
 
 const Header = () => {
@@ -38,6 +38,9 @@ const Header = () => {
     }
   }, [isPlaying]);
 
+  const location = useLocation();
+  const pathname = location.pathname;
+
   const HeaderContainer = styled.header`
     font-family: "Cormorant Unicase", serif;
     background-color: transparent;
@@ -52,7 +55,6 @@ const Header = () => {
     position: ${() => "fixed"};
     z-index: 25;
     padding: 80px 50px;
-    /* background-color:rgba(0,0,0,0.5); */
     span {
       display: flex;
       align-items: center;
@@ -71,7 +73,7 @@ const Header = () => {
       text-transform: capitalize;
       cursor: pointer;
       &:hover {
-        color: goldenrod;
+        color: #f08018;
       }
     }
     div {
@@ -91,9 +93,27 @@ const Header = () => {
       <span>
         <LogoImg src="/assets/logo.png" alt="logo" />
         <ul>
-          <NavLink to="/">home</NavLink>
-          <NavLink to="/schedules">schedule</NavLink>
-          <NavLink to="/standings">standings</NavLink>
+          <NavLink to="/" style={pathname === "/" ? { color: "#F08018" } : {}}>
+            home
+          </NavLink>
+          <NavLink
+            to="/schedules"
+            style={pathname === "/schedules" ? { color: "#F08018" } : {}}
+          >
+            schedule
+          </NavLink>
+          <NavLink
+            to="/standings/regular-season"
+            style={
+              pathname === "/standings/regular-season" ||
+              pathname === "/standings/playoffs" ||
+              pathname === "/standings/pre-tournament-brackets"
+                ? { color: "#F08018" }
+                : {}
+            }
+          >
+            standings
+          </NavLink>
           <NavLink to="/">about/Contact</NavLink>
         </ul>
       </span>

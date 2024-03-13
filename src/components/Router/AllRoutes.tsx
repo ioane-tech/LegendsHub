@@ -32,8 +32,8 @@ function AllRoutes() {
         <Route path="/teamRegister" element={<TeamRegister />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/schedules" element={<Schedules />} />
-        <Route path="/standings" element={<Standings />} />
-        <Route path="/playoffs" element={<Playofss />} />
+        <Route path="/standings/regular-season" element={<Standings />} />
+        <Route path="/standings/playoffs" element={<Playofss />} />
         <Route
           path="/standings/pre-tournament-brackets"
           element={<PreTournament />}
