@@ -7,6 +7,7 @@ import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
+import standingMembers from "/assets/schedules/team-members.png";
 
 interface SchedulesCardProps {
   id: number;
@@ -52,16 +53,19 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
     position: relative;
     .before,
     .after {
+      box-shadow: 0px 4px 4px 0px #00000040;
       position: absolute;
-      background: linear-gradient(
-        0.5deg,
-        #042f1b 50.58%,
-        rgba(119, 142, 42, 0.11) 107.22%
-      );
       top: 65px;
       display: ${() => (blur === id ? "block" : "none")};
       z-index: 1;
       padding: 25px 15px;
+      .bg-img {
+        width: 250px;
+        top: -5px;
+        left: -15px;
+        position: absolute;
+        z-index: -1;
+      }
       ul {
         display: flex;
         justify-content: center;
@@ -188,6 +192,7 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
       <div className="blur"></div>
       {blur === id ? (
         <div className="before">
+          <img src={standingMembers} className="bg-img" />
           <ul>
             <li>
               <img src={PlayerIconTop} alt="" width={40} />
@@ -214,6 +219,7 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
       ) : null}
       {blur === id ? (
         <div className="after">
+          <img src={standingMembers} className="bg-img" />
           <ul>
             <li>
               <img src={PlayerIconTop} alt="" width={40} />
