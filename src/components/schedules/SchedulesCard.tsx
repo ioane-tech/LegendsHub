@@ -8,6 +8,7 @@ import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
 import standingMembers from "/assets/schedules/team-members.png";
+import { motion } from "framer-motion";
 
 interface SchedulesCardProps {
   id: number;
@@ -22,6 +23,7 @@ interface SchedulesCardProps {
   secondTeamScore: string;
   blurHandler: (id: number) => void;
   blur: number | boolean;
+  setBlur: React.Dispatch<React.SetStateAction<number | boolean>>;
 }
 
 const SchedulesCard: React.FC<SchedulesCardProps> = ({
@@ -37,6 +39,7 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
   secondTeamScore,
   blurHandler,
   blur,
+  setBlur,
 }) => {
   const SchedulesCardsContainer = styled.div`
     color: #fff;
@@ -187,11 +190,26 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
     }
   `;
 
+  const beforeHandler = () => {
+    if (blur !== id && blur !== false) {
+      setBlur(false);
+    }
+  };
+
   return (
-    <SchedulesCardsContainer>
+    <SchedulesCardsContainer
+      as={motion.div}
+      transition={{ duration: 1 }}
+      onClick={() => beforeHandler()}
+    >
       <div className="blur"></div>
       {blur === id ? (
-        <div className="before">
+        <motion.div
+          className="before"
+          initial={{ scaleY: 0, originY: 0, originX: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.3 }}
+        >
           <img src={standingMembers} className="bg-img" />
           <ul>
             <li>
@@ -215,10 +233,15 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
               <p>Player Name</p>
             </li>
           </ul>
-        </div>
+        </motion.div>
       ) : null}
       {blur === id ? (
-        <div className="after">
+        <motion.div
+          className="after"
+          initial={{ scaleY: 0, originY: 0, originX: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.3 }}
+        >
           <img src={standingMembers} className="bg-img" />
           <ul>
             <li>
@@ -242,7 +265,7 @@ const SchedulesCard: React.FC<SchedulesCardProps> = ({
               <p>Player Name</p>
             </li>
           </ul>
-        </div>
+        </motion.div>
       ) : null}
       <div className="first-div">
         <h2>{time}</h2>
