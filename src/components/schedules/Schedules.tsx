@@ -138,6 +138,7 @@ const Schedules: React.FC = () => {
                   key={team.id}
                   id={team.id}
                   blur={blur}
+                  setBlur={setBlur}
                   blurHandler={blurHandler}
                   file={file}
                   fileHandler={handleFileChange}
