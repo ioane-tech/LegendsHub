@@ -18,6 +18,7 @@ import {
   BackdropFilter,
 } from "../styles";
 import { useState } from "react";
+import axios from "../../../api/axios";
 
 type DataType = {
   gameName: string;
@@ -36,8 +37,16 @@ function RegistrationPage() {
   } = useForm<DataType>();
 
   const password = watch("password", "");
+  console.log(password);
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    try {
+      const response = await axios.post("/registration");
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const navigate = useNavigate();
 
