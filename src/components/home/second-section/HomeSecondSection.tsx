@@ -170,7 +170,7 @@ const KnightStyle = styled.img`
   top: -20px;
 `;
 
-const GroupRegisterButton = styled.button`
+export const GroupRegisterButton = styled.button`
   position: absolute;
   top: 420px;
   left: 70px;

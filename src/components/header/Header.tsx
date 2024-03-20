@@ -8,7 +8,12 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import loginBgMusic from "/assets/loginBgMusic.mp4";
 
+import { useAuth } from "../context/LoginContext";
 const Header = () => {
+
+  const {isLoggedIn} = useAuth()
+
+
   const navigate = useNavigate();
 
   const [scroll, setScroll] = useState(false);
@@ -125,7 +130,13 @@ const Header = () => {
             <img src={pauseIcon} alt="" width={10} />
           )}
         </GoldenButton>
-        <GoldenButton onClick={() => navigate("/login")}>login</GoldenButton>
+        {
+          isLoggedIn == true?
+            <GoldenButton onClick={() => navigate("/profile")}>Profile</GoldenButton>
+          :
+            <GoldenButton onClick={() => navigate("/login")}>Login</GoldenButton>  
+        }
+        
       </div>
     </HeaderContainer>
   );
