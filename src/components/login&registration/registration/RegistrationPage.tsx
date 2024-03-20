@@ -55,8 +55,6 @@ function RegistrationPage() {
     setVisible(!visible);
   };
 
-  console.log("hello");
-
   return (
     <Container>
       <LoginBg />
