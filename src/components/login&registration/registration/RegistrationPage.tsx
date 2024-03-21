@@ -37,15 +37,15 @@ function RegistrationPage() {
   } = useForm<DataType>();
 
   const password = watch("password", "");
-  console.log(password);
 
   const onSubmit = async () => {
-    try {
-      const response = await axios.post("/registration");
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
+    const response = await axios.post("/registration/", {
+      username: watch("email"),
+      full_name: watch("fullName"),
+      in_game_name: watch("gameName"),
+      password: watch("password"),
+    });
+    console.log(response.data);
   };
 
   const navigate = useNavigate();
