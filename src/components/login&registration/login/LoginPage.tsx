@@ -19,6 +19,7 @@ import {
 } from "../styles";
 import { useState } from "react";
 import axios from "../../../api/axios";
+import useAuth from "../../../hooks/useAuth";
 
 type DataType = {
   email: string;
@@ -33,12 +34,19 @@ const LoginPage = () => {
     watch,
   } = useForm<DataType>();
 
+  const { setAuth } = useAuth();
+
+  const email = watch("email");
+  const password = watch("password");
+
   const onSubmit = async () => {
     const response = await axios.post("/login/", {
-      username: watch("email"),
-      password: watch("password"),
+      username: email,
+      password: password,
     });
     console.log(response.data);
+    const accesToken = response?.data?.token;
+    setAuth({ email, password, accesToken });
   };
 
   const navigate = useNavigate();
@@ -47,6 +55,10 @@ const LoginPage = () => {
   const visibleHandler = () => {
     setVisible(!visible);
   };
+
+  const { auth } = useAuth();
+
+  console.log(auth);
 
   return (
     <Container>

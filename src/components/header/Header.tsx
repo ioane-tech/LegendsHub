@@ -7,9 +7,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import loginBgMusic from "/assets/loginBgMusic.mp4";
+import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
   const [scroll, setScroll] = useState(false);
   const changePosition = () => {
@@ -125,7 +127,9 @@ const Header = () => {
             <img src={pauseIcon} alt="" width={10} />
           )}
         </GoldenButton>
-        <GoldenButton onClick={() => navigate("/login")}>login</GoldenButton>
+        <GoldenButton onClick={() => navigate("/login")}>
+          {auth?.email ? "logout" : "login"}
+        </GoldenButton>
       </div>
     </HeaderContainer>
   );
