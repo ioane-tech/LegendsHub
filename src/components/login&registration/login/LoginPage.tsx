@@ -18,6 +18,7 @@ import {
   BackdropFilter,
 } from "../styles";
 import { useState } from "react";
+import axios from "../../../api/axios";
 
 type DataType = {
   email: string;
@@ -29,9 +30,16 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<DataType>();
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    const response = await axios.post("/login/", {
+      username: watch("email"),
+      password: watch("password"),
+    });
+    console.log(response.data);
+  };
 
   const navigate = useNavigate();
 
