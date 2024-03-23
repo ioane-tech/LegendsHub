@@ -128,7 +128,7 @@ const Header = () => {
           )}
         </GoldenButton>
         <GoldenButton onClick={() => navigate("/login")}>
-          {auth?.email ? "logout" : "login"}
+          {auth?.email ? "profile" : "login"}
         </GoldenButton>
       </div>
     </HeaderContainer>

@@ -17,7 +17,7 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 
@@ -27,6 +27,15 @@ type DataType = {
 };
 
 const LoginPage = () => {
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth?.email) {
+      navigate("/");
+    }
+  }, [auth]);
+
   const {
     register,
     handleSubmit,
@@ -49,14 +58,10 @@ const LoginPage = () => {
     setAuth({ email, password, accesToken });
   };
 
-  const navigate = useNavigate();
-
   const [visible, setVisible] = useState(true);
   const visibleHandler = () => {
     setVisible(!visible);
   };
-
-  const { auth } = useAuth();
 
   console.log(auth);
 

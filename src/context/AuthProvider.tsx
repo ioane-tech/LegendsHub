@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useState } from "react";
 
 type AuthContextType = {
-  auth: any;
-  setAuth: any;
+  auth: AuthUserType | null;
+  setAuth: React.Dispatch<React.SetStateAction<AuthUserType | null>>;
 };
 
 type AuthUserType = {
