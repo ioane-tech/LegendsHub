@@ -8,9 +8,11 @@ import LoginPage from "../login&registration/login/LoginPage";
 import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 import PreTournament from "../pre-tournament/PreTournamentPage";
+import useAuth from "../../hooks/useAuth";
 import Profile from "../ProfilePage/Profile";
 
 function AllRoutes() {
+  const { auth } = useAuth();
   return (
     <div>
       <Routes>
@@ -22,17 +24,18 @@ function AllRoutes() {
             </>
           }
         />
-        <Route
-          path="/registration"
-          element={
-            <>
-              <RegistrationPage />
-            </>
-          }
-        />
-        <Route path="/teamRegister" element={<TeamRegister />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<Profile />} />
+        {auth ? (
+          <>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/teamRegister" element={<TeamRegister />} />
+          </>
+        ) : (
+          <>
+            <Route path="/registration" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </>
+        )}
+
         <Route path="/schedules" element={<Schedules />} />
         <Route path="/standings/regular-season" element={<Standings />} />
         <Route path="/standings/playoffs" element={<Playofss />} />

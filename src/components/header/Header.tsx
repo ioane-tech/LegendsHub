@@ -126,9 +126,13 @@ const Header = () => {
             <img src={pauseIcon} alt="" width={10} />
           )}
         </GoldenButton>
-        <GoldenButton onClick={() => navigate("/login")}>
-          {auth ? "profile" : "login"}
-        </GoldenButton>
+        {auth ? (
+          <GoldenButton onClick={() => navigate("/profile")}>
+            profile
+          </GoldenButton>
+        ) : (
+          <GoldenButton onClick={() => navigate("/login")}>login</GoldenButton>
+        )}
       </div>
     </HeaderContainer>
   );

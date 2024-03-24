@@ -17,7 +17,7 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import { getEmail, setEmail } from "../../../context/AuthService";
@@ -29,14 +29,7 @@ type DataType = {
 };
 
 const LoginPage = () => {
-  const { auth } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (auth) {
-      navigate("/");
-    }
-  }, [auth]);
 
   const {
     register,
@@ -60,6 +53,7 @@ const LoginPage = () => {
       // const accesToken = response?.data?.token;
       setEmail(email);
       setAuth(getEmail());
+      navigate("/profile");
     } catch (err) {
       const axiosError = err as AxiosError;
       if (axiosError.response?.status === 401) {

@@ -9,10 +9,33 @@ import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
 
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
+import { getEmail } from "../../context/AuthService";
+
+type userType = {
+  full_name: string;
+  id: number;
+  in_game_name: string;
+  teams_roles: [];
+  username: string;
+};
 
 function Profile() {
   const [createTeamActive, setCreateTeamActive] = useState(false);
+  const [user, setUser] = useState<userType | null>(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get("/api/users_list/");
+      setUser(
+        response.data.find((user: userType) => {
+          return user.username === getEmail();
+        })
+      );
+    };
+    getUser();
+  }, []);
 
   return (
     <div>
@@ -28,7 +51,8 @@ function Profile() {
 
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
-          <h3>Ingame Name</h3>
+          <h3>{user?.in_game_name}</h3>
+          <h4>{user?.full_name}</h4>
         </ProfileSection>
         {createTeamActive == false ? (
           <CreateTeamButton onClick={() => setCreateTeamActive(true)}>
@@ -136,17 +160,23 @@ const NotificationDot = styled.img`
 `;
 
 const ProfileSection = styled.div`
+  text-transform: capitalize;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   top: 50px;
   width: 100%;
   font-size: 24px;
   color: white;
-
+  font-family: "Cormorant Unicase", serif;
+  h4 {
+    font-family: "Roboto Slab", serif;
+    color: #c6c6c6;
+    font-size: 16px;
+    margin-top: 5px;
+  }
   img {
     width: 150px;
     height: 150px;
@@ -156,7 +186,6 @@ const ProfileSection = styled.div`
 const CreateTeamButton = styled.button`
   margin-top: 360px;
   margin-bottom: 100px;
-
   width: 361px;
   height: 60px;
   background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
@@ -203,6 +232,7 @@ const Container = styled.div`
         p {
           color: rgba(200, 170, 110, 1);
           margin-left: 10px;
+          font-family: "Roboto Slab", serif;
         }
       }
       img {
@@ -216,5 +246,8 @@ const Container = styled.div`
   h2 {
     margin-top: -20px;
     margin-bottom: 20px;
+  }
+  p {
+    font-family: "Cormorant Unicase", serif;
   }
 `;
