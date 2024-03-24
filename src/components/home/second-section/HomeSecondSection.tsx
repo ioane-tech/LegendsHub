@@ -6,8 +6,10 @@ import bottomBorder from "/assets/Vector3.png";
 import knight from "/assets/knight.png";
 import light from "/assets/light.png";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const HomeSecondSection = () => {
+  const { auth } = useAuth();
   return (
     <Section>
       <BorderContainer>
@@ -61,9 +63,11 @@ const HomeSecondSection = () => {
           <RightSide>
             <KnightStyle src={knight} />
             <img src={light} />
-            <Link to="/teamRegister">
-              <GroupRegisterButton>Create Team</GroupRegisterButton>
-            </Link>
+            {auth && (
+              <Link to="/teamRegister">
+                <GroupRegisterButton>Create Team</GroupRegisterButton>
+              </Link>
+            )}
           </RightSide>
         </section>
       </Announcement>

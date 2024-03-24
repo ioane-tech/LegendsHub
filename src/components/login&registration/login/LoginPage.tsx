@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import { getEmail, setEmail } from "../../../context/AuthService";
+import { AxiosError } from "axios";
 
 type DataType = {
   email: string;
@@ -49,21 +50,27 @@ const LoginPage = () => {
   const email = watch("email");
   const password = watch("password");
 
+  const [backError, setBackError] = useState<string | null>(null);
   const onSubmit = async () => {
-    await axios.post("/login/", {
-      username: email,
-      password: password,
-    });
-    // const accesToken = response?.data?.token;
-    setEmail(email);
-    setAuth(getEmail());
+    try {
+      await axios.post("/login/", {
+        username: email,
+        password: password,
+      });
+      // const accesToken = response?.data?.token;
+      setEmail(email);
+      setAuth(getEmail());
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      if (axiosError.response?.status === 401) {
+        setBackError("Not authorized or ");
+      }
+    }
   };
   const [visible, setVisible] = useState(true);
   const visibleHandler = () => {
     setVisible(!visible);
   };
-
-  console.log(auth);
 
   return (
     <Container>
@@ -134,6 +141,7 @@ const LoginPage = () => {
             </p>
           </FlexStyled>
         </FormContainer>
+        <h2>{backError}</h2>
       </Form>
     </Container>
   );

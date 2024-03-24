@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import GoldenButton from "../../../styled-components/golden-button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import uploadIcon from "/icons/upload-icon.png";
 import checkedIcon from "/icons/checked-icon.png";
 import {
@@ -14,7 +14,8 @@ import {
 } from "../styles";
 import LoginBg from "../LoginBg";
 import styled from "styled-components";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 type DataType = {
   teamName: string;
@@ -22,6 +23,15 @@ type DataType = {
 };
 
 function TeamRegister() {
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth) {
+      navigate("/");
+    }
+  }, [auth]);
+
   const {
     register,
     handleSubmit,
