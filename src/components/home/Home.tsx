@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import HomeSecondSection from "./second-section/HomeSecondSection";
 import HomeThirdSection from "./third-section/HomeThirdSection";
 import { RegisterButton } from "../../styled-components/register-button";
+import useAuth from "../../hooks/useAuth";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { auth } = useAuth();
   return (
     <HomeContainer>
       <BgVideo />
@@ -21,14 +23,16 @@ const Home = () => {
           <img src={lagueOfLegendTitle} />
         </BecomeALegendContainer>
 
-        <RegisterButton
-          onClick={() => {
-            navigate("/registration");
-          }}
-        >
-          Register Now
-        </RegisterButton>
-        <div>
+        {auth ? null : (
+          <RegisterButton
+            onClick={() => {
+              navigate("/registration");
+            }}
+          >
+            Register Now
+          </RegisterButton>
+        )}
+        <div className="home-first-border">
           <img src={FirstHomeBorder} />
           <img src={FirstHomeBorderIcon} />
         </div>
@@ -49,7 +53,7 @@ const FirstSection = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  div:nth-child(3) {
+  .home-first-border {
     width: 100%;
     position: absolute;
     bottom: 0;

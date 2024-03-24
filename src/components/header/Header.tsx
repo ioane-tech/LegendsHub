@@ -2,19 +2,15 @@ import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 import startIcon from "/icons/start.png";
-
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import loginBgMusic from "/assets/loginBgMusic.mp4";
+import useAuth from "../../hooks/useAuth";
 
-import { useAuth } from "../context/LoginContext";
 const Header = () => {
-
-  const {isLoggedIn} = useAuth()
-
-
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
   const [scroll, setScroll] = useState(false);
   const changePosition = () => {
@@ -130,13 +126,9 @@ const Header = () => {
             <img src={pauseIcon} alt="" width={10} />
           )}
         </GoldenButton>
-        {
-          isLoggedIn == true?
-            <GoldenButton onClick={() => navigate("/profile")}>Profile</GoldenButton>
-          :
-            <GoldenButton onClick={() => navigate("/login")}>Login</GoldenButton>  
-        }
-        
+        <GoldenButton onClick={() => navigate("/login")}>
+          {auth ? "profile" : "login"}
+        </GoldenButton>
       </div>
     </HeaderContainer>
   );

@@ -17,7 +17,11 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "../../../api/axios";
+import useAuth from "../../../hooks/useAuth";
+import { getEmail, setEmail } from "../../../context/AuthService";
+import { AxiosError } from "axios";
 
 type DataType = {
   email: string;
@@ -25,16 +29,44 @@ type DataType = {
 };
 
 const LoginPage = () => {
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+  }, [auth]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<DataType>();
 
-  const onSubmit = () => {};
+  const { setAuth } = useAuth();
 
-  const navigate = useNavigate();
+  const email = watch("email");
+  const password = watch("password");
 
+  const [backError, setBackError] = useState<string | null>(null);
+  const onSubmit = async () => {
+    try {
+      await axios.post("/login/", {
+        username: email,
+        password: password,
+      });
+      // const accesToken = response?.data?.token;
+      setEmail(email);
+      setAuth(getEmail());
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      if (axiosError.response?.status === 401) {
+        setBackError("Not authorized or ");
+      }
+    }
+  };
   const [visible, setVisible] = useState(true);
   const visibleHandler = () => {
     setVisible(!visible);
@@ -109,6 +141,7 @@ const LoginPage = () => {
             </p>
           </FlexStyled>
         </FormContainer>
+        <h2>{backError}</h2>
       </Form>
     </Container>
   );
