@@ -2,7 +2,6 @@ import styled from "styled-components";
 import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 import startIcon from "/icons/start.png";
-
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
