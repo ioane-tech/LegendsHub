@@ -20,6 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+import { getEmail, setEmail } from "../../../context/AuthService";
 
 type DataType = {
   email: string;
@@ -31,7 +32,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (auth?.email) {
+    if (auth) {
       navigate("/");
     }
   }, [auth]);
@@ -49,15 +50,14 @@ const LoginPage = () => {
   const password = watch("password");
 
   const onSubmit = async () => {
-    const response = await axios.post("/login/", {
+    await axios.post("/login/", {
       username: email,
       password: password,
     });
-    console.log(response.data);
-    const accesToken = response?.data?.token;
-    setAuth({ email, password, accesToken });
+    // const accesToken = response?.data?.token;
+    setEmail(email);
+    setAuth(getEmail());
   };
-
   const [visible, setVisible] = useState(true);
   const visibleHandler = () => {
     setVisible(!visible);

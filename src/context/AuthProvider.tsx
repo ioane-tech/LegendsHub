@@ -1,14 +1,8 @@
 import { ReactNode, createContext, useState } from "react";
 
 type AuthContextType = {
-  auth: AuthUserType | null;
-  setAuth: React.Dispatch<React.SetStateAction<AuthUserType | null>>;
-};
-
-type AuthUserType = {
-  email: string;
-  password: string;
-  accesToken: string;
+  auth: string | null;
+  setAuth: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const AuthContext = createContext({} as AuthContextType);
@@ -16,7 +10,7 @@ const AuthContext = createContext({} as AuthContextType);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [auth, setAuth] = useState<AuthUserType | null>(null);
+  const [auth, setAuth] = useState<string | null>(null);
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
       {children}

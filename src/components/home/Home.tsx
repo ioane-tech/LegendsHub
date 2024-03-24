@@ -23,7 +23,7 @@ const Home = () => {
           <img src={lagueOfLegendTitle} />
         </BecomeALegendContainer>
 
-        {auth?.email ? null : (
+        {auth ? null : (
           <RegisterButton
             onClick={() => {
               navigate("/registration");
