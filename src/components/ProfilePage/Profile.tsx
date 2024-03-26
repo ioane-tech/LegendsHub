@@ -37,7 +37,6 @@ function Profile() {
     getUser();
   }, []);
 
-  console.log("test");
   return (
     <div>
       <LoginBg />
