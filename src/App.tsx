@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import AllRoutes from "./components/Router/AllRoutes";
 import useAuth from "./hooks/useAuth";
-import { getEmail } from "./context/AuthService";
+import { getAccessToken, getEmail } from "./context/AuthService";
 
 function App() {
-  const { setAuth } = useAuth();
+  const { setAuth, setToken } = useAuth();
 
   useEffect(() => {
     setAuth(getEmail());
+    setToken(getAccessToken());
   }, []);
+
   return (
     <>
       <AllRoutes />

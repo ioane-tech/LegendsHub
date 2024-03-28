@@ -32,6 +32,7 @@ function TeamRegister() {
 
   const UploadWrapper = styled.div`
     text-align: left;
+    position: relative;
     .upload-label {
       border: 1px solid #f18018;
       display: flex;
@@ -89,6 +90,62 @@ function TeamRegister() {
                 />
                 <ErrorPara>{errors.teamName?.message}</ErrorPara>
               </div>
+              {/* /////////////////////////////////////////////////////////////////////////// */}
+
+              <div className="select">
+                <div
+                  className="selected"
+                  data-one="Top lane"
+                  data-two="Mid lane"
+                  data-three="Jungle"
+                  data-four="Bot lane"
+                  data-five="Support"
+                ></div>
+                <div className="options">
+                  <div title="option-1">
+                    <input id="option-1" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-1"
+                      data-txt="Top lane"
+                    ></label>
+                  </div>
+                  <div title="option-2">
+                    <input id="option-2" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-2"
+                      data-txt="Mid lane"
+                    ></label>
+                  </div>
+                  <div title="option-3">
+                    <input id="option-3" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-3"
+                      data-txt="Jungle"
+                    ></label>
+                  </div>
+                  <div title="option-4">
+                    <input id="option-4" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-4"
+                      data-txt="Bot lane"
+                    ></label>
+                  </div>
+                  <div title="option-5">
+                    <input id="option-5" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-5"
+                      data-txt="Support"
+                    ></label>
+                  </div>
+                </div>
+              </div>
+
+              {/* /////////////////////////////////////////////////////////////////////////// */}
               <UploadWrapper>
                 <label className="upload-label" htmlFor="file-upload">
                   <img src={file ? checkedIcon : uploadIcon} />

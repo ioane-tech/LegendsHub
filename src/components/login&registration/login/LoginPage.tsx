@@ -20,7 +20,12 @@ import {
 import { useState } from "react";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
-import { getEmail, setEmail } from "../../../context/AuthService";
+import {
+  getAccessToken,
+  getEmail,
+  setAccessToken,
+  setEmail,
+} from "../../../context/AuthService";
 import { AxiosError } from "axios";
 
 type DataType = {
@@ -38,7 +43,7 @@ const LoginPage = () => {
     watch,
   } = useForm<DataType>();
 
-  const { setAuth } = useAuth();
+  const { setAuth, setToken } = useAuth();
 
   const email = watch("email");
   const password = watch("password");
@@ -46,13 +51,15 @@ const LoginPage = () => {
   const [backError, setBackError] = useState<string | null>(null);
   const onSubmit = async () => {
     try {
-      await axios.post("/login/", {
+      const response = await axios.post("/login/", {
         username: email,
         password: password,
       });
-      // const accesToken = response?.data?.token;
+      const accessToken = response?.data?.token;
       setEmail(email);
       setAuth(getEmail());
+      setAccessToken(accessToken);
+      setToken(getAccessToken());
       navigate("/profile");
     } catch (err) {
       const axiosError = err as AxiosError;
