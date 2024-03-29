@@ -45,7 +45,6 @@ body {
 
 .select {
   width: fit-content;
-  cursor: pointer;
   position: relative;
   transition: 300ms;
   color: white;
@@ -59,6 +58,7 @@ body {
   position: relative;
   z-index: 100000;
   font-size: 15px;
+  color: #f18018;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -98,6 +98,8 @@ body {
 }
 
 .option {
+  cursor: pointer;
+
   text-align: left;
   border-radius: 5px;
   padding: 5px;
@@ -106,8 +108,7 @@ body {
   font-size: 15px;
 }
 .option:hover {
-  background-color: #bb8c8c;
-  color: red;
+  color: #f18018;
 }
 
 .options input[type="radio"] {
@@ -146,6 +147,13 @@ body {
 }
 .select:has(.options input[type="radio"]#option-5:checked) .selected::before {
   content: attr(data-five);
+}
+
+.select h2 {
+  font-size: 16px;
+  text-align: left;
+  color: #f18018;
+  margin-bottom: 6px;
 }
 
 /* For Team Registration */
