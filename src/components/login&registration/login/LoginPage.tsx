@@ -56,6 +56,7 @@ const LoginPage = () => {
         password: password,
       });
       const accessToken = response?.data?.token;
+      console.log(response.data);
       setEmail(email);
       setAuth(getEmail());
       setAccessToken(accessToken);

@@ -1,17 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
-// import CLanLogo from "/icons/borderPlayer.png";
-// import PlayerIconTop from "/assets/icon-position-top.png";
-// import PlayerIconMid from "/lanes/position_mid.png";
-// import PlayerIconJungle from "/lanes/position_jungle.png";
-// import PlayerIconBot from "/lanes/position_bottom.png";
-// import PlayerIconSup from "/lanes/position_support.png";
+import CLanLogo from "/icons/borderPlayer.png";
+import PlayerIconTop from "/assets/icon-position-top.png";
+import PlayerIconMid from "/lanes/position_mid.png";
+import PlayerIconJungle from "/lanes/position_jungle.png";
+import PlayerIconBot from "/lanes/position_bottom.png";
+import PlayerIconSup from "/lanes/position_support.png";
 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { getEmail } from "../../context/AuthService";
+import { getAccessToken } from "../../context/AuthService";
 
 type userType = {
   full_name: string;
@@ -23,15 +23,15 @@ type userType = {
 
 function Profile() {
   const [user, setUser] = useState<userType | null>(null);
-
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get("/api/users_list/");
-      setUser(
-        response.data.find((user: userType) => {
-          return user.username === getEmail();
-        })
-      );
+      const response = await axios.get("/api/personal_page/", {
+        headers: {
+          Authorization: `Token ${getAccessToken()}`,
+        },
+      });
+      setUser(response.data[0]);
+      console.log(response.data[0]);
     };
     getUser();
   }, []);
@@ -53,70 +53,73 @@ function Profile() {
           <h3>{user?.in_game_name}</h3>
           <h4>{user?.full_name}</h4>
         </ProfileSection>
-        <Link to={"/teamRegister"}>
-          <CreateTeamButton>Create Team</CreateTeamButton>
-        </Link>
-        {/* <>
-          <Container>
-            <div>
-              <img src={CLanLogo} alt="" width={200} />
-            </div>
-            <h2>
-              <p>Crew Name</p>
-            </h2>
-            <ul>
-              <li>
-                <img src={PlayerIconTop} width={30} alt="" />
-                <div>
-                  <p>Top lane</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconMid} width={30} alt="" />
-                <div>
-                  <p>Mid lane</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconJungle} width={30} alt="" />
-                <div>
-                  <p>Jungle</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconBot} width={30} alt="" />
-                <div>
-                  <p>Bot lane</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconSup} width={30} alt="" />
-                <div>
-                  <p>support</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconSup} width={30} alt="" />
-                <div>
-                  <p>Sub</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-              <li>
-                <img src={PlayerIconSup} width={30} alt="" />
-                <div>
-                  <p>Sub</p>
-                </div>
-                <img src="./assets/addIcon.png" />
-              </li>
-            </ul>
-          </Container>
-        </> */}
+        {user?.teams_roles === undefined ? (
+          <Link to={"/teamRegister"}>
+            <CreateTeamButton>Create Team</CreateTeamButton>
+          </Link>
+        ) : (
+          <>
+            <Container>
+              <div>
+                <img src={CLanLogo} alt="" width={200} />
+              </div>
+              <h2>
+                <p>Crew Name</p>
+              </h2>
+              <ul>
+                <li>
+                  <img src={PlayerIconTop} width={30} alt="" />
+                  <div>
+                    <p>Top lane</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconMid} width={30} alt="" />
+                  <div>
+                    <p>Mid lane</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconJungle} width={30} alt="" />
+                  <div>
+                    <p>Jungle</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconBot} width={30} alt="" />
+                  <div>
+                    <p>Bot lane</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconSup} width={30} alt="" />
+                  <div>
+                    <p>support</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconSup} width={30} alt="" />
+                  <div>
+                    <p>Sub</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+                <li>
+                  <img src={PlayerIconSup} width={30} alt="" />
+                  <div>
+                    <p>Sub</p>
+                  </div>
+                  <img src="./assets/addIcon.png" />
+                </li>
+              </ul>
+            </Container>
+          </>
+        )}
       </ProfileContainer>
     </div>
   );
@@ -201,49 +204,49 @@ const CreateTeamButton = styled.button`
   }
 `;
 
-// const Container = styled.div`
-//   display: flex;
-//   min-height: 100vh;
-//   flex-direction: column;
-//   align-items: center;
-//   color: white;
-//   position: relative;
-//   margin-top: 260px;
-//   margin-bottom: -180px;
-//   ul {
-//     display: flex;
-//     flex-direction: column;
-//     list-style: none;
-//     gap: 5px;
-//     li {
-//       display: flex;
-//       align-items: center;
-//       gap: 10px;
-//       div {
-//         display: flex;
-//         align-items: center;
-//         border: 1px solid rgba(241, 128, 24, 0.5);
-//         width: 180px;
-//         height: 30px;
-//         p {
-//           color: rgba(200, 170, 110, 1);
-//           margin-left: 10px;
-//           font-family: "Roboto Slab", serif;
-//         }
-//       }
-//       img {
-//         cursor: pointer;
-//         &:hover {
-//           scale: 1.2;
-//         }
-//       }
-//     }
-//   }
-//   h2 {
-//     margin-top: -20px;
-//     margin-bottom: 20px;
-//   }
-//   p {
-//     font-family: "Cormorant Unicase", serif;
-//   }
-// `;
+const Container = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  position: relative;
+  margin-top: 260px;
+  margin-bottom: -180px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 5px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      div {
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(241, 128, 24, 0.5);
+        width: 180px;
+        height: 30px;
+        p {
+          color: rgba(200, 170, 110, 1);
+          margin-left: 10px;
+          font-family: "Roboto Slab", serif;
+        }
+      }
+      img {
+        cursor: pointer;
+        &:hover {
+          scale: 1.2;
+        }
+      }
+    }
+  }
+  h2 {
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
+  p {
+    font-family: "Cormorant Unicase", serif;
+  }
+`;

@@ -19,6 +19,13 @@ import {
 } from "../styles";
 import { useState } from "react";
 import axios from "../../../api/axios";
+import {
+  getAccessToken,
+  getEmail,
+  setAccessToken,
+  setEmail,
+} from "../../../context/AuthService";
+import useAuth from "../../../hooks/useAuth";
 
 type DataType = {
   gameName: string;
@@ -38,13 +45,29 @@ function RegistrationPage() {
 
   const password = watch("password", "");
 
+  const { setAuth, setToken } = useAuth();
+
   const onSubmit = async () => {
-    await axios.post("/registration/", {
-      username: watch("email"),
-      full_name: watch("fullName"),
-      in_game_name: watch("gameName"),
-      password: watch("password"),
-    });
+    try {
+      await axios.post("/registration/", {
+        username: watch("email"),
+        full_name: watch("fullName"),
+        in_game_name: watch("gameName"),
+        password: watch("password"),
+      });
+      const response = await axios.post("/login/", {
+        username: watch("email"),
+        password: watch("password"),
+      });
+      const accessToken = response?.data?.token;
+      setEmail(watch("email"));
+      setAuth(getEmail());
+      setAccessToken(accessToken);
+      setToken(getAccessToken());
+      navigate("/profile");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const navigate = useNavigate();

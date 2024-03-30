@@ -10,9 +10,35 @@ import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 import PreTournament from "../pre-tournament/PreTournamentPage";
 import useAuth from "../../hooks/useAuth";
 import Profile from "../ProfilePage/Profile";
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
+import { getAccessToken } from "../../context/AuthService";
 
 function AllRoutes() {
   const { auth } = useAuth();
+
+  type userType = {
+    full_name: string;
+    id: number;
+    in_game_name: string;
+    teams_roles: [];
+    username: string;
+  };
+
+  const [user, setUser] = useState<userType | null>(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await axios.get("/api/personal_page/", {
+        headers: {
+          Authorization: `Token ${getAccessToken()}`,
+        },
+      });
+      setUser(response.data[0]);
+      console.log(response.data[0]);
+    };
+    getUser();
+  }, []);
   return (
     <div>
       <Routes>
@@ -24,10 +50,12 @@ function AllRoutes() {
             </>
           }
         />
+        {auth && user?.teams_roles === undefined && (
+          <Route path="/teamRegister" element={<TeamRegister />} />
+        )}
         {auth ? (
           <>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/teamRegister" element={<TeamRegister />} />
           </>
         ) : (
           <>

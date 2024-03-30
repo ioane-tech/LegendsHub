@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import GoldenButton from "../../../styled-components/golden-button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 // import uploadIcon from "/icons/upload-icon.png";
 // import checkedIcon from "/icons/checked-icon.png";
 import {
@@ -14,7 +14,7 @@ import {
 } from "../styles";
 import LoginBg from "../LoginBg";
 // import styled from "styled-components";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import axios from "../../../api/axios";
 import { getAccessToken } from "../../../context/AuthService";
 
@@ -33,9 +33,11 @@ function TeamRegister() {
 
   const [position, setPosition] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const onSubmit = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         "/api/teams/",
         {
           name: watch("teamName"),
@@ -47,7 +49,7 @@ function TeamRegister() {
           },
         }
       );
-      console.log(response.data);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
