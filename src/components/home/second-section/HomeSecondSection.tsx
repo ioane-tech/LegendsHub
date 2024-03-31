@@ -6,10 +6,11 @@ import bottomBorder from "/assets/Vector3.png";
 import knight from "/assets/knight.png";
 import light from "/assets/light.png";
 import { Link } from "react-router-dom";
-import { getAccessToken } from "../../../context/AuthService";
+import { useContext } from "react";
+import AuthContext from "../../../context/AuthProvider";
 
 const HomeSecondSection = () => {
-  const Token = getAccessToken();
+  const { token, team } = useContext(AuthContext);
   return (
     <Section>
       <BorderContainer>
@@ -63,11 +64,11 @@ const HomeSecondSection = () => {
           <RightSide>
             <KnightStyle src={knight} />
             <img src={light} />
-            {Token && (
+            {token !== null && !team ? (
               <Link to="/teamRegister">
                 <GroupRegisterButton>Create Team</GroupRegisterButton>
               </Link>
-            )}
+            ) : null}
           </RightSide>
         </section>
       </Announcement>

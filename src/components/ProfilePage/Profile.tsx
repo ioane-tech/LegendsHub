@@ -7,33 +7,12 @@ import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
-
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import axios from "../../api/axios";
-import { getAccessToken } from "../../context/AuthService";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 
 function Profile() {
-  const [user, setUser] = useState<userType | null>(null);
-  const [team, setTeam] = useState<teamType | null>(null);
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await axios.get("/api/personal_page/", {
-        headers: {
-          Authorization: `Token ${getAccessToken()}`,
-        },
-      });
-      setUser(response.data[0]);
-
-      const responseOfTeam = await axios.get("/api/teams/", {
-        headers: {
-          Authorization: `Token ${getAccessToken()}`,
-        },
-      });
-      setTeam(responseOfTeam.data[0]);
-    };
-    getUser();
-  }, []);
+  const { userInfo, team } = useContext(AuthContext);
 
   return (
     <div>
@@ -49,8 +28,8 @@ function Profile() {
 
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
-          <h3>{user?.in_game_name}</h3>
-          <h4>{user?.full_name}</h4>
+          <h3>{userInfo?.in_game_name}</h3>
+          <h4>{userInfo?.full_name}</h4>
         </ProfileSection>
         {!team ? (
           <Link to={"/teamRegister"}>

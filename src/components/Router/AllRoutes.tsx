@@ -9,12 +9,12 @@ import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 import PreTournament from "../pre-tournament/PreTournamentPage";
 import Profile from "../ProfilePage/Profile";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import axios from "../../api/axios";
 import AuthContext from "../../context/AuthProvider";
 
 function AllRoutes() {
-  const [team, setTeam] = useState<teamType | null>(null);
+  const { team, setTeam } = useContext(AuthContext);
 
   const { token } = useContext(AuthContext);
 
@@ -32,9 +32,6 @@ function AllRoutes() {
     }
   }, [token]);
 
-  console.log("this is team: ", team);
-  console.log("this is token: ", token);
-
   return (
     <div>
       <Routes>
@@ -46,7 +43,7 @@ function AllRoutes() {
             </>
           }
         />
-        {token !== null && (team === null || team === undefined) ? (
+        {token !== null && !team ? (
           <Route path="/teamRegister" element={<TeamRegister />} />
         ) : null}
         {token ? (
