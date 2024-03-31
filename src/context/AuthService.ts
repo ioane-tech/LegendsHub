@@ -1,13 +1,13 @@
-const AUTH_KEY = "HEY";
+const TOKEN_KEY = "FOR_TOKEN";
 
-export const setEmail = (Email: string) => {
-  localStorage.setItem(AUTH_KEY, Email);
+export const setAccessToken = (Token: string) => {
+  localStorage.setItem(TOKEN_KEY, Token);
 };
 
-export const removeEmail = () => {
-  localStorage.removeItem(AUTH_KEY);
+export const removeAccessToken = () => {
+  localStorage.removeItem(TOKEN_KEY);
 };
 
-export const getEmail = (): string | null => {
-  return localStorage.getItem(AUTH_KEY);
+export const getAccessToken = (): string | null => {
+  return localStorage.getItem(TOKEN_KEY);
 };

@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
-import uploadIcon from "/icons/upload-icon.png";
-import checkedIcon from "/icons/checked-icon.png";
+// import uploadIcon from "/icons/upload-icon.png";
+// import checkedIcon from "/icons/checked-icon.png";
 import {
   Title,
   FormContainer,
@@ -13,9 +13,10 @@ import {
   Form,
 } from "../styles";
 import LoginBg from "../LoginBg";
-import styled from "styled-components";
-import { ChangeEvent, useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
+// import styled from "styled-components";
+import { useState } from "react";
+import axios from "../../../api/axios";
+import { getAccessToken } from "../../../context/AuthService";
 
 type DataType = {
   teamName: string;
@@ -23,49 +24,71 @@ type DataType = {
 };
 
 function TeamRegister() {
-  const { auth } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!auth) {
-      navigate("/");
-    }
-  }, [auth]);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<DataType>();
 
-  const onSubmit = () => {};
+  const [position, setPosition] = useState<string | null>(null);
 
-  const UploadWrapper = styled.div`
-    text-align: left;
-    .upload-label {
-      border: 1px solid #f18018;
-      display: flex;
-      align-items: center;
-      width: 210px;
-      padding: 10px;
-      gap: 10px;
-      cursor: pointer;
-      span {
-        font-size: 14px;
-        color: #f08018;
-      }
-    }
-    .upload-input {
-      display: none;
-    }
-  `;
+  const navigate = useNavigate();
 
-  const [file, setFile] = useState<File>();
-  const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+  const onSubmit = async () => {
+    try {
+      await axios.post(
+        "/api/teams/",
+        {
+          name: watch("teamName"),
+          creator_role: position,
+        },
+        {
+          headers: {
+            Authorization: `Token ${getAccessToken()}`,
+          },
+        }
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err);
     }
   };
+
+  const setPositionHandler = (position: string) => {
+    setPosition(position);
+  };
+
+  console.log(position);
+
+  // const UploadWrapper = styled.div`
+  //   text-align: left;
+  //   position: relative;
+  //   .upload-label {
+  //     border: ${() =>
+  //       errors.teamLogo?.message ? "1px solid red" : "1px solid #f18018;"};
+  //     display: flex;
+  //     align-items: center;
+  //     width: 210px;
+  //     padding: 10px;
+  //     gap: 10px;
+  //     cursor: pointer;
+  //     span {
+  //       font-size: 14px;
+  //       color: #f08018;
+  //     }
+  //   }
+  //   .upload-input {
+  //     display: none;
+  //   }
+  // `;
+
+  // const [file, setFile] = useState<File>();
+  // const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
 
   return (
     <>
@@ -99,7 +122,79 @@ function TeamRegister() {
                 />
                 <ErrorPara>{errors.teamName?.message}</ErrorPara>
               </div>
-              <UploadWrapper>
+              {/* /////////////////////////////////////////////////////////////////////////// */}
+
+              <div className="select">
+                <h2>Choose your position</h2>
+                <div
+                  className="selected"
+                  data-one="Top lane"
+                  data-two="Mid lane"
+                  data-three="Jungle"
+                  data-four="Bot lane"
+                  data-five="Support"
+                ></div>
+                <div className="options">
+                  <div
+                    title="option-1"
+                    onClick={() => setPositionHandler("Top lane")}
+                  >
+                    <input id="option-1" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-1"
+                      data-txt="Top lane"
+                    ></label>
+                  </div>
+                  <div
+                    title="option-2"
+                    onClick={() => setPositionHandler("Mid lane")}
+                  >
+                    <input id="option-2" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-2"
+                      data-txt="Mid lane"
+                    ></label>
+                  </div>
+                  <div
+                    title="option-3"
+                    onClick={() => setPositionHandler("Jungle")}
+                  >
+                    <input id="option-3" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-3"
+                      data-txt="Jungle"
+                    ></label>
+                  </div>
+                  <div
+                    title="option-4"
+                    onClick={() => setPositionHandler("Bot lane")}
+                  >
+                    <input id="option-4" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-4"
+                      data-txt="Bot lane"
+                    ></label>
+                  </div>
+                  <div
+                    title="option-5"
+                    onClick={() => setPositionHandler("Support")}
+                  >
+                    <input id="option-5" name="option" type="radio" />
+                    <label
+                      className="option"
+                      htmlFor="option-5"
+                      data-txt="Support"
+                    ></label>
+                  </div>
+                </div>
+              </div>
+
+              {/* /////////////////////////////////////////////////////////////////////////// */}
+              {/* <UploadWrapper>
                 <label className="upload-label" htmlFor="file-upload">
                   <img src={file ? checkedIcon : uploadIcon} />
                   <span>{file ? file.name : "Choose your team logo"}</span>
@@ -114,7 +209,7 @@ function TeamRegister() {
                   onChange={fileHandler}
                 />
                 <ErrorPara>{errors.teamLogo?.message}</ErrorPara>
-              </UploadWrapper>
+              </UploadWrapper> */}
               <button type="submit">Create</button>
             </FormContainer>
           </div>

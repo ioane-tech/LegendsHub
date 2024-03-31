@@ -19,7 +19,7 @@ export const FormContainer = styled.form`
   justify-content: center;
   gap: 25px;
 
-  button {
+  button[type="submit"] {
     font-size: 18px;
     font-family: "Roboto Slab", serif;
     font-weight: 600;

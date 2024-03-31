@@ -17,10 +17,9 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "../../../api/axios";
-import useAuth from "../../../hooks/useAuth";
-import { getEmail, setEmail } from "../../../context/AuthService";
+import { setAccessToken } from "../../../context/AuthService";
 import { AxiosError } from "axios";
 
 type DataType = {
@@ -29,14 +28,7 @@ type DataType = {
 };
 
 const LoginPage = () => {
-  const { auth } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (auth) {
-      navigate("/");
-    }
-  }, [auth]);
 
   const {
     register,
@@ -45,21 +37,20 @@ const LoginPage = () => {
     watch,
   } = useForm<DataType>();
 
-  const { setAuth } = useAuth();
-
   const email = watch("email");
   const password = watch("password");
 
   const [backError, setBackError] = useState<string | null>(null);
   const onSubmit = async () => {
     try {
-      await axios.post("/login/", {
+      const response = await axios.post("/login/", {
         username: email,
         password: password,
       });
-      // const accesToken = response?.data?.token;
-      setEmail(email);
-      setAuth(getEmail());
+      const accessToken = response?.data?.token;
+      console.log(response.data);
+      setAccessToken(accessToken);
+      navigate("/profile");
     } catch (err) {
       const axiosError = err as AxiosError;
       if (axiosError.response?.status === 401) {
