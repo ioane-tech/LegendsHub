@@ -13,29 +13,6 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { getAccessToken } from "../../context/AuthService";
 
-type userType = {
-  full_name: string;
-  id: number;
-  in_game_name: string;
-  username: string;
-};
-
-type teamMember = {
-  member_id: number;
-  in_game_name: string;
-  role: string;
-};
-
-type teamType = {
-  creator: number;
-  id: number;
-  logo: string | null;
-  member_count: number;
-  name: string;
-  status: boolean;
-  members: teamMember[];
-};
-
 function Profile() {
   const [user, setUser] = useState<userType | null>(null);
   const [team, setTeam] = useState<teamType | null>(null);

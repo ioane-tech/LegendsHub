@@ -9,44 +9,32 @@ import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 import PreTournament from "../pre-tournament/PreTournamentPage";
 import Profile from "../ProfilePage/Profile";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { getAccessToken } from "../../context/AuthService";
+import AuthContext from "../../context/AuthProvider";
 
 function AllRoutes() {
-  type teamMember = {
-    member_id: number;
-    in_game_name: string;
-    role: string;
-  };
-
-  type teamType = {
-    creator: number;
-    id: number;
-    logo: string | null;
-    member_count: number;
-    name: string;
-    status: boolean;
-    members: teamMember[];
-  };
-
   const [team, setTeam] = useState<teamType | null>(null);
 
-  const Token = getAccessToken();
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    if (Token) {
+    if (token) {
       const getUser = async () => {
         const responseOfTeam = await axios.get("/api/teams/", {
           headers: {
-            Authorization: `Token ${getAccessToken()}`,
+            Authorization: `Token ${token}`,
           },
         });
         setTeam(responseOfTeam.data[0]);
       };
       getUser();
     }
-  }, []);
+  }, [token]);
+
+  console.log("this is team: ", team);
+  console.log("this is token: ", token);
+
   return (
     <div>
       <Routes>
@@ -58,10 +46,10 @@ function AllRoutes() {
             </>
           }
         />
-        {Token !== undefined && team === null && (
+        {token !== null && (team === null || team === undefined) ? (
           <Route path="/teamRegister" element={<TeamRegister />} />
-        )}
-        {Token ? (
+        ) : null}
+        {token ? (
           <>
             <Route path="/profile" element={<Profile />} />
           </>
