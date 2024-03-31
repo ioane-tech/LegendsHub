@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 import HomeSecondSection from "./second-section/HomeSecondSection";
 import HomeThirdSection from "./third-section/HomeThirdSection";
 import { RegisterButton } from "../../styled-components/register-button";
-import useAuth from "../../hooks/useAuth";
+import { getAccessToken } from "../../context/AuthService";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { auth } = useAuth();
+  const Token = getAccessToken();
   return (
     <HomeContainer>
       <BgVideo />
@@ -23,7 +23,7 @@ const Home = () => {
           <img src={lagueOfLegendTitle} />
         </BecomeALegendContainer>
 
-        {auth ? null : (
+        {Token ? null : (
           <RegisterButton
             onClick={() => {
               navigate("/registration");

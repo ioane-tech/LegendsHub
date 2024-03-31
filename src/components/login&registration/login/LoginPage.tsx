@@ -19,13 +19,7 @@ import {
 } from "../styles";
 import { useState } from "react";
 import axios from "../../../api/axios";
-import useAuth from "../../../hooks/useAuth";
-import {
-  getAccessToken,
-  getEmail,
-  setAccessToken,
-  setEmail,
-} from "../../../context/AuthService";
+import { setAccessToken } from "../../../context/AuthService";
 import { AxiosError } from "axios";
 
 type DataType = {
@@ -43,8 +37,6 @@ const LoginPage = () => {
     watch,
   } = useForm<DataType>();
 
-  const { setAuth, setToken } = useAuth();
-
   const email = watch("email");
   const password = watch("password");
 
@@ -57,10 +49,7 @@ const LoginPage = () => {
       });
       const accessToken = response?.data?.token;
       console.log(response.data);
-      setEmail(email);
-      setAuth(getEmail());
       setAccessToken(accessToken);
-      setToken(getAccessToken());
       navigate("/profile");
     } catch (err) {
       const axiosError = err as AxiosError;

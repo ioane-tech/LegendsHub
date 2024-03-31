@@ -17,12 +17,28 @@ type userType = {
   full_name: string;
   id: number;
   in_game_name: string;
-  teams_roles: [];
   username: string;
+};
+
+type teamMember = {
+  member_id: number;
+  in_game_name: string;
+  role: string;
+};
+
+type teamType = {
+  creator: number;
+  id: number;
+  logo: string | null;
+  member_count: number;
+  name: string;
+  status: boolean;
+  members: teamMember[];
 };
 
 function Profile() {
   const [user, setUser] = useState<userType | null>(null);
+  const [team, setTeam] = useState<teamType | null>(null);
   useEffect(() => {
     const getUser = async () => {
       const response = await axios.get("/api/personal_page/", {
@@ -31,7 +47,13 @@ function Profile() {
         },
       });
       setUser(response.data[0]);
-      console.log(response.data[0]);
+
+      const responseOfTeam = await axios.get("/api/teams/", {
+        headers: {
+          Authorization: `Token ${getAccessToken()}`,
+        },
+      });
+      setTeam(responseOfTeam.data[0]);
     };
     getUser();
   }, []);
@@ -53,7 +75,7 @@ function Profile() {
           <h3>{user?.in_game_name}</h3>
           <h4>{user?.full_name}</h4>
         </ProfileSection>
-        {user?.teams_roles === undefined ? (
+        {!team ? (
           <Link to={"/teamRegister"}>
             <CreateTeamButton>Create Team</CreateTeamButton>
           </Link>
@@ -64,7 +86,7 @@ function Profile() {
                 <img src={CLanLogo} alt="" width={200} />
               </div>
               <h2>
-                <p>Crew Name</p>
+                <p className="team-name">{team.name}</p>
               </h2>
               <ul>
                 <li>
@@ -213,6 +235,9 @@ const Container = styled.div`
   position: relative;
   margin-top: 260px;
   margin-bottom: -180px;
+  .team-name {
+    text-transform: capitalize;
+  }
   ul {
     display: flex;
     flex-direction: column;

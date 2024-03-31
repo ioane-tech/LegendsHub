@@ -8,36 +8,44 @@ import LoginPage from "../login&registration/login/LoginPage";
 import Playofss from "../playoff/Playofss";
 import TeamRegister from "../login&registration/TeamRegister/TeamRegister";
 import PreTournament from "../pre-tournament/PreTournamentPage";
-import useAuth from "../../hooks/useAuth";
 import Profile from "../ProfilePage/Profile";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { getAccessToken } from "../../context/AuthService";
 
 function AllRoutes() {
-  const { auth } = useAuth();
-
-  type userType = {
-    full_name: string;
-    id: number;
+  type teamMember = {
+    member_id: number;
     in_game_name: string;
-    teams_roles: [];
-    username: string;
+    role: string;
   };
 
-  const [user, setUser] = useState<userType | null>(null);
+  type teamType = {
+    creator: number;
+    id: number;
+    logo: string | null;
+    member_count: number;
+    name: string;
+    status: boolean;
+    members: teamMember[];
+  };
+
+  const [team, setTeam] = useState<teamType | null>(null);
+
+  const Token = getAccessToken();
 
   useEffect(() => {
-    const getUser = async () => {
-      const response = await axios.get("/api/personal_page/", {
-        headers: {
-          Authorization: `Token ${getAccessToken()}`,
-        },
-      });
-      setUser(response.data[0]);
-      console.log(response.data[0]);
-    };
-    getUser();
+    if (Token) {
+      const getUser = async () => {
+        const responseOfTeam = await axios.get("/api/teams/", {
+          headers: {
+            Authorization: `Token ${getAccessToken()}`,
+          },
+        });
+        setTeam(responseOfTeam.data[0]);
+      };
+      getUser();
+    }
   }, []);
   return (
     <div>
@@ -50,10 +58,10 @@ function AllRoutes() {
             </>
           }
         />
-        {auth && user?.teams_roles === undefined && (
+        {Token !== undefined && team === null && (
           <Route path="/teamRegister" element={<TeamRegister />} />
         )}
-        {auth ? (
+        {Token ? (
           <>
             <Route path="/profile" element={<Profile />} />
           </>
