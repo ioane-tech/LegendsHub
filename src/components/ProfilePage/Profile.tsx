@@ -10,9 +10,19 @@ import PlayerIconSup from "/lanes/position_support.png";
 import styled from "styled-components";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
+import axios from "../../api/axios";
 
 function Profile() {
-  const { userInfo, team } = useContext(AuthContext);
+  const { userInfo, team, token } = useContext(AuthContext);
+  const logoutHandler = async () => {
+    axios.post("/logout/", {
+      headers: {
+        Auhthorization: `Token ${token}`,
+      },
+    });
+  };
+
+  console.log(token);
 
   return (
     <div>
@@ -23,6 +33,9 @@ function Profile() {
       </NavLink>
 
       <ProfileContainer>
+        <button className="logout" onClick={() => logoutHandler()}>
+          log out
+        </button>
         <NotificationIcon src="./assets/notification.png" alt="" />
         <NotificationDot src="./assets/notificationDot.png" alt="" />
 
@@ -110,16 +123,29 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin-left: auto;
   margin-right: auto;
   margin-top: 144px;
-
   width: 600px;
   /* height:522px; */
-
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
+  .logout {
+    background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+    cursor: pointer;
+    font-family: "Cormorant Unicase", serif;
+    text-transform: capitalize;
+    font-size: 20px;
+    padding: 10px 20px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-weight: 900;
+    z-index: 1;
+    &:hover {
+      background: linear-gradient(to bottom, #ffbb00, #ffa600);
+    }
+  }
 `;
 const NotificationIcon = styled.img`
   position: absolute;
