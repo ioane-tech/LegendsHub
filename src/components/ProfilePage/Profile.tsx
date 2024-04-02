@@ -15,14 +15,14 @@ import axios from "../../api/axios";
 function Profile() {
   const { userInfo, team, token } = useContext(AuthContext);
   const logoutHandler = async () => {
-    axios.post("/logout/", {
+    await axios.post("/logout/", {
       headers: {
         Auhthorization: `Token ${token}`,
       },
     });
   };
 
-  console.log(token);
+  console.log("test");
 
   return (
     <div>
