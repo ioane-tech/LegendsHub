@@ -17,10 +17,11 @@ import {
   Form,
   BackdropFilter,
 } from "../styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "../../../api/axios";
 import { setAccessToken } from "../../../context/AuthService";
 import { AxiosError } from "axios";
+import AuthContext from "../../../context/AuthProvider";
 
 type DataType = {
   email: string;
@@ -41,6 +42,9 @@ const LoginPage = () => {
   const password = watch("password");
 
   const [backError, setBackError] = useState<string | null>(null);
+
+  const { setToken } = useContext(AuthContext);
+
   const onSubmit = async () => {
     try {
       const response = await axios.post("/login/", {
@@ -48,8 +52,8 @@ const LoginPage = () => {
         password: password,
       });
       const accessToken = response?.data?.token;
-      console.log(response.data);
       setAccessToken(accessToken);
+      setToken(accessToken);
       navigate("/profile");
     } catch (err) {
       const axiosError = err as AxiosError;

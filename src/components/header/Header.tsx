@@ -86,13 +86,18 @@ const Header = () => {
   const LogoImg = styled.img`
     width: 90px;
     height: 80px;
+    cursor: pointer;
   `;
 
   return (
     <HeaderContainer>
       <audio ref={audioRef} src={loginBgMusic} loop />
       <span>
-        <LogoImg src="/assets/logo.png" alt="logo" />
+        <LogoImg
+          src="/assets/logo.png"
+          alt="logo"
+          onClick={() => navigate("/")}
+        />
         <ul>
           <NavLink to="/" style={pathname === "/" ? { color: "#F08018" } : {}}>
             home
@@ -104,7 +109,7 @@ const Header = () => {
             schedule
           </NavLink>
           <NavLink
-            to="/standings/regular-season"
+            to="/standings/playoffs"
             style={
               pathname === "/standings/regular-season" ||
               pathname === "/standings/playoffs" ||

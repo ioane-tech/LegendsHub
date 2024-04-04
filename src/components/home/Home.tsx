@@ -14,6 +14,7 @@ import { getAccessToken } from "../../context/AuthService";
 const Home = () => {
   const navigate = useNavigate();
   const Token = getAccessToken();
+
   return (
     <HomeContainer>
       <BgVideo />
