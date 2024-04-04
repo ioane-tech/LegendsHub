@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
@@ -7,12 +8,39 @@ import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
+import { CloseOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
+import Select from "react-select";
 
 function Profile() {
+  const [allUsers, setAllUsers] = useState<userType[]>([]);
+  const [modalHandler, setModalHandler] = useState<boolean>(false);
+  const [, setSelectedUser] = useState<userType | null>(null);
+
+  useEffect(() => {
+    const getAllUsers = async () => {
+      const responseOfAllUsers = await axios.get("/api/users_list/", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setAllUsers(responseOfAllUsers.data);
+    };
+    getAllUsers();
+  }, []);
+
+  // open/close modal
+  const profileModalHandler = () => {
+    setModalHandler((value) => !value);
+  };
+
+  const handleUserSelect = (selectedOption: any) => {
+    setSelectedUser(selectedOption);
+  };
+
   const { userInfo, team, token } = useContext(AuthContext);
   const logoutHandler = async () => {
     await axios.post("/logout/", {
@@ -63,55 +91,98 @@ function Profile() {
                   <div>
                     <p>Top lane</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconMid} width={30} alt="" />
                   <div>
                     <p>Mid lane</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconJungle} width={30} alt="" />
                   <div>
                     <p>Jungle</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconBot} width={30} alt="" />
                   <div>
                     <p>Bot lane</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
                     <p>support</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
                     <p>Sub</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
                     <p>Sub</p>
                   </div>
-                  <img src="./assets/addIcon.png" />
+                  <img
+                    src="./assets/addIcon.png"
+                    onClick={profileModalHandler}
+                  />
                 </li>
               </ul>
             </Container>
           </>
         )}
       </ProfileContainer>
+      {modalHandler && (
+        <ProfileModal>
+          <CloseOutlined
+            onClick={profileModalHandler}
+            className="profileModal_closer"
+          />
+          <div>
+            <Select
+              options={allUsers.map((user) => ({
+                value: user.id,
+                label: user.in_game_name,
+              }))}
+              onChange={handleUserSelect}
+              placeholder="Select User"
+              styles={customStyles}
+            />
+          </div>
+          <GoldenButton style={{ marginLeft: "110px", marginBottom: "50px" }}>
+            Send
+          </GoldenButton>
+        </ProfileModal>
+      )}
     </div>
   );
 }
@@ -123,11 +194,11 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   margin-left: auto;
   margin-right: auto;
   margin-top: 144px;
   width: 600px;
-  /* height:522px; */
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
   .logout {
@@ -147,18 +218,18 @@ const ProfileContainer = styled.div`
     }
   }
 `;
+
 const NotificationIcon = styled.img`
   position: absolute;
   right: 30px;
   top: 30px;
-
   cursor: pointer;
 `;
+
 const NotificationDot = styled.img`
   position: absolute;
   right: 30px;
   top: 30px;
-
   cursor: pointer;
 `;
 
@@ -174,16 +245,6 @@ const ProfileSection = styled.div`
   font-size: 24px;
   color: white;
   font-family: "Cormorant Unicase", serif;
-  h4 {
-    font-family: "Roboto Slab", serif;
-    color: #c6c6c6;
-    font-size: 16px;
-    margin-top: 5px;
-  }
-  img {
-    width: 150px;
-    height: 150px;
-  }
 `;
 
 const CreateTeamButton = styled.button`
@@ -257,3 +318,52 @@ const Container = styled.div`
     font-family: "Cormorant Unicase", serif;
   }
 `;
+
+const ProfileModal = styled.div`
+  position: fixed;
+  width: 20%;
+
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 150;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  .profileModal_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+`;
+
+/////////////////////////styles for select element
+const customStyles = {
+  option: (provided: any, state: any) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#f04318" : "white",
+    color: state.isSelected ? "white" : "black",
+    ":hover": {
+      backgroundColor: state.isSelected ? "#f04318" : "#fb8b6f",
+      color: "white",
+    },
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    margin: "5px  20px 50px 20px",
+    width: "270px",
+  }),
+
+  control: (provided: any, state: any) => ({
+    ...provided,
+    width: "270px",
+    margin: "50px 20px 50px 20px",
+    backgroundColor: "#f2f2f2",
+    border: state.isFocused ? "2px solid #f04318" : "2px solid #ccc",
+    borderRadius: "5px",
+    boxShadow: state.isFocused ? "0 0 3px rgba(240, 67, 24, 0.5)" : "none",
+    "&:hover": {
+      borderColor: "#f04318",
+    },
+  }),
+};
