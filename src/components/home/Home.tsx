@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import lagueOfLegendTitle from "/assets/springSplit.png";
+import lagueOfLegendTitle from "/homePage/becomealegend.png";
 
 import Header from "../header/Header";
 import BgVideo from "../bg-video/BgVideo";
@@ -20,7 +20,7 @@ const Home = () => {
       <Header />
       <FirstSection>
         <BecomeALegendContainer>
-          <img src={lagueOfLegendTitle} />
+          <img src={lagueOfLegendTitle} style={{width: "750px"}} />
         </BecomeALegendContainer>
 
         {Token ? null : (
