@@ -9,20 +9,6 @@ const StandingsHeader: React.FC = () => {
     <StandingsStageWrapper>
       <span>Stage:</span>
       <NavLink
-        to="/standings/regular-season"
-        style={
-          pathname === "/standings/regular-season" ? { color: "#FF7A00" } : {}
-        }
-      >
-        Regular season
-      </NavLink>
-      <NavLink
-        to="/standings/playoffs"
-        style={pathname === "/standings/playoffs" ? { color: "#FF7A00" } : {}}
-      >
-        Playoffs
-      </NavLink>
-      <NavLink
         to="/standings/pre-tournament-brackets"
         style={
           pathname === "/standings/pre-tournament-brackets"
@@ -31,6 +17,20 @@ const StandingsHeader: React.FC = () => {
         }
       >
         Pre tournament brackets
+      </NavLink>
+      <NavLink
+        to="/standings/playoffs"
+        style={pathname === "/standings/playoffs" ? { color: "#FF7A00" } : {}}
+      >
+        Playoffs
+      </NavLink>
+      <NavLink
+        to="/standings/regular-season"
+        style={
+          pathname === "/standings/regular-season" ? { color: "#FF7A00" } : {}
+        }
+      >
+        Regular season
       </NavLink>
     </StandingsStageWrapper>
   );

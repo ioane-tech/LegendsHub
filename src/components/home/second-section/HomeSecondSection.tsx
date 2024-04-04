@@ -2,7 +2,6 @@ import styled from "styled-components";
 import CarouselComp from "../../carousel/CarouselComp";
 import border from "/assets/Vector2.png";
 import borderIcon from "/assets/Content2.png";
-import bottomBorder from "/assets/Vector3.png";
 import knight from "/assets/knight.png";
 import light from "/assets/light.png";
 import { Link } from "react-router-dom";
@@ -72,7 +71,7 @@ const HomeSecondSection = () => {
           </RightSide>
         </section>
       </Announcement>
-      <BottomBorder src={bottomBorder} />
+      <BottomBorder />
     </Section>
   );
 };
@@ -116,10 +115,19 @@ const CarouselCont = styled.div`
   }
 `;
 
-const BottomBorder = styled.img`
+const BottomBorder = styled.div`
   width: 100%;
+  height: 300px;
   position: absolute;
+  bottom: 0px;
   top: 110vh;
+  background: linear-gradient(
+    180deg,
+    rgba(1, 6, 0, 0) 0.36%,
+    #000000 34.4%,
+    rgba(32, 30, 27, 0) 72.05%
+  );
+
   @media (max-height: 900px) {
     top: 120vh;
   }
