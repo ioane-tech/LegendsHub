@@ -93,7 +93,7 @@ const PlayoffsBlur = styled.div`
   padding: 10px 40px 0;
   margin-top: 160px;
   margin-bottom: 160px;
-  width: 60%;
+  width: 1024px;
   background-color: #00000059;
   color: #fff;
   backdrop-filter: blur(2px);
