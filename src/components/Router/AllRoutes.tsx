@@ -30,7 +30,7 @@ function AllRoutes() {
     members: teamMember[];
   };
 
-  const [team, setTeam] = useState<teamType | null>(null);
+  const [, setTeam] = useState<teamType | null>(null);
 
   const Token = getAccessToken();
 
