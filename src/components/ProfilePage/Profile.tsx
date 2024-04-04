@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
@@ -44,7 +44,7 @@ function Profile() {
   const [team, setTeam] = useState<teamType | null>(null);
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<userType | null>(null);
+  const [, setSelectedUser] = useState<userType | null>(null);
 
   useEffect(() => {
     const getUser = async () => {
