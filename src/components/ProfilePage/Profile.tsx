@@ -21,6 +21,20 @@ function Profile() {
   const [, setSelectedUser] = useState<userType | null>(null);
 
   useEffect(() => {
+    if (token) {
+      const getUser = async () => {
+        const responseOfTeam = await axios.get("/api/teams/", {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setTeam(responseOfTeam.data[0]);
+      };
+      getUser();
+    }
+  }, []);
+
+  useEffect(() => {
     const getAllUsers = async () => {
       const responseOfAllUsers = await axios.get("/api/users_list/", {
         headers: {
@@ -41,7 +55,7 @@ function Profile() {
     setSelectedUser(selectedOption);
   };
 
-  const { userInfo, team, token } = useContext(AuthContext);
+  const { userInfo, team, token, setTeam } = useContext(AuthContext);
   const logoutHandler = async () => {
     await axios.post("/logout/", {
       headers: {

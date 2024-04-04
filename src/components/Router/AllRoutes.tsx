@@ -31,7 +31,7 @@ function AllRoutes() {
       };
       getUser();
     }
-  }, [token]);
+  }, []);
 
   return (
     <div>
