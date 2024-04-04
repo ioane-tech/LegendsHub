@@ -58,7 +58,7 @@ function AllRoutes() {
             </>
           }
         />
-        {Token !== undefined && team === null && (
+        {Token !== undefined && (
           <Route path="/teamRegister" element={<TeamRegister />} />
         )}
         {Token ? (
