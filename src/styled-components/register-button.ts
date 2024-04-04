@@ -9,6 +9,7 @@ export const RegisterButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 50px;
   &:hover {
     scale: 1.05;
     background: linear-gradient(to bottom, #ffbb00, #ffa600);
