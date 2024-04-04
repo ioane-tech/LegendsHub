@@ -109,7 +109,7 @@ const Header = () => {
             schedule
           </NavLink>
           <NavLink
-            to="/standings/regular-season"
+            to="/standings/playoffs"
             style={
               pathname === "/standings/regular-season" ||
               pathname === "/standings/playoffs" ||

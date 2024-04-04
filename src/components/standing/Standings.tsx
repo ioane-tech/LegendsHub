@@ -56,6 +56,7 @@ const StandingsMainContainer = styled.div`
     background-color: #00000059;
     color: #fff;
     backdrop-filter: blur(2px);
+    height: 800px;
     hr {
       width: 100%;
       border: 0.3px solid rgba(240, 128, 24, 0.1);
