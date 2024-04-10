@@ -5,8 +5,8 @@ type AuthContextType = {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   userInfo: userType | null;
   setUserInfo: React.Dispatch<React.SetStateAction<userType | null>>;
-  team: teamType | null;
-  setTeam: React.Dispatch<React.SetStateAction<teamType | null>>;
+  team: teamType | undefined;
+  setTeam: React.Dispatch<React.SetStateAction<teamType | undefined>>;
 };
 
 const AuthContext = createContext({} as AuthContextType);
@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [token, setToken] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState<userType | null>(null);
-  const [team, setTeam] = useState<teamType | null>(null);
+  const [team, setTeam] = useState<teamType | undefined>(undefined);
   return (
     <AuthContext.Provider
       value={{ token, setToken, userInfo, setUserInfo, team, setTeam }}
