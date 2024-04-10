@@ -129,7 +129,7 @@ const BottomBorder = styled.div`
   );
 
   @media (max-height: 900px) {
-    top: 120vh;
+    top: 118vh;
   }
 `;
 

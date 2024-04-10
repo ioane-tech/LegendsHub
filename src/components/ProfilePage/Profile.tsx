@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
 import CLanLogo from "/icons/borderPlayer.png";
@@ -14,6 +14,7 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
 import Select from "react-select";
+import { removeAccessToken } from "../../context/AuthService";
 
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
@@ -55,16 +56,25 @@ function Profile() {
     setSelectedUser(selectedOption);
   };
 
-  const { userInfo, team, token, setTeam } = useContext(AuthContext);
+  const { userInfo, team, token, setTeam, setToken, setUserInfo } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
   const logoutHandler = async () => {
-    await axios.post("/logout/", {
-      headers: {
-        Auhthorization: `Token ${token}`,
-      },
-    });
+    // await axios.post(
+    //   "/logout/",
+    //   {},
+    //   {
+    //     headers: {
+    //       Auhthorization: `Token ${token}`,
+    //     },
+    //   }
+    // );
+    removeAccessToken();
+    setToken(null);
+    setTeam(undefined);
+    setUserInfo(null);
+    navigate("/");
   };
-
-  console.log("test");
 
   return (
     <div>

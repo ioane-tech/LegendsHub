@@ -15,9 +15,7 @@ import AuthContext from "../../context/AuthProvider";
 import NotFoundPage from "../not-found/NotFoundPage";
 
 function AllRoutes() {
-  const { team, setTeam } = useContext(AuthContext);
-
-  const { token } = useContext(AuthContext);
+  const { team, setTeam, token } = useContext(AuthContext);
 
   useEffect(() => {
     if (token) {
@@ -32,6 +30,8 @@ function AllRoutes() {
       getUser();
     }
   }, []);
+
+  console.log(team);
 
   return (
     <div>
