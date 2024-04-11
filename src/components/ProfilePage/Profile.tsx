@@ -76,6 +76,12 @@ function Profile() {
     navigate("/");
   };
 
+  const teamMembers = team?.members;
+
+  const rolePlayerFinder = (role: string) => {
+    return teamMembers?.find((member) => member.role === role);
+  };
+
   return (
     <div>
       <LoginBg />
@@ -113,52 +119,72 @@ function Profile() {
                 <li>
                   <img src={PlayerIconTop} width={30} alt="" />
                   <div>
-                    <p>Top lane</p>
+                    <p>
+                      {rolePlayerFinder("Top lane")?.in_game_name || "Top lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Top lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={profileModalHandler}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconMid} width={30} alt="" />
                   <div>
-                    <p>Mid lane</p>
+                    <p>
+                      {rolePlayerFinder("Mid lane")?.in_game_name || "Mid lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Mid lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={profileModalHandler}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconJungle} width={30} alt="" />
                   <div>
-                    <p>Jungle</p>
+                    <p>
+                      {rolePlayerFinder("Jungle")?.in_game_name || "Jungle"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Jungle") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={profileModalHandler}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconBot} width={30} alt="" />
                   <div>
-                    <p>Bot lane</p>
+                    <p>
+                      {rolePlayerFinder("Bot lane")?.in_game_name || "Bot lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Bot lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={profileModalHandler}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
-                    <p>support</p>
+                    <p>
+                      {rolePlayerFinder("Support")?.in_game_name || "Support"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Support") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={profileModalHandler}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
@@ -324,6 +350,7 @@ const Container = styled.div`
           color: rgba(200, 170, 110, 1);
           margin-left: 10px;
           font-family: "Roboto Slab", serif;
+          text-transform: capitalize;
         }
       }
       img {
