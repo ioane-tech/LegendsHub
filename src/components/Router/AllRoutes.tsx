@@ -31,8 +31,6 @@ function AllRoutes() {
     }
   }, []);
 
-  console.log(team);
-
   return (
     <div>
       <Routes>
