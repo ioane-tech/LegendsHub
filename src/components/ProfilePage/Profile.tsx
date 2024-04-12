@@ -60,15 +60,15 @@ function Profile() {
     useContext(AuthContext);
   const navigate = useNavigate();
   const logoutHandler = async () => {
-    // await axios.post(
-    //   "/logout/",
-    //   {},
-    //   {
-    //     headers: {
-    //       Auhthorization: `Token ${token}`,
-    //     },
-    //   }
-    // );
+    await axios.post(
+      "/logout/",
+      {},
+      {
+        headers: {
+          Auhthorization: `Token ${token}`,
+        },
+      }
+    );
     removeAccessToken();
     setToken(null);
     setTeam(undefined);
@@ -263,6 +263,7 @@ const ProfileContainer = styled.div`
     left: 30px;
     font-weight: 900;
     z-index: 1;
+    border: none;
     &:hover {
       background: linear-gradient(to bottom, #ffbb00, #ffa600);
     }
