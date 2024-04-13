@@ -60,15 +60,15 @@ function Profile() {
     useContext(AuthContext);
   const navigate = useNavigate();
   const logoutHandler = async () => {
-    await axios.post(
-      "/logout/",
-      {},
-      {
-        headers: {
-          Auhthorization: `Token ${token}`,
-        },
-      }
-    );
+    // await axios.post(
+    //   "/logout/",
+    //   {},
+    //   {
+    //     headers: {
+    //       Auhthorization: `Token ${token}`,
+    //     },
+    //   }
+    // );
     removeAccessToken();
     setToken(null);
     setTeam(undefined);
