@@ -22,6 +22,7 @@ import axios from "../../../api/axios";
 import { setAccessToken } from "../../../context/AuthService";
 import { AxiosError } from "axios";
 import AuthContext from "../../../context/AuthProvider";
+import { toast } from "react-toastify";
 
 type DataType = {
   email: string;
@@ -41,8 +42,6 @@ const LoginPage = () => {
   const email = watch("email");
   const password = watch("password");
 
-  const [backError, setBackError] = useState<string | null>(null);
-
   const { setToken } = useContext(AuthContext);
 
   const onSubmit = async () => {
@@ -58,7 +57,11 @@ const LoginPage = () => {
     } catch (err) {
       const axiosError = err as AxiosError;
       if (axiosError.response?.status === 401) {
-        setBackError("Not authorized or ");
+        toast.error("User Not Authorized");
+      } else if (axiosError.response?.status === 400) {
+        toast.error("Password Is Incorrect");
+      } else {
+        toast.error("Server Error, Please Try Again Later");
       }
     }
   };
@@ -136,7 +139,6 @@ const LoginPage = () => {
             </p>
           </FlexStyled>
         </FormContainer>
-        <h2>{backError}</h2>
       </Form>
     </Container>
   );
