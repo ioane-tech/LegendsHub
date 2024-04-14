@@ -5,6 +5,11 @@ type userType = {
   username: string;
 };
 
+type selectedUser = {
+  label: string;
+  id: number;
+};
+
 type teamMember = {
   member_id: number;
   in_game_name: string;
