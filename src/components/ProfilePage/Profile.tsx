@@ -17,16 +17,14 @@ import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 
 function Profile() {
-  
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<userType | null>(null);
 
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-
 
   useEffect(() => {
     if (token) {
@@ -42,10 +40,6 @@ function Profile() {
     }
   }, []);
 
-  
-
-
-
   useEffect(() => {
     const getAllUsers = async () => {
       const responseOfAllUsers = await axios.get("/api/users_list/", {
@@ -57,7 +51,6 @@ function Profile() {
     };
     getAllUsers();
   }, []);
-
 
   const handleUserSelect = (selectedOption: any) => {
     setSelectedUser(selectedOption);
@@ -89,46 +82,49 @@ function Profile() {
     return teamMembers?.find((member) => member.role === role);
   };
 
-
-  const sendInvitationHandler = () =>{
-    if(selectedUser && selectedRole && team){
+  const sendInvitationHandler = () => {
+    if (selectedUser && selectedRole && team) {
       const sendInvitation = async () => {
         if (!selectedUser || !team || !selectedRole) return;
-    
-          try {
-          const response = await axios.post("/api/invitation/", {
-            receiver: selectedUser.id,
-            team: team.id,
-            role: selectedRole,
-            status: 'Pending',
-          }, {
-            headers: {
-              Authorization: `Token ${getAccessToken()}`,
+
+        try {
+          const response = await axios.post(
+            "/api/invitation/",
+            {
+              receiver: selectedUser.id,
+              team: team.id,
+              role: selectedRole,
+              status: "Pending",
             },
-          });
+            {
+              headers: {
+                Authorization: `Token ${getAccessToken()}`,
+              },
+            }
+          );
           if (response.status === 201) {
-            toast.success('Invitation sent successfully');
+            toast.success("Invitation sent successfully");
           } else {
-            toast.error('Unexpected error occurred while sending invitation');
+            toast.error("Unexpected error occurred while sending invitation");
           }
-          console.log(response)
+          console.log(response);
         } catch (error) {
-          toast.error('Something wrong, try again!');
+          toast.error("Something wrong, try again!");
         }
       };
-      
+
       sendInvitation();
     }
-  }
-  
-    // open/close modal
-    const profileModalHandler = (role: string) => {
-      setModalHandler((value) => !value);
-      if(role.length > 0){
-        setSelectedRole(role);
-      }
-    };
-  
+  };
+
+  // open/close modal
+  const profileModalHandler = (role: string) => {
+    setModalHandler((value) => !value);
+    if (role.length > 0) {
+      setSelectedRole(role);
+    }
+  };
+
   return (
     <div>
       <LoginBg />
@@ -173,7 +169,7 @@ function Profile() {
                   {!rolePlayerFinder("Top lane") && (
                     <img
                       src="./assets/addIcon.png"
-                      onClick={()=>profileModalHandler("Top lane")}
+                      onClick={() => profileModalHandler("Top lane")}
                     />
                   )}
                 </li>
@@ -187,7 +183,7 @@ function Profile() {
                   {!rolePlayerFinder("Mid lane") && (
                     <img
                       src="./assets/addIcon.png"
-                      onClick={()=>profileModalHandler("Mid lane")}
+                      onClick={() => profileModalHandler("Mid lane")}
                     />
                   )}
                 </li>
@@ -201,7 +197,7 @@ function Profile() {
                   {!rolePlayerFinder("Jungle") && (
                     <img
                       src="./assets/addIcon.png"
-                      onClick={()=>profileModalHandler("Jungle")}
+                      onClick={() => profileModalHandler("Jungle")}
                     />
                   )}
                 </li>
@@ -215,7 +211,7 @@ function Profile() {
                   {!rolePlayerFinder("Bot lane") && (
                     <img
                       src="./assets/addIcon.png"
-                      onClick={()=>profileModalHandler("Bot lane")}
+                      onClick={() => profileModalHandler("Bot lane")}
                     />
                   )}
                 </li>
@@ -229,7 +225,7 @@ function Profile() {
                   {!rolePlayerFinder("Support") && (
                     <img
                       src="./assets/addIcon.png"
-                      onClick={()=>profileModalHandler("Support")}
+                      onClick={() => profileModalHandler("Support")}
                     />
                   )}
                 </li>
@@ -240,7 +236,7 @@ function Profile() {
                   </div>
                   <img
                     src="./assets/addIcon.png"
-                    onClick={()=>profileModalHandler("Sub player 1")}
+                    onClick={() => profileModalHandler("Sub player 1")}
                   />
                 </li>
                 <li>
@@ -250,7 +246,7 @@ function Profile() {
                   </div>
                   <img
                     src="./assets/addIcon.png"
-                    onClick={()=>profileModalHandler("Sub player 2")}
+                    onClick={() => profileModalHandler("Sub player 2")}
                   />
                 </li>
               </ul>
@@ -261,7 +257,7 @@ function Profile() {
       {modalHandler && (
         <ProfileModal>
           <CloseOutlined
-            onClick={()=>profileModalHandler("")}
+            onClick={() => profileModalHandler("")}
             className="profileModal_closer"
           />
           <div>
@@ -275,13 +271,13 @@ function Profile() {
               styles={customStyles}
             />
           </div>
-          
-          <GoldenButton 
-            onClick={sendInvitationHandler} 
-            style={{marginLeft:'110px',marginBottom:'50px'}}>
-              Send
-          </GoldenButton>
 
+          <GoldenButton
+            onClick={sendInvitationHandler}
+            style={{ marginLeft: "110px", marginBottom: "50px" }}
+          >
+            Send
+          </GoldenButton>
         </ProfileModal>
       )}
     </div>
