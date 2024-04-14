@@ -22,8 +22,7 @@ import { toast } from "react-toastify";
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<userType | null>(null);
-
+  const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   useEffect(() => {
@@ -263,7 +262,7 @@ function Profile() {
           <div>
             <Select
               options={allUsers.map((user) => ({
-                value: user.id,
+                id: user.id,
                 label: user.in_game_name,
               }))}
               onChange={handleUserSelect}
