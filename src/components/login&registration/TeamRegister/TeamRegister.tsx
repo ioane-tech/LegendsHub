@@ -49,7 +49,7 @@ function TeamRegister() {
           },
         }
       );
-      navigate("/");
+      navigate("/profile");
     } catch (err) {
       console.log(err);
     }
@@ -58,8 +58,6 @@ function TeamRegister() {
   const setPositionHandler = (position: string) => {
     setPosition(position);
   };
-
-  console.log(position);
 
   // const UploadWrapper = styled.div`
   //   text-align: left;

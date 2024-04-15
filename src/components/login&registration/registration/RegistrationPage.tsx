@@ -17,9 +17,10 @@ import {
   Label,
   BackdropFilter,
 } from "../styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "../../../api/axios";
 import { setAccessToken } from "../../../context/AuthService";
+import AuthContext from "../../../context/AuthProvider";
 
 type DataType = {
   gameName: string;
@@ -39,6 +40,8 @@ function RegistrationPage() {
 
   const password = watch("password", "");
 
+  const { setToken } = useContext(AuthContext);
+
   const onSubmit = async () => {
     try {
       await axios.post("/registration/", {
@@ -53,6 +56,7 @@ function RegistrationPage() {
       });
       const accessToken = response?.data?.token;
       setAccessToken(accessToken);
+      setToken(accessToken);
       navigate("/profile");
     } catch (err) {
       console.log(err);

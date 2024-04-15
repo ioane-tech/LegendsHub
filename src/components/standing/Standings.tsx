@@ -29,7 +29,7 @@ const Standings = () => {
           </div>
         </div>
       </StandingsMainContainer>
-        <Footer />
+      <Footer />
     </>
   );
 };
@@ -52,11 +52,11 @@ const StandingsMainContainer = styled.div`
     padding: 10px 40px 0;
     margin-top: 160px;
     margin-bottom: 160px;
-    width: 1046px;
-    max-width: 100%;
+    width: 1024px;
     background-color: #00000059;
     color: #fff;
     backdrop-filter: blur(2px);
+    height: 800px;
     hr {
       width: 100%;
       border: 0.3px solid rgba(240, 128, 24, 0.1);

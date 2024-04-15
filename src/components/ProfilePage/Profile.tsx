@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
 import CLanLogo from "/icons/borderPlayer.png";
@@ -10,67 +10,40 @@ import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
 import { CloseOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
+import Select from "react-select";
+import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
-import Select from 'react-select';
 
-
-
-type userType = {
-  full_name: string;
-  id: number;
-  in_game_name: string;
-  username: string;
-};
-
-type teamMember = {
-  member_id: number;
-  in_game_name: string;
-  role: string;
-};
-
-type teamType = {
-  creator: number;
-  id: number;
-  logo: string | null;
-  member_count: number;
-  name: string;
-  status: boolean;
-  members: teamMember[];
-};
+import { toast } from "react-toastify";
 
 function Profile() {
-  const [user, setUser] = useState<userType | null>(null);
-  const [team, setTeam] = useState<teamType | null>(null);
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<userType | null>(null);
+  const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
 
   useEffect(() => {
-    const getUser = async () => {
-      const response = await axios.get("/api/personal_page/", {
-        headers: {
-          Authorization: `Token ${getAccessToken()}`,
-        },
-      });
-      setUser(response.data);
-
-      const responseOfTeam = await axios.get("/api/teams/", {
-        headers: {
-          Authorization: `Token ${getAccessToken()}`,
-        },
-      });
-      setTeam(responseOfTeam.data[0]);
-    };
-    getUser();
+    if (token) {
+      const getUser = async () => {
+        const responseOfTeam = await axios.get("/api/teams/", {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setTeam(responseOfTeam.data[0]);
+      };
+      getUser();
+    }
   }, []);
-  console.log(`team:${team} user:${user?.username}`)
 
   useEffect(() => {
     const getAllUsers = async () => {
       const responseOfAllUsers = await axios.get("/api/users_list/", {
         headers: {
-          Authorization: `Token ${getAccessToken()}`,
+          Authorization: `Token ${token}`,
         },
       });
       setAllUsers(responseOfAllUsers.data);
@@ -78,16 +51,78 @@ function Profile() {
     getAllUsers();
   }, []);
 
-  // open/close modal
-  const profileModalHandler = () => {
-    setModalHandler((value) => !value);
-  };
-
   const handleUserSelect = (selectedOption: any) => {
-      setSelectedUser(selectedOption);
+    setSelectedUser(selectedOption);
   };
 
+  const { userInfo, team, token, setTeam, setToken, setUserInfo } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const logoutHandler = async () => {
+    await axios.post(
+      "/logout/",
+      {},
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    removeAccessToken();
+    setToken(null);
+    setTeam(undefined);
+    setUserInfo(null);
+    navigate("/");
+  };
 
+  const teamMembers = team?.members;
+
+  const rolePlayerFinder = (role: string) => {
+    return teamMembers?.find((member) => member.role === role);
+  };
+
+  const sendInvitationHandler = () => {
+    if (selectedUser && selectedRole && team) {
+      const sendInvitation = async () => {
+        if (!selectedUser || !team || !selectedRole) return;
+
+        try {
+          const response = await axios.post(
+            "/api/invitation/",
+            {
+              receiver: selectedUser.id,
+              team: team.id,
+              role: selectedRole,
+              status: "Pending",
+            },
+            {
+              headers: {
+                Authorization: `Token ${getAccessToken()}`,
+              },
+            }
+          );
+          if (response.status === 201) {
+            toast.success("Invitation sent successfully");
+          } else {
+            toast.error("Unexpected error occurred while sending invitation");
+          }
+          console.log(response);
+        } catch (error) {
+          toast.error("Something wrong, try again!");
+        }
+      };
+
+      sendInvitation();
+    }
+  };
+
+  // open/close modal
+  const profileModalHandler = (role: string) => {
+    setModalHandler((value) => !value);
+    if (role.length > 0) {
+      setSelectedRole(role);
+    }
+  };
 
   return (
     <div>
@@ -98,13 +133,16 @@ function Profile() {
       </NavLink>
 
       <ProfileContainer>
+        <button className="logout" onClick={() => logoutHandler()}>
+          log out
+        </button>
         <NotificationIcon src="./assets/notification.png" alt="" />
         <NotificationDot src="./assets/notificationDot.png" alt="" />
 
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
-          <h3>{user?.in_game_name}</h3>
-          <h4>{user?.full_name}</h4>
+          <h3>{userInfo?.in_game_name}</h3>
+          <h4>{userInfo?.full_name}</h4>
         </ProfileSection>
         {!team ? (
           <Link to={"/teamRegister"}>
@@ -123,51 +161,81 @@ function Profile() {
                 <li>
                   <img src={PlayerIconTop} width={30} alt="" />
                   <div>
-                    <p>Top lane</p>
+                    <p>
+                      {rolePlayerFinder("Top lane")?.in_game_name || "Top lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Top lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Top lane")}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconMid} width={30} alt="" />
                   <div>
-                    <p>Mid lane</p>
+                    <p>
+                      {rolePlayerFinder("Mid lane")?.in_game_name || "Mid lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Mid lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Mid lane")}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconJungle} width={30} alt="" />
                   <div>
-                    <p>Jungle</p>
+                    <p>
+                      {rolePlayerFinder("Jungle")?.in_game_name || "Jungle"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Jungle") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Jungle")}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconBot} width={30} alt="" />
                   <div>
-                    <p>Bot lane</p>
+                    <p>
+                      {rolePlayerFinder("Bot lane")?.in_game_name || "Bot lane"}
+                    </p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
+                  {!rolePlayerFinder("Bot lane") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Bot lane")}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
-                    <p>support</p>
+                    <p>
+                      {rolePlayerFinder("Support")?.in_game_name || "Support"}
+                    </p>
+                  </div>
+                  {!rolePlayerFinder("Support") && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Support")}
+                    />
+                  )}
+                </li>
+                <li>
+                  <img src={PlayerIconSup} width={30} alt="" />
+                  <div>
+                    <p>Sub</p>
                   </div>
                   <img
                     src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
+                    onClick={() => profileModalHandler("Sub player 1")}
                   />
                 </li>
                 <li>
@@ -177,17 +245,7 @@ function Profile() {
                   </div>
                   <img
                     src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
-                  />
-                </li>
-                <li>
-                  <img src={PlayerIconSup} width={30} alt="" />
-                  <div>
-                    <p>Sub</p>
-                  </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={profileModalHandler}
+                    onClick={() => profileModalHandler("Sub player 2")}
                   />
                 </li>
               </ul>
@@ -197,20 +255,28 @@ function Profile() {
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
-          
-            <CloseOutlined
-              onClick={profileModalHandler}
-              className="profileModal_closer"
-            />
-          <div>
-          <Select
-            options={allUsers.map(user => ({ value: user.id, label: user.in_game_name }))}
-            onChange={handleUserSelect}
-            placeholder="Select User"
-            styles={customStyles}
+          <CloseOutlined
+            onClick={() => profileModalHandler("")}
+            className="profileModal_closer"
           />
+          <div>
+            <Select
+              options={allUsers.map((user) => ({
+                id: user.id,
+                label: user.in_game_name,
+              }))}
+              onChange={handleUserSelect}
+              placeholder="Select User"
+              styles={customStyles}
+            />
           </div>
-          <GoldenButton style={{marginLeft:'110px',marginBottom:'50px'}}>Send</GoldenButton>
+
+          <GoldenButton
+            onClick={sendInvitationHandler}
+            style={{ marginLeft: "110px", marginBottom: "50px" }}
+          >
+            Send
+          </GoldenButton>
         </ProfileModal>
       )}
     </div>
@@ -231,6 +297,23 @@ const ProfileContainer = styled.div`
   width: 600px;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
+  .logout {
+    background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+    cursor: pointer;
+    font-family: "Cormorant Unicase", serif;
+    text-transform: capitalize;
+    font-size: 20px;
+    padding: 10px 20px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-weight: 900;
+    z-index: 1;
+    border: none;
+    &:hover {
+      background: linear-gradient(to bottom, #ffbb00, #ffa600);
+    }
+  }
 `;
 
 const NotificationIcon = styled.img`
@@ -314,6 +397,7 @@ const Container = styled.div`
           color: rgba(200, 170, 110, 1);
           margin-left: 10px;
           font-family: "Roboto Slab", serif;
+          text-transform: capitalize;
         }
       }
       img {
@@ -351,36 +435,33 @@ const ProfileModal = styled.div`
   }
 `;
 
-
-
 /////////////////////////styles for select element
 const customStyles = {
   option: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: state.isSelected ? '#f04318' : 'white', 
-    color: state.isSelected ? 'white' : 'black', 
-    ':hover': {
-      backgroundColor: state.isSelected? '#f04318' : '#fb8b6f', 
-      color: 'white', 
+    backgroundColor: state.isSelected ? "#f04318" : "white",
+    color: state.isSelected ? "white" : "black",
+    ":hover": {
+      backgroundColor: state.isSelected ? "#f04318" : "#fb8b6f",
+      color: "white",
     },
   }),
   menu: (provided: any) => ({
     ...provided,
-    margin:'5px  20px 50px 20px',
-    width:'270px',
+    margin: "5px  20px 50px 20px",
+    width: "270px",
   }),
 
   control: (provided: any, state: any) => ({
     ...provided,
-    width:'270px',
-    margin:'50px 20px 50px 20px',
-    backgroundColor: '#f2f2f2',
-    border: state.isFocused ? '2px solid #f04318' : '2px solid #ccc',
-    borderRadius: '5px',
-    boxShadow: state.isFocused ? '0 0 3px rgba(240, 67, 24, 0.5)' : 'none',
-    '&:hover': {
-      borderColor: '#f04318',
+    width: "270px",
+    margin: "50px 20px 50px 20px",
+    backgroundColor: "#f2f2f2",
+    border: state.isFocused ? "2px solid #f04318" : "2px solid #ccc",
+    borderRadius: "5px",
+    boxShadow: state.isFocused ? "0 0 3px rgba(240, 67, 24, 0.5)" : "none",
+    "&:hover": {
+      borderColor: "#f04318",
     },
   }),
-  
 };

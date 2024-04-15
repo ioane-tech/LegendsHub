@@ -9,12 +9,20 @@ import SixthBracket from "./SixthBracket";
 import SeventhBracket from "./SeventhBracket";
 import Footer from "../footer/Footer";
 import WinnerTeam from "./WinnerTeam";
+import { NavLink } from "react-router-dom";
+import GoldenButton from "../../styled-components/golden-button";
 
 const PreTournament = () => {
   return (
     <>
       <Header />
       <BgStyle></BgStyle>
+      <NavLink
+        to="/standings/playoffs"
+        style={{ position: "absolute", left: "5%", top: "180px" }}
+      >
+        <GoldenButton>back</GoldenButton>
+      </NavLink>
       <StyledMain>
         <div className="main-bracket">
           <div className="first-brackets">

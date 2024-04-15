@@ -93,7 +93,9 @@ const PlayoffsBlur = styled.div`
   padding: 10px 40px 0;
   margin-top: 160px;
   margin-bottom: 160px;
-  width: 60%;
+  width: 1024px;
+  height: 800px;
+
   background-color: #00000059;
   color: #fff;
   backdrop-filter: blur(2px);
@@ -144,7 +146,7 @@ const PlayoffsTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 55px;
+  padding-top: 80px;
   padding-right: 270px;
   padding-bottom: 73px;
   h1 {

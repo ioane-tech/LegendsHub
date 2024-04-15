@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import lagueOfLegendTitle from "/assets/springSplit.png";
+import lagueOfLegendTitle from "/homePage/becomealegend.png";
 
 import Header from "../header/Header";
 import BgVideo from "../bg-video/BgVideo";
@@ -14,13 +14,14 @@ import { getAccessToken } from "../../context/AuthService";
 const Home = () => {
   const navigate = useNavigate();
   const Token = getAccessToken();
+
   return (
     <HomeContainer>
       <BgVideo />
       <Header />
       <FirstSection>
         <BecomeALegendContainer>
-          <img src={lagueOfLegendTitle} />
+          <img src={lagueOfLegendTitle} style={{width: "750px"}} />
         </BecomeALegendContainer>
 
         {Token ? null : (
