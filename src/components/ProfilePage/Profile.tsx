@@ -35,6 +35,8 @@ function Profile() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [notifData, setNotifData] = useState<[] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [notificationStatus, setNotificationStatus] = useState("");
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -160,7 +162,7 @@ function Profile() {
       }
     };
     getNotif();
-  }, [userInfo]);
+  }, []);
 
   return (
     <div>
@@ -306,14 +308,11 @@ function Profile() {
             {notifData?.map((invs: NotificationTypes) =>
               userInfo?.id === invs.receiver ? (
                 <div key={invs.id}>
-                  <h1>{invs.id}</h1>
-                  <h1>{invs.receiver}</h1>
-                  <h1>{invs.role}</h1>
-                  <h1>{invs.sender}</h1>
-                  <h1>{invs.team}</h1>
+                  <button onClick={() => { setNotificationStatus('Accepted');}}>Accept</button>
+                  <button onClick={() => { setNotificationStatus('Declined');}}>Decline</button>
                 </div>
               ) : (
-                "No invitations Found!"
+                "No Invitations"
               )
             )}
           </Modal>
