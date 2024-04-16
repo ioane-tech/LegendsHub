@@ -33,7 +33,7 @@ function Profile() {
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const [notifData, setNotifData] = useState<[] | null>(null);
+  const [notifData, setNotifData] = useState<NotificationTypes | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [notificationStatus, setNotificationStatus] = useState("");
 
@@ -156,13 +156,37 @@ function Profile() {
           },
         });
         setNotifData(notifResp.data);
-        console.log(notifData);
       } catch (error) {
         console.log(error);
       }
     };
     getNotif();
   }, []);
+  //
+  useEffect(() => {
+    const notifData = async () => {
+      try {
+        const notifResp = await axios.post(
+          `/api/invitation/,`,
+          {
+            receiver: selectedUser?.id,
+            team: team?.id,
+            role: selectedRole,
+            status: notificationStatus,
+          },
+          {
+            headers: {
+              Authorization: `Token ${getAccessToken()}`,
+            },
+          }
+        );
+        console.log(notifResp.data); // Log the response if needed
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    notifData();
+  }, [notificationStatus]);
 
   return (
     <div>
@@ -305,15 +329,25 @@ function Profile() {
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            {notifData?.map((invs: NotificationTypes) =>
-              userInfo?.id === invs.receiver ? (
-                <div key={invs.id}>
-                  <button onClick={() => { setNotificationStatus('Accepted');}}>Accept</button>
-                  <button onClick={() => { setNotificationStatus('Declined');}}>Decline</button>
-                </div>
-              ) : (
-                "No Invitations"
-              )
+            {userInfo?.id === notifData?.id ? (
+              <div>
+                <button
+                  onClick={() => {
+                    setNotificationStatus("Accepted");
+                  }}
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() => {
+                    setNotificationStatus("Declined");
+                  }}
+                >
+                  Decline
+                </button>
+              </div>
+            ) : (
+              "No Notifications"
             )}
           </Modal>
         </div>
