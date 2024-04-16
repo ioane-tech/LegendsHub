@@ -17,14 +17,35 @@ import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 
-import { toast } from "react-toastify";
+import { Button, Modal } from "antd";
 
+import { toast } from "react-toastify";
+type NotificationTypes = {
+  id: number;
+  sender: number;
+  receiver: number;
+  team: number;
+  role: String;
+  status: [];
+};
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [notifData, setNotifData] = useState<[] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     if (token) {
       const getUser = async () => {
@@ -123,6 +144,23 @@ function Profile() {
       setSelectedRole(role);
     }
   };
+  // api  receiver id finder
+  useEffect(() => {
+    const getNotif = async () => {
+      try {
+        const notifResp = await axios.get(`/api/invitation/`, {
+          headers: {
+            Authorization: `Token ${getAccessToken()}`,
+          },
+        });
+        setNotifData(notifResp.data);
+        console.log(notifData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getNotif();
+  }, [userInfo]);
 
   return (
     <div>
@@ -144,6 +182,7 @@ function Profile() {
           <h3>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
         </ProfileSection>
+
         {!team ? (
           <Link to={"/teamRegister"}>
             <CreateTeamButton>Create Team</CreateTeamButton>
@@ -252,6 +291,34 @@ function Profile() {
             </Container>
           </>
         )}
+        {/* test */}
+        <div>
+          <Button type="primary" onClick={showModal}>
+            Check Invitations
+          </Button>
+
+          <Modal
+            title="Basic Modal"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            {notifData?.map((invs: NotificationTypes) =>
+              userInfo?.id === invs.receiver ? (
+                <div key={invs.id}>
+                  <h1>{invs.id}</h1>
+                  <h1>{invs.receiver}</h1>
+                  <h1>{invs.role}</h1>
+                  <h1>{invs.sender}</h1>
+                  <h1>{invs.team}</h1>
+                </div>
+              ) : (
+                "No invitations Found!"
+              )
+            )}
+          </Modal>
+        </div>
+        {/* test */}
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
