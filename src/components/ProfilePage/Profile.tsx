@@ -228,12 +228,12 @@ function Profile() {
           log out
         </button>
         {/* notification Container */}
-        <NotificationContainer>
+        <NotificationContainer onClick={showDrawer}>
           <Badge count={5} offset={[-28, 29]}>
             <NotificationIcon src="./assets/notification.png" alt="notif" />
           </Badge>
         </NotificationContainer>
-
+        
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
           <h3>{userInfo?.in_game_name}</h3>
@@ -415,6 +415,11 @@ function Profile() {
           </GoldenButton>
         </ProfileModal>
       )}
+      <Drawer title="Notifications" onClose={onClose} open={open}>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Drawer>
     </div>
   );
 }
@@ -467,6 +472,7 @@ const NotificationContainer = styled.div`
   right: 30px;
   top: -5px;
   cursor: pointer;
+  z-index: 55;
 `;
 
 const ProfileSection = styled.div`
