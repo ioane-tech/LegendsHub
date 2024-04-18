@@ -253,7 +253,7 @@ function Profile() {
           </>
         )}
       </ProfileContainer>
-      {/* {modalHandler && (
+      {modalHandler && (
         <ProfileModal>
           <CloseOutlined
             onClick={() => profileModalHandler("")}
@@ -278,7 +278,7 @@ function Profile() {
             Send
           </GoldenButton>
         </ProfileModal>
-      )} */}
+      )}
     </div>
   );
 }
