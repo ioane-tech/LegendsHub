@@ -25,17 +25,16 @@ type NotificationTypes = {
   sender: number;
   receiver: number;
   team: number;
-  role: String;
-  status: [];
+  role: string;
+  status: string;
 };
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const [notifData, setNotifData] = useState<NotificationTypes | null>(null);
+  const [invitData, setInvitData] = useState<NotificationTypes[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [notificationStatus, setNotificationStatus] = useState("");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -48,6 +47,7 @@ function Profile() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   useEffect(() => {
     if (token) {
       const getUser = async () => {
@@ -146,48 +146,69 @@ function Profile() {
       setSelectedRole(role);
     }
   };
-  // api  receiver id finder
+
+  // api  get request for invitations
   useEffect(() => {
-    const getNotif = async () => {
+    const getInvitation = async () => {
       try {
-        const notifResp = await axios.get(`/api/invitation/`, {
+        const invitResp = await axios.get(`/api/invitation/`, {
           headers: {
-            Authorization: `Token ${getAccessToken()}`,
+            Authorization: `Token ${token}`,
           },
         });
-        setNotifData(notifResp.data);
+        setInvitData(invitResp.data);
       } catch (error) {
         console.log(error);
       }
     };
-    getNotif();
+    getInvitation();
   }, []);
-  //
-  useEffect(() => {
-    const notifData = async () => {
-      try {
-        const notifResp = await axios.post(
-          `/api/invitation/,`,
-          {
-            receiver: selectedUser?.id,
-            team: team?.id,
-            role: selectedRole,
-            status: notificationStatus,
-          },
-          {
-            headers: {
-              Authorization: `Token ${getAccessToken()}`,
-            },
-          }
-        );
-        console.log(notifResp.data); // Log the response if needed
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    notifData();
-  }, [notificationStatus]);
+  console.log("invitation data", invitData);
+  // patch request for invitations to change pending state to accepted/declined
 
+  const handleAccept = (invs: NotificationTypes) => {
+    try {
+      axios.patch(
+        `/api/invitation/${invs.id}/`,
+        {
+          receiver: invs.receiver,
+          role: invs.role,
+          team: invs.team,
+          status: "Accepted",
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+     
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDecline =  (invs: NotificationTypes) => {
+    try {
+      axios.patch(
+        `/api/invitation/${invs.id}/`,
+        {
+          receiver: invs.receiver,
+          role: invs.role,
+          team: invs.team,
+          status: "Declined",
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+  console.log(invitData[0]);
   return (
     <div>
       <LoginBg />
@@ -329,25 +350,15 @@ function Profile() {
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            {userInfo?.id === notifData?.id ? (
-              <div>
-                <button
-                  onClick={() => {
-                    setNotificationStatus("Accepted");
-                  }}
-                >
-                  Accept
-                </button>
-                <button
-                  onClick={() => {
-                    setNotificationStatus("Declined");
-                  }}
-                >
-                  Decline
-                </button>
-              </div>
-            ) : (
-              "No Notifications"
+            {invitData?.map((invs: NotificationTypes) =>
+              userInfo?.id === invs.receiver ? (
+                <div key={invs.id}>
+                  <button onClick={() => handleAccept(invs)}>Accept</button>
+                  <button onClick={() => handleDecline(invs)}>Decline</button>
+                </div>
+              ) : (
+                "..."
+              )
             )}
           </Modal>
         </div>
