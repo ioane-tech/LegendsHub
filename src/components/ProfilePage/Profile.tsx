@@ -20,7 +20,7 @@ import { getAccessToken } from "../../context/AuthService";
 import { Button, Modal, Badge, Drawer } from "antd";
 
 import { toast } from "react-toastify";
-type NotificationTypes = {
+type InvitationTypes = {
   id: number;
   sender: number;
   receiver: number;
@@ -28,14 +28,26 @@ type NotificationTypes = {
   role: string;
   status: string;
 };
+
+type NotificationTypes = {
+  id: number;
+  user: string;
+  message: string;
+  created_at: string;
+};
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const [invitData, setInvitData] = useState<NotificationTypes[]>([]);
+  const [invitData, setInvitData] = useState<InvitationTypes[]>([]);
+  const [notificationsData, setNotificationsData] = useState<
+    NotificationTypes[]
+  >([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  // Modal functions
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -47,8 +59,7 @@ function Profile() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const [open, setOpen] = useState(false);
-
+  // drawer functions
   const showDrawer = () => {
     setOpen(true);
   };
@@ -175,7 +186,7 @@ function Profile() {
 
   // patch request for invitations to change pending state to accepted/declined
 
-  const handleAccept = (invs: NotificationTypes) => {
+  const handleAccept = (invs: InvitationTypes) => {
     try {
       axios.patch(
         `/api/invitation/${invs.id}/`,
@@ -195,7 +206,7 @@ function Profile() {
       console.log(err);
     }
   };
-  const handleDecline = (invs: NotificationTypes) => {
+  const handleDecline = (invs: InvitationTypes) => {
     try {
       axios.patch(
         `/api/invitation/${invs.id}/`,
@@ -215,6 +226,23 @@ function Profile() {
       console.log(err);
     }
   };
+  // notification data
+  useEffect(() => {
+    const getNotifications = async () => {
+      try {
+        const notificationResponse = await axios.get(`/api/notification/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setNotificationsData(notificationResponse.data);
+        console.log(notificationResponse.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getNotifications();
+  }, []);
   return (
     <div>
       <LoginBg />
@@ -229,11 +257,11 @@ function Profile() {
         </button>
         {/* notification Container */}
         <NotificationContainer onClick={showDrawer}>
-          <Badge count={5} offset={[-28, 29]}>
+          <Badge count={notificationsData.length} offset={[-28, 29]}>
             <NotificationIcon src="./assets/notification.png" alt="notif" />
           </Badge>
         </NotificationContainer>
-        
+
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
           <h3>{userInfo?.in_game_name}</h3>
@@ -348,7 +376,7 @@ function Profile() {
             </Container>
           </>
         )}
-        {/* test */}
+
         <div className="invit-modal">
           <Button type="primary" onClick={showModal} className="customButton">
             Check Invitations
@@ -361,7 +389,7 @@ function Profile() {
             onCancel={handleCancel}
             footer={null}
           >
-            {invitData?.map((invs: NotificationTypes) =>
+            {invitData?.map((invs: InvitationTypes) =>
               userInfo?.id === invs.receiver ? (
                 <div key={invs.id}>
                   {invs.status === "Pending" && (
@@ -387,7 +415,6 @@ function Profile() {
             )}
           </Modal>
         </div>
-        {/* test */}
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
@@ -416,10 +443,14 @@ function Profile() {
         </ProfileModal>
       )}
       <Drawer title="Notifications" onClose={onClose} open={open}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Drawer>
+        {notificationsData.map((notifs: NotificationTypes) => (
+          <NotificationBox key={notifs.id}>
+            <p>
+              <span>{notifs.id} -</span> {notifs.message}
+            </p>
+          </NotificationBox>
+        ))}
+      </Drawer>
     </div>
   );
 }
@@ -589,6 +620,22 @@ const InvitationButton = styled.button`
   font-size: 18px;
   background: rgba(28, 28, 28, 0.9);
   border-radius: 6px;
+`;
+
+const NotificationBox = styled.div`
+  p {
+    padding: 10px;
+    border-top: 1px solid rgba(28, 28, 28, 0.9);
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 300;
+    color: #303b55;
+
+    span{
+      color: black;
+      font-weight: bold;
+    }
+  }
 `;
 /////////////////////////styles for select element
 const customStyles = {
