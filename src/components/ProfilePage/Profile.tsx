@@ -163,7 +163,7 @@ function Profile() {
     };
     getInvitation();
   }, []);
-  console.log("invitation data", invitData);
+
   // patch request for invitations to change pending state to accepted/declined
 
   const handleAccept = (invs: NotificationTypes) => {
@@ -182,12 +182,11 @@ function Profile() {
           },
         }
       );
-     
     } catch (err) {
       console.log(err);
     }
   };
-  const handleDecline =  (invs: NotificationTypes) => {
+  const handleDecline = (invs: NotificationTypes) => {
     try {
       axios.patch(
         `/api/invitation/${invs.id}/`,
@@ -206,9 +205,7 @@ function Profile() {
     } catch (err) {
       console.log(err);
     }
-
   };
-  console.log(invitData[0]);
   return (
     <div>
       <LoginBg />
@@ -345,7 +342,7 @@ function Profile() {
           </Button>
 
           <Modal
-            title="Basic Modal"
+            title="Your Invitations List"
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -353,12 +350,16 @@ function Profile() {
             {invitData?.map((invs: NotificationTypes) =>
               userInfo?.id === invs.receiver ? (
                 <div key={invs.id}>
-                  <button onClick={() => handleAccept(invs)}>Accept</button>
-                  <button onClick={() => handleDecline(invs)}>Decline</button>
+                  {invs.status === "Pending" && (
+                    <>
+                      <button onClick={() => handleAccept(invs)}>Accept</button>
+                      <button onClick={() => handleDecline(invs)}>
+                        Decline
+                      </button>
+                    </>
+                  )}
                 </div>
-              ) : (
-                "..."
-              )
+              ) : null
             )}
           </Modal>
         </div>
