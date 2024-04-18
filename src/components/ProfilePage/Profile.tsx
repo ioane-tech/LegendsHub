@@ -17,7 +17,7 @@ import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 
-import { Button, Modal } from "antd";
+import { Button, Modal, Avatar, Badge } from "antd";
 
 import { toast } from "react-toastify";
 type NotificationTypes = {
@@ -218,8 +218,12 @@ function Profile() {
         <button className="logout" onClick={() => logoutHandler()}>
           log out
         </button>
-        <NotificationIcon src="./assets/notification.png" alt="" />
-        <NotificationDot src="./assets/notificationDot.png" alt="" />
+        {/* notification Container */}
+        <NotificationContainer>
+          <Badge count={5} offset={[-28, 29]}>
+            <NotificationIcon src="./assets/notification.png" alt="notif" />
+          </Badge>
+        </NotificationContainer>
 
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
@@ -337,11 +341,7 @@ function Profile() {
         )}
         {/* test */}
         <div className="invit-modal">
-          <Button
-            type="primary"
-            onClick={showModal}
-            className="customButton"
-          >
+          <Button type="primary" onClick={showModal} className="customButton">
             Check Invitations
           </Button>
 
@@ -441,7 +441,7 @@ const ProfileContainer = styled.div`
       background: linear-gradient(to bottom, #ffbb00, #ffa600);
     }
   }
-  .invit-modal{
+  .invit-modal {
     margin-bottom: 25px;
   }
 `;
@@ -453,10 +453,10 @@ const NotificationIcon = styled.img`
   cursor: pointer;
 `;
 
-const NotificationDot = styled.img`
+const NotificationContainer = styled.div`
   position: absolute;
   right: 30px;
-  top: 30px;
+  top: -5px;
   cursor: pointer;
 `;
 
