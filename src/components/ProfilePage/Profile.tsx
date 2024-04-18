@@ -17,7 +17,7 @@ import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 
-import { Button, Modal, Avatar, Badge } from "antd";
+import { Button, Modal, Badge, Drawer } from "antd";
 
 import { toast } from "react-toastify";
 type NotificationTypes = {
@@ -46,6 +46,15 @@ function Profile() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+  const [open, setOpen] = useState(false);
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
   };
 
   useEffect(() => {
