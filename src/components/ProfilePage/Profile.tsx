@@ -336,26 +336,41 @@ function Profile() {
           </>
         )}
         {/* test */}
-        <div>
-          <Button type="primary" onClick={showModal}>
+        <div className="invit-modal">
+          <Button
+            type="primary"
+            onClick={showModal}
+            className="customButton"
+          >
             Check Invitations
           </Button>
 
           <Modal
-            title="Your Invitations List"
+            title="Your Invitation"
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
+            footer={null}
           >
             {invitData?.map((invs: NotificationTypes) =>
               userInfo?.id === invs.receiver ? (
                 <div key={invs.id}>
                   {invs.status === "Pending" && (
                     <>
-                      <button onClick={() => handleAccept(invs)}>Accept</button>
-                      <button onClick={() => handleDecline(invs)}>
-                        Decline
-                      </button>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <InvitationButton onClick={() => handleAccept(invs)}>
+                          Accept
+                        </InvitationButton>
+                        <InvitationButton onClick={() => handleDecline(invs)}>
+                          Decline
+                        </InvitationButton>
+                      </div>
                     </>
                   )}
                 </div>
@@ -425,6 +440,9 @@ const ProfileContainer = styled.div`
     &:hover {
       background: linear-gradient(to bottom, #ffbb00, #ffa600);
     }
+  }
+  .invit-modal{
+    margin-bottom: 25px;
   }
 `;
 
@@ -546,7 +564,17 @@ const ProfileModal = styled.div`
     padding: 10px 20px;
   }
 `;
-
+const InvitationButton = styled.button`
+  padding: 10px 13px;
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 1.3px;
+  font-size: 18px;
+  background: rgba(28, 28, 28, 0.9);
+  border-radius: 6px;
+`;
 /////////////////////////styles for select element
 const customStyles = {
   option: (provided: any, state: any) => ({
