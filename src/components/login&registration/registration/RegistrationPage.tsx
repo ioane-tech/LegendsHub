@@ -21,6 +21,8 @@ import { useContext, useState } from "react";
 import axios from "../../../api/axios";
 import { setAccessToken } from "../../../context/AuthService";
 import AuthContext from "../../../context/AuthProvider";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 type DataType = {
   gameName: string;
@@ -59,7 +61,10 @@ function RegistrationPage() {
       setToken(accessToken);
       navigate("/profile");
     } catch (err) {
-      console.log(err);
+      const axiosError = err as AxiosError;
+      if (axiosError.response?.status === 400) {
+        toast.error("Game name or email already taken");
+      }
     }
   };
 

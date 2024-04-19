@@ -57,11 +57,11 @@ const LoginPage = () => {
     } catch (err) {
       const axiosError = err as AxiosError;
       if (axiosError.response?.status === 401) {
-        toast.error("User Not Authorized");
+        toast.error("User not authorized");
       } else if (axiosError.response?.status === 400) {
-        toast.error("Password Is Incorrect");
+        toast.error("Password is incorrect");
       } else {
-        toast.error("Server Error, Please Try Again Later");
+        toast.error("Server error, please try again later");
       }
     }
   };
