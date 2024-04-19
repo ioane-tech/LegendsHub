@@ -8,14 +8,13 @@ import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
-import { CloseOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
-import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
+import { CloseOutlined } from "@ant-design/icons";
 
 import { Button, Modal, Badge, Drawer } from "antd";
 
@@ -36,9 +35,8 @@ type NotificationTypes = {
   created_at: string;
 };
 function Profile() {
-  const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
+  const [idInput, setIdInput] = useState<string | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [invitData, setInvitData] = useState<InvitationTypes[]>([]);
   const [notificationsData, setNotificationsData] = useState<
@@ -82,22 +80,6 @@ function Profile() {
     }
   }, []);
 
-  useEffect(() => {
-    const getAllUsers = async () => {
-      const responseOfAllUsers = await axios.get("/api/users_list/", {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
-      setAllUsers(responseOfAllUsers.data);
-    };
-    getAllUsers();
-  }, []);
-
-  const handleUserSelect = (selectedOption: any) => {
-    setSelectedUser(selectedOption);
-  };
-
   const { userInfo, team, token, setTeam, setToken, setUserInfo } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -125,15 +107,15 @@ function Profile() {
   };
 
   const sendInvitationHandler = () => {
-    if (selectedUser && selectedRole && team) {
+    if (selectedRole && team) {
       const sendInvitation = async () => {
-        if (!selectedUser || !team || !selectedRole) return;
+        if (!team || !selectedRole) return;
 
         try {
           const response = await axios.post(
             "/api/invitation/",
             {
-              receiver: selectedUser.id,
+              receiver: idInput,
               team: team.id,
               role: selectedRole,
               status: "Pending",
@@ -149,7 +131,7 @@ function Profile() {
           } else {
             toast.error("Unexpected error occurred while sending invitation");
           }
-          console.log(response);
+          setIdInput(null);
         } catch (error) {
           toast.error("Something wrong, try again!");
         }
@@ -243,6 +225,7 @@ function Profile() {
     };
     getNotifications();
   }, []);
+  const inviteHandler = team?.creator === userInfo?.id;
   return (
     <div>
       <LoginBg />
@@ -266,6 +249,7 @@ function Profile() {
           <img src="./assets/profileImgBorder.png" alt="" />
           <h3>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
+          <h5>id: {userInfo?.id}</h5>
         </ProfileSection>
 
         {!team ? (
@@ -289,7 +273,7 @@ function Profile() {
                       {rolePlayerFinder("Top lane")?.in_game_name || "Top lane"}
                     </p>
                   </div>
-                  {!rolePlayerFinder("Top lane") && (
+                  {inviteHandler && !rolePlayerFinder("Top lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Top lane")}
@@ -303,7 +287,7 @@ function Profile() {
                       {rolePlayerFinder("Mid lane")?.in_game_name || "Mid lane"}
                     </p>
                   </div>
-                  {!rolePlayerFinder("Mid lane") && (
+                  {inviteHandler && !rolePlayerFinder("Mid lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Mid lane")}
@@ -317,7 +301,7 @@ function Profile() {
                       {rolePlayerFinder("Jungle")?.in_game_name || "Jungle"}
                     </p>
                   </div>
-                  {!rolePlayerFinder("Jungle") && (
+                  {inviteHandler && !rolePlayerFinder("Jungle") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Jungle")}
@@ -331,7 +315,7 @@ function Profile() {
                       {rolePlayerFinder("Bot lane")?.in_game_name || "Bot lane"}
                     </p>
                   </div>
-                  {!rolePlayerFinder("Bot lane") && (
+                  {inviteHandler && !rolePlayerFinder("Bot lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Bot lane")}
@@ -345,7 +329,7 @@ function Profile() {
                       {rolePlayerFinder("Support")?.in_game_name || "Support"}
                     </p>
                   </div>
-                  {!rolePlayerFinder("Support") && (
+                  {inviteHandler && !rolePlayerFinder("Support") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Support")}
@@ -357,20 +341,24 @@ function Profile() {
                   <div>
                     <p>Sub</p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={() => profileModalHandler("Sub player 1")}
-                  />
+                  {inviteHandler && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Sub player 1")}
+                    />
+                  )}
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
                     <p>Sub</p>
                   </div>
-                  <img
-                    src="./assets/addIcon.png"
-                    onClick={() => profileModalHandler("Sub player 2")}
-                  />
+                  {inviteHandler && (
+                    <img
+                      src="./assets/addIcon.png"
+                      onClick={() => profileModalHandler("Sub player 2")}
+                    />
+                  )}
                 </li>
               </ul>
             </Container>
@@ -418,22 +406,20 @@ function Profile() {
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
-          <CloseOutlined
-            onClick={() => profileModalHandler("")}
-            className="profileModal_closer"
-          />
-          <div>
-            <Select
-              options={allUsers.map((user) => ({
-                id: user.id,
-                label: user.in_game_name,
-              }))}
-              onChange={handleUserSelect}
-              placeholder="Select User"
-              styles={customStyles}
+          <div className="for-close">
+            <CloseOutlined
+              onClick={() => profileModalHandler("")}
+              className="profileModal_closer"
             />
           </div>
-
+          <input
+            type="number"
+            className="for-id"
+            placeholder="write the id"
+            onChange={(e) => {
+              setIdInput(e.target.value);
+            }}
+          />
           <GoldenButton
             onClick={sendInvitationHandler}
             style={{ marginLeft: "110px", marginBottom: "50px" }}
@@ -518,6 +504,10 @@ const ProfileSection = styled.div`
   font-size: 24px;
   color: white;
   font-family: "Cormorant Unicase", serif;
+  h5 {
+    color: #c5c3c3;
+    text-transform: lowercase;
+  }
 `;
 
 const CreateTeamButton = styled.button`
@@ -595,19 +585,48 @@ const Container = styled.div`
 
 const ProfileModal = styled.div`
   position: fixed;
-  width: 20%;
-
-  background: rgba(0, 0, 0, 0.9);
+  width: 300px;
+  background: rgba(0, 0, 0, 0.95);
   z-index: 150;
   top: 50%;
   left: 50%;
   color: #fff;
   transform: translate(-50%, -50%);
-  .profileModal_wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+  border-radius: 5%;
+  .for-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  .for-id {
+    margin-left: 60px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    width: 180px;
+    text-align: center;
+    offset: none;
+    background-color: #9e9c9c;
+
+    &::placeholder {
+      text-transform: lowercase;
+      font-family: "Cormorant Unicase", serif;
+      color: #333333;
+    }
+    &:focus {
+      background-color: #ffffff;
+
+      border: 1px red solid;
+      outline: none;
+    }
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none !important;
+      margin: 0 !important;
+      display: none !important;
+    }
   }
 `;
 const InvitationButton = styled.button`
@@ -631,39 +650,9 @@ const NotificationBox = styled.div`
     font-weight: 300;
     color: #303b55;
 
-    span{
+    span {
       color: black;
       font-weight: bold;
     }
   }
 `;
-/////////////////////////styles for select element
-const customStyles = {
-  option: (provided: any, state: any) => ({
-    ...provided,
-    backgroundColor: state.isSelected ? "#f04318" : "white",
-    color: state.isSelected ? "white" : "black",
-    ":hover": {
-      backgroundColor: state.isSelected ? "#f04318" : "#fb8b6f",
-      color: "white",
-    },
-  }),
-  menu: (provided: any) => ({
-    ...provided,
-    margin: "5px  20px 50px 20px",
-    width: "270px",
-  }),
-
-  control: (provided: any, state: any) => ({
-    ...provided,
-    width: "270px",
-    margin: "50px 20px 50px 20px",
-    backgroundColor: "#f2f2f2",
-    border: state.isFocused ? "2px solid #f04318" : "2px solid #ccc",
-    borderRadius: "5px",
-    boxShadow: state.isFocused ? "0 0 3px rgba(240, 67, 24, 0.5)" : "none",
-    "&:hover": {
-      borderColor: "#f04318",
-    },
-  }),
-};
