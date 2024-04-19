@@ -17,13 +17,56 @@ import Select from "react-select";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 
-import { toast } from "react-toastify";
+import { Button, Modal, Badge, Drawer } from "antd";
 
+import { toast } from "react-toastify";
+type InvitationTypes = {
+  id: number;
+  sender: number;
+  receiver: number;
+  team: number;
+  role: string;
+  status: string;
+};
+
+type NotificationTypes = {
+  id: number;
+  user: string;
+  message: string;
+  created_at: string;
+};
 function Profile() {
   const [allUsers, setAllUsers] = useState<userType[]>([]);
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<selectedUser | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+  const [invitData, setInvitData] = useState<InvitationTypes[]>([]);
+  const [notificationsData, setNotificationsData] = useState<
+    NotificationTypes[]
+  >([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // Modal functions
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  // drawer functions
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (token) {
@@ -124,6 +167,82 @@ function Profile() {
     }
   };
 
+  // api  get request for invitations
+  useEffect(() => {
+    const getInvitation = async () => {
+      try {
+        const invitResp = await axios.get(`/api/invitation/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setInvitData(invitResp.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getInvitation();
+  }, []);
+
+  // patch request for invitations to change pending state to accepted/declined
+
+  const handleAccept = (invs: InvitationTypes) => {
+    try {
+      axios.patch(
+        `/api/invitation/${invs.id}/`,
+        {
+          receiver: invs.receiver,
+          role: invs.role,
+          team: invs.team,
+          status: "Accepted",
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDecline = (invs: InvitationTypes) => {
+    try {
+      axios.patch(
+        `/api/invitation/${invs.id}/`,
+        {
+          receiver: invs.receiver,
+          role: invs.role,
+          team: invs.team,
+          status: "Declined",
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // notification data
+  useEffect(() => {
+    const getNotifications = async () => {
+      try {
+        const notificationResponse = await axios.get(`/api/notification/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
+        setNotificationsData(notificationResponse.data);
+        console.log(notificationResponse.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getNotifications();
+  }, []);
   return (
     <div>
       <LoginBg />
@@ -136,14 +255,19 @@ function Profile() {
         <button className="logout" onClick={() => logoutHandler()}>
           log out
         </button>
-        <NotificationIcon src="./assets/notification.png" alt="" />
-        <NotificationDot src="./assets/notificationDot.png" alt="" />
+        {/* notification Container */}
+        <NotificationContainer onClick={showDrawer}>
+          <Badge count={notificationsData.length} offset={[-28, 29]}>
+            <NotificationIcon src="./assets/notification.png" alt="notif" />
+          </Badge>
+        </NotificationContainer>
 
         <ProfileSection>
           <img src="./assets/profileImgBorder.png" alt="" />
           <h3>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
         </ProfileSection>
+
         {!team ? (
           <Link to={"/teamRegister"}>
             <CreateTeamButton>Create Team</CreateTeamButton>
@@ -252,6 +376,45 @@ function Profile() {
             </Container>
           </>
         )}
+
+        <div className="invit-modal">
+          <Button type="primary" onClick={showModal} className="customButton">
+            Check Invitations
+          </Button>
+
+          <Modal
+            title="Your Invitation"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            {invitData?.map((invs: InvitationTypes) =>
+              userInfo?.id === invs.receiver ? (
+                <div key={invs.id}>
+                  {invs.status === "Pending" && (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "8px",
+                          alignItems: "center",
+                        }}
+                      >
+                        <InvitationButton onClick={() => handleAccept(invs)}>
+                          Accept
+                        </InvitationButton>
+                        <InvitationButton onClick={() => handleDecline(invs)}>
+                          Decline
+                        </InvitationButton>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : null
+            )}
+          </Modal>
+        </div>
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
@@ -279,6 +442,15 @@ function Profile() {
           </GoldenButton>
         </ProfileModal>
       )}
+      <Drawer title="Notifications" onClose={onClose} open={open}>
+        {notificationsData.map((notifs: NotificationTypes) => (
+          <NotificationBox key={notifs.id}>
+            <p>
+              <span>{notifs.id} -</span> {notifs.message}
+            </p>
+          </NotificationBox>
+        ))}
+      </Drawer>
     </div>
   );
 }
@@ -314,6 +486,9 @@ const ProfileContainer = styled.div`
       background: linear-gradient(to bottom, #ffbb00, #ffa600);
     }
   }
+  .invit-modal {
+    margin-bottom: 25px;
+  }
 `;
 
 const NotificationIcon = styled.img`
@@ -323,11 +498,12 @@ const NotificationIcon = styled.img`
   cursor: pointer;
 `;
 
-const NotificationDot = styled.img`
+const NotificationContainer = styled.div`
   position: absolute;
   right: 30px;
-  top: 30px;
+  top: -5px;
   cursor: pointer;
+  z-index: 55;
 `;
 
 const ProfileSection = styled.div`
@@ -434,7 +610,33 @@ const ProfileModal = styled.div`
     padding: 10px 20px;
   }
 `;
+const InvitationButton = styled.button`
+  padding: 10px 13px;
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 1.3px;
+  font-size: 18px;
+  background: rgba(28, 28, 28, 0.9);
+  border-radius: 6px;
+`;
 
+const NotificationBox = styled.div`
+  p {
+    padding: 10px;
+    border-top: 1px solid rgba(28, 28, 28, 0.9);
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 300;
+    color: #303b55;
+
+    span{
+      color: black;
+      font-weight: bold;
+    }
+  }
+`;
 /////////////////////////styles for select element
 const customStyles = {
   option: (provided: any, state: any) => ({
