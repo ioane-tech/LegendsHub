@@ -5,8 +5,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
 
 const CarouselComp = () => {
+  const [teams, setTeams] = useState<teamType[]>([]);
+  useEffect(() => {
+    const getTeams = async () => {
+      const response = await axios.get("/api/teams_list/");
+      setTeams(response.data);
+    };
+    getTeams();
+  }, []);
   return (
     <Container>
       <Swiper
@@ -17,11 +27,11 @@ const CarouselComp = () => {
         draggable={true}
         loop={true}
       >
-        {Array.from({ length: 10 }).map((_, index) => (
+        {teams.map((team, index) => (
           <SwiperSlide key={index}>
-            <NavLink to="/">
+            <NavLink to="/asd">
               <img src={testImg} alt="" />
-              <h2>Team</h2>
+              <h2>{team.name}</h2>
             </NavLink>
           </SwiperSlide>
         ))}
@@ -68,6 +78,9 @@ const Container = styled.div`
     font-weight: 500;
     font-size: 16px;
     color: white;
+    h2 {
+      text-transform: capitalize;
+    }
   }
 `;
 

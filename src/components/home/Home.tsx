@@ -21,7 +21,7 @@ const Home = () => {
       <Header />
       <FirstSection>
         <BecomeALegendContainer>
-          <img src={lagueOfLegendTitle} style={{width: "750px"}} />
+          <img src={lagueOfLegendTitle} />
         </BecomeALegendContainer>
 
         {Token ? null : (
@@ -76,11 +76,11 @@ const FirstSection = styled.section`
 const BecomeALegendContainer = styled.span`
   position: relative;
   img {
-    width: 1050px;
+    width: 750px;
   }
   @media (max-width: 1500px) {
     img {
-      width: 850px;
+      width: 500px;
     }
   }
 `;

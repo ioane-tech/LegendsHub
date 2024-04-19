@@ -17,13 +17,10 @@ const PreTournament = () => {
     <>
       <Header />
       <BgStyle></BgStyle>
-      <NavLink
-        to="/standings/playoffs"
-        style={{ position: "absolute", left: "5%", top: "180px" }}
-      >
-        <GoldenButton>back</GoldenButton>
-      </NavLink>
       <StyledMain>
+        <NavLink to="/standings/playoffs">
+          <GoldenButton>back</GoldenButton>
+        </NavLink>
         <div className="main-bracket">
           <div className="first-brackets">
             <FirstBracket />
@@ -209,6 +206,14 @@ const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   padding: 200px 0 100px;
+  a {
+    position: absolute;
+    left: 5%;
+    top: 170px;
+  }
+  @media (max-width: 1660px) {
+    padding-top: 280px;
+  }
   .main-bracket {
     display: flex;
     .first-brackets {
