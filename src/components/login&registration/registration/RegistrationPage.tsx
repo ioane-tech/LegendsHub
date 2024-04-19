@@ -64,6 +64,8 @@ function RegistrationPage() {
       const axiosError = err as AxiosError;
       if (axiosError.response?.status === 400) {
         toast.error("Game name or email already taken");
+      } else {
+        toast.error("Server error, please try again later");
       }
     }
   };
