@@ -218,7 +218,6 @@ function Profile() {
           },
         });
         setNotificationsData(notificationResponse.data);
-        console.log(notificationResponse.data);
       } catch (error) {
         console.log(error);
       }
@@ -406,26 +405,32 @@ function Profile() {
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
-          <div className="for-close">
-            <CloseOutlined
-              onClick={() => profileModalHandler("")}
-              className="profileModal_closer"
+          <div
+            className="wrapper"
+            onClick={() => profileModalHandler("")}
+          ></div>
+          <div className="modal-content">
+            <div className="for-close">
+              <CloseOutlined
+                onClick={() => profileModalHandler("")}
+                className="profileModal_closer"
+              />
+            </div>
+            <input
+              type="number"
+              className="for-id"
+              placeholder="write the id"
+              onChange={(e) => {
+                setIdInput(e.target.value);
+              }}
             />
+            <GoldenButton
+              onClick={sendInvitationHandler}
+              style={{ marginLeft: "110px", marginBottom: "50px" }}
+            >
+              Send
+            </GoldenButton>
           </div>
-          <input
-            type="number"
-            className="for-id"
-            placeholder="write the id"
-            onChange={(e) => {
-              setIdInput(e.target.value);
-            }}
-          />
-          <GoldenButton
-            onClick={sendInvitationHandler}
-            style={{ marginLeft: "110px", marginBottom: "50px" }}
-          >
-            Send
-          </GoldenButton>
         </ProfileModal>
       )}
       <Drawer title="Notifications" onClose={onClose} open={open}>
@@ -584,15 +589,29 @@ const Container = styled.div`
 `;
 
 const ProfileModal = styled.div`
+  width: 100%;
+  height: 100%;
   position: fixed;
-  width: 300px;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 150;
-  top: 50%;
-  left: 50%;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  border-radius: 5%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-content {
+    width: 300px;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 150;
+    color: #fff;
+    border-radius: 5%;
+    position: relative;
+  }
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
   .for-close {
     position: absolute;
     top: 10px;
