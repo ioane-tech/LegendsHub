@@ -16,7 +16,7 @@ import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 import { CloseOutlined } from "@ant-design/icons";
 import lissProfile from "/notifications/lissandra.png";
-import { Button, Modal, Badge } from "antd";
+import { Modal, Badge } from "antd";
 import Draggable from "react-draggable";
 import type { DraggableData, DraggableEvent } from "react-draggable";
 import { toast } from "react-toastify";
