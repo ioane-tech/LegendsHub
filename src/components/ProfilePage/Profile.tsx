@@ -398,12 +398,6 @@ function Profile() {
             </Container>
           </>
         )}
-
-        <div className="invit-modal">
-          <Button type="primary" onClick={showModal} className="customButton">
-            Check Invitations
-          </Button>
-        </div>
       </ProfileContainer>
       {modalHandler && (
         <ProfileModal>
