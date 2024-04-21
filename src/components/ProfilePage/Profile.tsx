@@ -251,7 +251,7 @@ function Profile() {
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
-  
+
     if (diffMinutes < 60) {
       return `${diffMinutes}m`;
     } else if (diffHours < 24) {
@@ -487,12 +487,25 @@ function Profile() {
                       alignItems: "center",
                     }}
                   >
-                    <InvitationButton onClick={() => handleAccept(invs)}>
-                      Accept
-                    </InvitationButton>
-                    <InvitationButton onClick={() => handleDecline(invs)}>
-                      Decline
-                    </InvitationButton>
+                    <InvitationCard>
+                      <div className="invitationCard-text">
+                        <h1>You have been invited in {invs.role}</h1>
+                      </div>
+                      <div className="invitationCard-buttons">
+                        <button
+                          className="btn-accept"
+                          onClick={() => handleAccept(invs)}
+                        >
+                          Accept
+                        </button>
+                        <button
+                          className="btn-decline"
+                          onClick={() => handleDecline(invs)}
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </InvitationCard>
                   </div>
                 </>
               )}
@@ -506,7 +519,9 @@ function Profile() {
               <div className="notification-wrapper">
                 <img src={lissProfile} alt="profile-pic" />
                 <span className="notif-message">{notifs.message}</span>
-                <span className="notif-date">{formatNotificationDate(notifs.created_at)}</span>
+                <span className="notif-date">
+                  {formatNotificationDate(notifs.created_at)}
+                </span>
               </div>
             </NotificationBox>
           );
@@ -719,21 +734,9 @@ const ProfileModal = styled.div`
     }
   }
 `;
-const InvitationButton = styled.button`
-  padding: 10px 13px;
-  font-family: "Cormorant Unicase", serif;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
-  letter-spacing: 1.3px;
-  font-size: 18px;
-  background: rgba(28, 28, 28, 0.9);
-  border-radius: 6px;
-`;
 
 const NotificationBox = styled.div`
   background: rgba(208, 208, 208, 0.49);
-
 
   .notification-wrapper {
     display: flex;
@@ -753,6 +756,60 @@ const NotificationBox = styled.div`
       font-weight: 400 !important;
       font-size: 16px;
       color: #cacaca;
+    }
+  }
+`;
+
+const InvitationCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+  gap: 10px;
+  width: 100%;
+  .invitationCard-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .invitationCard-text h1 {
+    font-family: "Roboto Slab", serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.1px;
+    text-align: left;
+
+  }
+
+  .invitationCard-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+    align-items: center;
+    .btn-accept {
+      padding: 5px 25px;
+      font-family: "Cormorant Unicase", serif;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      font-size: 18px;
+      background: transparent;
+      border-radius: 6px;
+      border: 2px solid #f08018;
+      border-image: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+      border-image-slice: 1;
+    }
+    .btn-decline {
+      background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+      padding: 5px 25px;
+      font-family: "Cormorant Unicase", serif;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 6px;
     }
   }
 `;
