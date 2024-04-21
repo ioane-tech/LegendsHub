@@ -165,12 +165,11 @@ body {
     rgba(240, 128, 24, 1),
     rgba(241, 224, 133, 1)
   );
-  border: none !important; 
+  border: none !important;
 }
-.customButton:hover{
+.customButton:hover {
   transform: scale(1.1);
   color: black !important;
-  
 }
 .customButton:hover,
 .customButton:focus {
@@ -180,4 +179,49 @@ body {
     rgba(241, 224, 133, 1)
   ) !important;
 }
+
+.ant-modal-header {
+  background: linear-gradient(
+    89.94deg,
+    rgba(255, 255, 255, 0.5) 55.48%,
+    rgba(122, 122, 122, 0.115) 110.86%
+  ) !important;
+  height: 50px !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px !important;
+  margin-bottom: 0px !important;
+  border-top-left-radius: 6px !important;
+  border-top-right-radius: 6px !important;
+}
+.ant-modal-content {
+  background: linear-gradient(
+    89.94deg,
+    rgba(255, 255, 255, 0.5) 55.48%,
+    rgba(122, 122, 122, 0.115) 110.86%
+  ) !important;
+
+  padding: 0px !important;
+}
+
+.ant-modal-body{
+  overflow-y: scroll !important;
+  height: 427px !important;
+}
+.ant-modal-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.ant-modal-body::-webkit-scrollbar-track {
+  background: rgba(136, 136, 136, 0.61);
+}
+
+/* Handle */
+.ant-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  transition: 0.3s;
+}
+
 
