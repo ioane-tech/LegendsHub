@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import LoginBg from "../login&registration/LoginBg";
 import GoldenButton from "../../styled-components/golden-button";
@@ -15,10 +15,12 @@ import axios from "../../api/axios";
 import { removeAccessToken } from "../../context/AuthService";
 import { getAccessToken } from "../../context/AuthService";
 import { CloseOutlined } from "@ant-design/icons";
-
-import { Button, Modal, Badge, Drawer } from "antd";
-
+import lissProfile from "/notifications/lissandra.png";
+import { Button, Modal, Badge } from "antd";
+import Draggable from "react-draggable";
+import type { DraggableData, DraggableEvent } from "react-draggable";
 import { toast } from "react-toastify";
+
 type InvitationTypes = {
   id: number;
   sender: number;
@@ -42,29 +44,46 @@ function Profile() {
   const [notificationsData, setNotificationsData] = useState<
     NotificationTypes[]
   >([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // test test test
   const [open, setOpen] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [bounds, setBounds] = useState({
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
+  });
+  const draggleRef = useRef<HTMLDivElement>(null);
 
-  // Modal functions
   const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  // drawer functions
-  const showDrawer = () => {
     setOpen(true);
   };
 
-  const onClose = () => {
+  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e);
     setOpen(false);
   };
+
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e);
+    setOpen(false);
+  };
+
+  const onStart = (_event: DraggableEvent, uiData: DraggableData) => {
+    const { clientWidth, clientHeight } = window.document.documentElement;
+    const targetRect = draggleRef.current?.getBoundingClientRect();
+    if (!targetRect) {
+      return;
+    }
+    setBounds({
+      left: -targetRect.left + uiData.x,
+      right: clientWidth - (targetRect.right - uiData.x),
+      top: -targetRect.top + uiData.y,
+      bottom: clientHeight - (targetRect.bottom - uiData.y),
+    });
+  };
+  // test test test
 
   useEffect(() => {
     if (token) {
@@ -168,9 +187,9 @@ function Profile() {
 
   // patch request for invitations to change pending state to accepted/declined
 
-  const handleAccept = (invs: InvitationTypes) => {
+  const handleAccept = async (invs: InvitationTypes) => {
     try {
-      axios.patch(
+      await axios.patch(
         `/api/invitation/${invs.id}/`,
         {
           receiver: invs.receiver,
@@ -225,6 +244,22 @@ function Profile() {
     getNotifications();
   }, []);
   const inviteHandler = team?.creator === userInfo?.id;
+  const formatNotificationDate = (createdAt: string): string => {
+    const now = new Date();
+    const createdDate = new Date(createdAt);
+    const diffMs = now.getTime() - createdDate.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+    if (diffMinutes < 60) {
+      return `${diffMinutes}m`;
+    } else if (diffHours < 24) {
+      return `${diffHours}h`;
+    } else {
+      return `${diffDays}d`;
+    }
+  };
   return (
     <div>
       <LoginBg />
@@ -238,7 +273,7 @@ function Profile() {
           log out
         </button>
         {/* notification Container */}
-        <NotificationContainer onClick={showDrawer}>
+        <NotificationContainer onClick={showModal}>
           <Badge count={notificationsData.length} offset={[-28, 29]}>
             <NotificationIcon src="./assets/notification.png" alt="notif" />
           </Badge>
@@ -368,39 +403,6 @@ function Profile() {
           <Button type="primary" onClick={showModal} className="customButton">
             Check Invitations
           </Button>
-
-          <Modal
-            title="Your Invitation"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
-          >
-            {invitData?.map((invs: InvitationTypes) =>
-              userInfo?.id === invs.receiver ? (
-                <div key={invs.id}>
-                  {invs.status === "Pending" && (
-                    <>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "8px",
-                          alignItems: "center",
-                        }}
-                      >
-                        <InvitationButton onClick={() => handleAccept(invs)}>
-                          Accept
-                        </InvitationButton>
-                        <InvitationButton onClick={() => handleDecline(invs)}>
-                          Decline
-                        </InvitationButton>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ) : null
-            )}
-          </Modal>
         </div>
       </ProfileContainer>
       {modalHandler && (
@@ -433,15 +435,98 @@ function Profile() {
           </div>
         </ProfileModal>
       )}
-      <Drawer title="Notifications" onClose={onClose} open={open}>
-        {notificationsData.map((notifs: NotificationTypes) => (
-          <NotificationBox key={notifs.id}>
-            <p>
-              <span>{notifs.id} -</span> {notifs.message}
-            </p>
-          </NotificationBox>
-        ))}
-      </Drawer>
+
+      <Modal
+        title={
+          <div
+            style={{
+              width: "100%",
+              cursor: "move",
+            }}
+            onMouseOver={() => {
+              if (disabled) {
+                setDisabled(false);
+              }
+            }}
+            onMouseOut={() => {
+              setDisabled(true);
+            }}
+            // fix eslintjsx-a11y/mouse-events-have-key-events
+            // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
+            onFocus={() => {}}
+            onBlur={() => {}}
+            // end
+          >
+            Notifications
+          </div>
+        }
+        open={open}
+        onOk={handleOk}
+        footer={null}
+        onCancel={handleCancel}
+        modalRender={(modal) => (
+          <Draggable
+            disabled={disabled}
+            bounds={bounds}
+            nodeRef={draggleRef}
+            onStart={(event, uiData) => onStart(event, uiData)}
+          >
+            <div ref={draggleRef}>{modal}</div>
+          </Draggable>
+        )}
+      >
+        {invitData?.map((invs: InvitationTypes) =>
+          userInfo?.id === invs.receiver ? (
+            <div key={invs.id}>
+              {invs.status === "Pending" && (
+                <>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "8px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <InvitationCard>
+                      <div className="invitationCard-text">
+                        <h1>You have been invited in {invs.role}</h1>
+                      </div>
+                      <div className="invitationCard-buttons">
+                        <button
+                          className="btn-accept"
+                          onClick={() => handleAccept(invs)}
+                        >
+                          Accept
+                        </button>
+                        <button
+                          className="btn-decline"
+                          onClick={() => handleDecline(invs)}
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </InvitationCard>
+                  </div>
+                </>
+              )}
+            </div>
+          ) : null
+        )}
+        {/* notifications */}
+        {notificationsData.map((notifs: NotificationTypes) => {
+          return (
+            <NotificationBox key={notifs.id}>
+              <div className="notification-wrapper">
+                <img src={lissProfile} alt="profile-pic" />
+                <span className="notif-message">{notifs.message}</span>
+                <span className="notif-date">
+                  {formatNotificationDate(notifs.created_at)}
+                </span>
+              </div>
+            </NotificationBox>
+          );
+        })}
+      </Modal>
     </div>
   );
 }
@@ -460,6 +545,7 @@ const ProfileContainer = styled.div`
   width: 600px;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
+
   .logout {
     background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
     cursor: pointer;
@@ -648,30 +734,82 @@ const ProfileModal = styled.div`
     }
   }
 `;
-const InvitationButton = styled.button`
-  padding: 10px 13px;
-  font-family: "Cormorant Unicase", serif;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
-  letter-spacing: 1.3px;
-  font-size: 18px;
-  background: rgba(28, 28, 28, 0.9);
-  border-radius: 6px;
-`;
 
 const NotificationBox = styled.div`
-  p {
-    padding: 10px;
-    border-top: 1px solid rgba(28, 28, 28, 0.9);
-    font-size: 15px;
-    font-family: "Roboto Slab", serif;
-    font-weight: 300;
-    color: #303b55;
+  background: rgba(208, 208, 208, 0.49);
 
-    span {
-      color: black;
-      font-weight: bold;
+  .notification-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 20px;
+    gap: 10px;
+    .notif-message {
+      font-family: "Roboto Slab", serif;
+      font-weight: 400 !important;
+      font-size: 16px;
+      line-height: 21.1px;
+      color: #000000;
+    }
+    .notif-date {
+      font-family: "Roboto Slab", serif;
+      font-weight: 400 !important;
+      font-size: 16px;
+      color: #cacaca;
+    }
+  }
+`;
+
+const InvitationCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+  gap: 10px;
+  width: 100%;
+  .invitationCard-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .invitationCard-text h1 {
+    font-family: "Roboto Slab", serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.1px;
+    text-align: left;
+
+  }
+
+  .invitationCard-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+    align-items: center;
+    .btn-accept {
+      padding: 5px 25px;
+      font-family: "Cormorant Unicase", serif;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      font-size: 18px;
+      background: transparent;
+      border-radius: 6px;
+      border: 2px solid #f08018;
+      border-image: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+      border-image-slice: 1;
+    }
+    .btn-decline {
+      background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
+      padding: 5px 25px;
+      font-family: "Cormorant Unicase", serif;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 6px;
     }
   }
 `;
