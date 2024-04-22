@@ -773,14 +773,13 @@ const InvitationCard = styled.div`
     font-weight: 400;
     line-height: 21.1px;
     text-align: left;
-
   }
 
   .invitationCard-buttons {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    
+
     align-items: center;
     .btn-accept {
       padding: 5px 25px;
