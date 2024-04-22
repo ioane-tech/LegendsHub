@@ -8,12 +8,12 @@ import PlayerIconMid from "/lanes/position_mid.png";
 import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
+import PlayerIconSub from "/lanes/sub.png";
 import styled from "styled-components";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
 import { removeAccessToken } from "../../context/AuthService";
-import { getAccessToken } from "../../context/AuthService";
 import { CloseOutlined } from "@ant-design/icons";
 import lissProfile from "/notifications/lissandra.png";
 import { Modal, Badge } from "antd";
@@ -141,7 +141,7 @@ function Profile() {
             },
             {
               headers: {
-                Authorization: `Token ${getAccessToken()}`,
+                Authorization: `Token ${token}`,
               },
             }
           );
@@ -281,8 +281,8 @@ function Profile() {
         </NotificationContainer>
 
         <ProfileSection>
-          <img src="./assets/profileImgBorder.png" alt="" />
-          <h3>{userInfo?.in_game_name}</h3>
+          <img src="./assets/profileImgBorder.png" alt="" width={200} />
+          <h3 style={{ marginTop: "-30px" }}>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
           <h5>id: {userInfo?.id}</h5>
         </ProfileSection>
@@ -295,7 +295,12 @@ function Profile() {
           <>
             <Container>
               <div>
-                <img src={CLanLogo} alt="" width={200} />
+                <img
+                  src={CLanLogo}
+                  alt=""
+                  width={200}
+                  style={{ marginTop: "50px" }}
+                />
               </div>
               <h2>
                 <p className="team-name">{team.name}</p>
@@ -304,95 +309,176 @@ function Profile() {
                 <li>
                   <img src={PlayerIconTop} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Top lane")?.in_game_name || "Top lane"}
-                    </p>
+                    {rolePlayerFinder("Top lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Top lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Top lane</p>
+                    )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Top lane") && (
+                  {inviteHandler && !rolePlayerFinder("Top lane") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Top lane")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
                   <img src={PlayerIconMid} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Mid lane")?.in_game_name || "Mid lane"}
-                    </p>
+                    {rolePlayerFinder("Mid lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Mid lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Mid lane</p>
+                    )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Mid lane") && (
+                  {inviteHandler && !rolePlayerFinder("Mid lane") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Mid lane")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
                   <img src={PlayerIconJungle} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Jungle")?.in_game_name || "Jungle"}
-                    </p>
+                    {rolePlayerFinder("Jungle") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Jungle")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Jungle</p>
+                    )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Jungle") && (
+                  {inviteHandler && !rolePlayerFinder("Jungle") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Jungle")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
                   <img src={PlayerIconBot} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Bot lane")?.in_game_name || "Bot lane"}
-                    </p>
+                    {rolePlayerFinder("Bot lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Bot lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Bot lane</p>
+                    )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Bot lane") && (
+                  {inviteHandler && !rolePlayerFinder("Bot lane") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Bot lane")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Support")?.in_game_name || "Support"}
-                    </p>
+                    {rolePlayerFinder("Support") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Support")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Support</p>
+                    )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Support") && (
+                  {inviteHandler && !rolePlayerFinder("Support") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Support")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
-                  <img src={PlayerIconSup} width={30} alt="" />
+                  <img src={PlayerIconSub} width={30} alt="" />
                   <div>
-                    <p>Sub</p>
+                    {rolePlayerFinder("Sub player 1") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Sub player 1")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Sub</p>
+                    )}
                   </div>
-                  {inviteHandler && (
+                  {inviteHandler && !rolePlayerFinder("Sub player 1") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Sub player 1")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
                 <li>
-                  <img src={PlayerIconSup} width={30} alt="" />
+                  <img src={PlayerIconSub} width={30} alt="" />
                   <div>
-                    <p>Sub</p>
+                    {rolePlayerFinder("Sub player 2") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Sub player 2")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Sub</p>
+                    )}
                   </div>
-                  {inviteHandler && (
+                  {inviteHandler && !rolePlayerFinder("Sub player 2") ? (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Sub player 2")}
                     />
+                  ) : (
+                    inviteHandler && (
+                      <img
+                        src="./assets/addIcon.png"
+                        style={{ transform: "rotate(135deg)" }}
+                      />
+                    )
                   )}
                 </li>
               </ul>

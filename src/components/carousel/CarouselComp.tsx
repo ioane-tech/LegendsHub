@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import testImg from "/assets/theme-21-border.png";
-import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -27,12 +26,12 @@ const CarouselComp = () => {
         draggable={true}
         loop={true}
       >
-        {teams.map((team, index) => (
-          <SwiperSlide key={index}>
-            <NavLink to="/asd">
+        {teams.map((team) => (
+          <SwiperSlide key={team.id}>
+            <span>
               <img src={testImg} alt="" />
               <h2>{team.name}</h2>
-            </NavLink>
+            </span>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -69,8 +68,7 @@ const Container = styled.div`
   &:active {
     cursor: grab;
   }
-  a {
-    text-decoration: none;
+  span {
     font-family: "Cormorant Unicase", serif;
     display: flex;
     flex-direction: column;
