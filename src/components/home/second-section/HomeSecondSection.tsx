@@ -61,7 +61,12 @@ const HomeSecondSection = () => {
             </AnnouncementCompCont>
           </FirstSide>
           <RightSide>
-            <KnightStyle src={knight} />
+            <KnightStyle
+              src={knight}
+              style={
+                (!token && !team) || (token && team) ? { top: "60px" } : {}
+              }
+            />
             <img src={light} />
             {token !== null && !team ? (
               <Link to="/teamRegister">
@@ -180,12 +185,12 @@ const RightSide = styled.div`
 const KnightStyle = styled.img`
   position: absolute;
   left: 20px;
-  top: -20px;
+  top: 20px;
 `;
 
 const GroupRegisterButton = styled.button`
   position: absolute;
-  top: 420px;
+  top: 460px;
   left: 70px;
 
   background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
