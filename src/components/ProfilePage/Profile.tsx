@@ -60,13 +60,13 @@ function Profile() {
     setOpen(true);
   };
 
-  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e);
+  const handleOk = () => {
+   
     setOpen(false);
   };
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e);
+  const handleCancel = () => {
+    
     setOpen(false);
   };
 
@@ -88,7 +88,7 @@ function Profile() {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const responseOfTeam = await axios.get("/api/teams/", {
+        const responseOfTeam = await axios.get("http://54.87.161.202:5173/api/teams/", {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -104,7 +104,7 @@ function Profile() {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     await axios.post(
-      "/logout/",
+      "http://54.87.161.202:5173/logout/",
       {},
       {
         headers: {
@@ -132,7 +132,7 @@ function Profile() {
 
         try {
           const response = await axios.post(
-            "/api/invitation/",
+            "http://54.87.161.202:5173/api/invitation/",
             {
               receiver: idInput,
               team: team.id,
@@ -172,7 +172,7 @@ function Profile() {
   useEffect(() => {
     const getInvitation = async () => {
       try {
-        const invitResp = await axios.get(`/api/invitation/`, {
+        const invitResp = await axios.get(`http://54.87.161.202:5173/api/invitation/`, {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -190,7 +190,7 @@ function Profile() {
   const handleAccept = async (invs: InvitationTypes) => {
     try {
       await axios.patch(
-        `/api/invitation/${invs.id}/`,
+        `http://54.87.161.202:5173/api/invitation/${invs.id}/`,
         {
           receiver: invs.receiver,
           role: invs.role,
@@ -207,10 +207,10 @@ function Profile() {
       console.log(err);
     }
   };
-  const handleDecline = (invs: InvitationTypes) => {
+  const handleDecline = async (invs: InvitationTypes) => {
     try {
-      axios.patch(
-        `/api/invitation/${invs.id}/`,
+      await axios.patch(
+        `http://54.87.161.202:5173/api/invitation/${invs.id}/`,
         {
           receiver: invs.receiver,
           role: invs.role,
@@ -231,7 +231,7 @@ function Profile() {
   useEffect(() => {
     const getNotifications = async () => {
       try {
-        const notificationResponse = await axios.get(`/api/notification/`, {
+        const notificationResponse = await axios.get(`http://54.87.161.202:5173/api/notification/`, {
           headers: {
             Authorization: `Token ${token}`,
           },
@@ -243,6 +243,7 @@ function Profile() {
     };
     getNotifications();
   }, []);
+
   const inviteHandler = team?.creator === userInfo?.id;
   const formatNotificationDate = (createdAt: string): string => {
     const now = new Date();
@@ -610,7 +611,6 @@ function Profile() {
     </div>
   );
 }
-
 export default Profile;
 
 const ProfileContainer = styled.div`
