@@ -280,8 +280,8 @@ function Profile() {
         </NotificationContainer>
 
         <ProfileSection>
-          <img src="./assets/profileImgBorder.png" alt="" />
-          <h3>{userInfo?.in_game_name}</h3>
+          <img src="./assets/profileImgBorder.png" alt="" width={200} />
+          <h3 style={{ marginTop: "-30px" }}>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
           <h5>id: {userInfo?.id}</h5>
         </ProfileSection>
@@ -294,7 +294,12 @@ function Profile() {
           <>
             <Container>
               <div>
-                <img src={CLanLogo} alt="" width={200} />
+                <img
+                  src={CLanLogo}
+                  alt=""
+                  width={200}
+                  style={{ marginTop: "50px" }}
+                />
               </div>
               <h2>
                 <p className="team-name">{team.name}</p>
@@ -303,9 +308,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconTop} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Top lane")?.in_game_name || "Top lane"}
-                    </p>
+                    {rolePlayerFinder("Top lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Top lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Top lane</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Top lane") ? (
                     <img
@@ -324,9 +333,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconMid} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Mid lane")?.in_game_name || "Mid lane"}
-                    </p>
+                    {rolePlayerFinder("Mid lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Mid lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Mid lane</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Mid lane") ? (
                     <img
@@ -345,9 +358,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconJungle} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Jungle")?.in_game_name || "Jungle"}
-                    </p>
+                    {rolePlayerFinder("Jungle") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Jungle")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Jungle</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Jungle") ? (
                     <img
@@ -366,9 +383,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconBot} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Bot lane")?.in_game_name || "Bot lane"}
-                    </p>
+                    {rolePlayerFinder("Bot lane") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Bot lane")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Bot lane</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Bot lane") ? (
                     <img
@@ -387,9 +408,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconSup} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Support")?.in_game_name || "Support"}
-                    </p>
+                    {rolePlayerFinder("Support") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Support")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Support</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Support") ? (
                     <img
@@ -408,10 +433,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconSub} width={30} alt="" />
                   <div>
-                    <p>
-                      {" "}
-                      {rolePlayerFinder("Sub player 1")?.in_game_name || "Sub"}
-                    </p>
+                    {rolePlayerFinder("Sub player 1") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Sub player 1")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Sub</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Sub player 1") ? (
                     <img
@@ -430,9 +458,13 @@ function Profile() {
                 <li>
                   <img src={PlayerIconSub} width={30} alt="" />
                   <div>
-                    <p>
-                      {rolePlayerFinder("Sub player 2")?.in_game_name || "Sub"}
-                    </p>
+                    {rolePlayerFinder("Sub player 2") ? (
+                      <p style={{ color: "white" }}>
+                        {rolePlayerFinder("Sub player 2")?.in_game_name}
+                      </p>
+                    ) : (
+                      <p>Sub</p>
+                    )}
                   </div>
                   {inviteHandler && !rolePlayerFinder("Sub player 2") ? (
                     <img
