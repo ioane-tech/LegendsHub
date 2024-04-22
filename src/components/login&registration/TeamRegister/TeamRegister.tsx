@@ -38,7 +38,7 @@ function TeamRegister() {
   const onSubmit = async () => {
     try {
       await axios.post(
-        "/api/teams/",
+        "http://54.87.161.202:5173/api/teams/",
         {
           name: watch("teamName"),
           creator_role: position,
