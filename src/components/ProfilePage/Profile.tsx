@@ -61,12 +61,10 @@ function Profile() {
   };
 
   const handleOk = () => {
-   
     setOpen(false);
   };
 
   const handleCancel = () => {
-    
     setOpen(false);
   };
 
@@ -88,11 +86,14 @@ function Profile() {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const responseOfTeam = await axios.get("http://54.87.161.202:5173/api/teams/", {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
+        const responseOfTeam = await axios.get(
+          "http://54.87.161.202:5173/api/teams/",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         setTeam(responseOfTeam.data[0]);
       };
       getUser();
@@ -124,6 +125,10 @@ function Profile() {
   const rolePlayerFinder = (role: string) => {
     return teamMembers?.find((member) => member.role === role);
   };
+
+  const inviteHandler = team?.creator === userInfo?.id;
+
+  console.log(teamMembers);
 
   const sendInvitationHandler = () => {
     if (selectedRole && team) {
@@ -172,11 +177,14 @@ function Profile() {
   useEffect(() => {
     const getInvitation = async () => {
       try {
-        const invitResp = await axios.get(`http://54.87.161.202:5173/api/invitation/`, {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
+        const invitResp = await axios.get(
+          `http://54.87.161.202:5173/api/invitation/`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         setInvitData(invitResp.data);
       } catch (error) {
         console.log(error);
@@ -231,11 +239,14 @@ function Profile() {
   useEffect(() => {
     const getNotifications = async () => {
       try {
-        const notificationResponse = await axios.get(`http://54.87.161.202:5173/api/notification/`, {
-          headers: {
-            Authorization: `Token ${token}`,
-          },
-        });
+        const notificationResponse = await axios.get(
+          `http://54.87.161.202:5173/api/notification/`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         setNotificationsData(notificationResponse.data);
       } catch (error) {
         console.log(error);
@@ -244,7 +255,6 @@ function Profile() {
     getNotifications();
   }, []);
 
-  const inviteHandler = team?.creator === userInfo?.id;
   const formatNotificationDate = (createdAt: string): string => {
     const now = new Date();
     const createdDate = new Date(createdAt);
@@ -261,6 +271,8 @@ function Profile() {
       return `${diffDays}d`;
     }
   };
+  console.log(team);
+
   return (
     <div>
       <LoginBg />
@@ -317,18 +329,11 @@ function Profile() {
                       <p>Top lane</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Top lane") ? (
+                  {inviteHandler && !rolePlayerFinder("Top lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Top lane")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -342,18 +347,11 @@ function Profile() {
                       <p>Mid lane</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Mid lane") ? (
+                  {inviteHandler && !rolePlayerFinder("Mid lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Mid lane")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -367,18 +365,11 @@ function Profile() {
                       <p>Jungle</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Jungle") ? (
+                  {inviteHandler && !rolePlayerFinder("Jungle") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Jungle")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -392,18 +383,11 @@ function Profile() {
                       <p>Bot lane</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Bot lane") ? (
+                  {inviteHandler && !rolePlayerFinder("Bot lane") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Bot lane")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -417,18 +401,11 @@ function Profile() {
                       <p>Support</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Support") ? (
+                  {inviteHandler && !rolePlayerFinder("Support") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Support")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -442,18 +419,11 @@ function Profile() {
                       <p>Sub</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Sub player 1") ? (
+                  {inviteHandler && !rolePlayerFinder("Sub player 1") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Sub player 1")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
                 <li>
@@ -467,18 +437,11 @@ function Profile() {
                       <p>Sub</p>
                     )}
                   </div>
-                  {inviteHandler && !rolePlayerFinder("Sub player 2") ? (
+                  {inviteHandler && !rolePlayerFinder("Sub player 2") && (
                     <img
                       src="./assets/addIcon.png"
                       onClick={() => profileModalHandler("Sub player 2")}
                     />
-                  ) : (
-                    inviteHandler && (
-                      <img
-                        src="./assets/addIcon.png"
-                        style={{ transform: "rotate(135deg)" }}
-                      />
-                    )
                   )}
                 </li>
               </ul>

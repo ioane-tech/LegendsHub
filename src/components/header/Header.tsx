@@ -3,12 +3,26 @@ import GoldenButton from "../../styled-components/golden-button";
 import pauseIcon from "/icons/pause.png";
 import startIcon from "/icons/start.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import loginBgMusic from "/assets/loginBgMusic.mp4";
 import { getAccessToken } from "../../context/AuthService";
+// @ts-ignore
+import useSound from "use-sound";
 
 const Header = () => {
+  const [play, { stop }] = useSound(loginBgMusic, { volume: 1, loop: true });
+  const [isPaused, setIsPaused] = useState(false);
+
+  const handlePauseToggle = () => {
+    if (!isPaused) {
+      play();
+    } else {
+      stop();
+    }
+    setIsPaused(!isPaused);
+  };
+
   const navigate = useNavigate();
   const Token = getAccessToken();
 
@@ -21,23 +35,6 @@ const Header = () => {
     }
   };
   window.addEventListener("scroll", changePosition);
-
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-    }
-    if (audioRef.current) {
-      audioRef.current.volume = 0.15;
-    }
-  }, [isPlaying]);
 
   const location = useLocation();
   const pathname = location.pathname;
@@ -91,7 +88,6 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <audio ref={audioRef} src={loginBgMusic} loop />
       <span>
         <LogoImg
           src="/assets/logo.png"
@@ -124,8 +120,8 @@ const Header = () => {
         </ul>
       </span>
       <div>
-        <GoldenButton onClick={() => setIsPlaying(!isPlaying)}>
-          {isPlaying ? (
+        <GoldenButton onClick={handlePauseToggle}>
+          {!isPaused ? (
             <img src={startIcon} alt="" width={10} />
           ) : (
             <img src={pauseIcon} alt="" width={10} />
