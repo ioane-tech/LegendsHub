@@ -25,3 +25,19 @@ type teamType = {
   status: boolean;
   members: teamMember[];
 };
+
+type InvitationTypes = {
+  id: number;
+  sender: number;
+  receiver: number;
+  team: number;
+  role: string;
+  status: string;
+};
+
+type NotificationTypes = {
+  id: number;
+  user: string;
+  message: string;
+  created_at: string;
+};
