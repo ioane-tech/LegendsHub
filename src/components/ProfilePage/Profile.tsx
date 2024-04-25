@@ -21,21 +21,6 @@ import Draggable from "react-draggable";
 import type { DraggableData, DraggableEvent } from "react-draggable";
 import { toast } from "react-toastify";
 
-type InvitationTypes = {
-  id: number;
-  sender: number;
-  receiver: number;
-  team: number;
-  role: string;
-  status: string;
-};
-
-type NotificationTypes = {
-  id: number;
-  user: string;
-  message: string;
-  created_at: string;
-};
 function Profile() {
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [idInput, setIdInput] = useState<string | null>(null);
@@ -127,8 +112,6 @@ function Profile() {
   };
 
   const inviteHandler = team?.creator === userInfo?.id;
-
-  console.log(teamMembers);
 
   const sendInvitationHandler = () => {
     if (selectedRole && team) {
@@ -271,7 +254,6 @@ function Profile() {
       return `${diffDays}d`;
     }
   };
-  console.log(team);
 
   return (
     <div>
