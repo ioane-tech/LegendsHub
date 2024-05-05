@@ -46,7 +46,7 @@ const LoginPage = () => {
 
   const onSubmit = async () => {
     try {
-      const response = await axios.post("http://54.87.161.202:5173/login/", {
+      const response = await axios.post("/login/", {
         username: email,
         password: password,
       });
