@@ -71,14 +71,11 @@ function Profile() {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const responseOfTeam = await axios.get(
-          "http://54.87.161.202:5173/api/teams/",
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
+        const responseOfTeam = await axios.get("/api/teams/", {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
         setTeam(responseOfTeam.data[0]);
       };
       getUser();
@@ -90,7 +87,7 @@ function Profile() {
   const navigate = useNavigate();
   const logoutHandler = async () => {
     await axios.post(
-      "http://54.87.161.202:5173/logout/",
+      "/logout/",
       {},
       {
         headers: {
@@ -120,7 +117,7 @@ function Profile() {
 
         try {
           const response = await axios.post(
-            "http://54.87.161.202:5173/api/invitation/",
+            "/api/invitation/",
             {
               receiver: idInput,
               team: team.id,
@@ -160,14 +157,11 @@ function Profile() {
   useEffect(() => {
     const getInvitation = async () => {
       try {
-        const invitResp = await axios.get(
-          `http://54.87.161.202:5173/api/invitation/`,
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
+        const invitResp = await axios.get(`/api/invitation/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
         setInvitData(invitResp.data);
       } catch (error) {
         console.log(error);
@@ -181,7 +175,7 @@ function Profile() {
   const handleAccept = async (invs: InvitationTypes) => {
     try {
       await axios.patch(
-        `http://54.87.161.202:5173/api/invitation/${invs.id}/`,
+        `/api/invitation/${invs.id}/`,
         {
           receiver: invs.receiver,
           role: invs.role,
@@ -201,7 +195,7 @@ function Profile() {
   const handleDecline = async (invs: InvitationTypes) => {
     try {
       await axios.patch(
-        `http://54.87.161.202:5173/api/invitation/${invs.id}/`,
+        `/api/invitation/${invs.id}/`,
         {
           receiver: invs.receiver,
           role: invs.role,
@@ -222,14 +216,11 @@ function Profile() {
   useEffect(() => {
     const getNotifications = async () => {
       try {
-        const notificationResponse = await axios.get(
-          `http://54.87.161.202:5173/api/notification/`,
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
+        const notificationResponse = await axios.get(`/api/notification/`, {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        });
         setNotificationsData(notificationResponse.data);
       } catch (error) {
         console.log(error);

@@ -20,7 +20,7 @@ function AllRoutes() {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const responseOfTeam = await axios.get("http://54.87.161.202:5173/api/teams/", {
+        const responseOfTeam = await axios.get("/api/teams/", {
           headers: {
             Authorization: `Token ${token}`,
           },

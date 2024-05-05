@@ -52,7 +52,7 @@ function RegistrationPage() {
         in_game_name: watch("gameName"),
         password: watch("password"),
       });
-      const response = await axios.post("http://54.87.161.202:5173/login/", {
+      const response = await axios.post("/login/", {
         username: watch("email"),
         password: watch("password"),
       });
