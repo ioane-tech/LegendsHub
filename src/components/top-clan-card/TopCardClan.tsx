@@ -15,8 +15,9 @@ const TopCardClan = () => {
         </video>
       </VideoContainer>
       <h2>Crew Name</h2>
-      <div>
-        <img src={CLanLogo} alt="" width={200} />
+      <div className="clan-img-cont">
+        <img src={CLanLogo} alt="" width={200} className="clan-border" />
+        <img src="/assets/clan.png" alt="clan logo" className="clan-logo" />
       </div>
       <ul>
         <li>
@@ -51,6 +52,19 @@ const Container = styled.div`
   align-items: center;
   color: white;
   position: relative;
+  .clan-img-cont {
+    position: relative;
+    .clan-border {
+      z-index: 0;
+    }
+    .clan-logo {
+      position: absolute;
+      left: 60px;
+      top: 57px;
+      width: 79px;
+      z-index: 1;
+    }
+  }
   ul {
     display: flex;
     flex-direction: column;
