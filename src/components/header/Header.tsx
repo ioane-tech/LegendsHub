@@ -116,7 +116,12 @@ const Header = () => {
           >
             standings
           </NavLink>
-          <NavLink to="/about">about/Contact</NavLink>
+          <NavLink
+            to="/about"
+            style={pathname === "/about" ? { color: "#F08018" } : {}}
+          >
+            about/Contact
+          </NavLink>
         </ul>
       </span>
       <div>

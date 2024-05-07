@@ -266,7 +266,14 @@ function Profile() {
         </NotificationContainer>
 
         <ProfileSection>
-          <img src="./assets/profileImgBorder.png" alt="" width={200} />
+          <div className="profile-img-cont">
+            <img src="./assets/profileImgBorder.png" alt="" width={200} />
+            <img
+              src="/assets/profile.png"
+              alt="profile logo"
+              className="profile-img"
+            />
+          </div>
           <h3 style={{ marginTop: "-30px" }}>{userInfo?.in_game_name}</h3>
           <h4>{userInfo?.full_name}</h4>
           <h5>id: {userInfo?.id}</h5>
@@ -279,12 +286,17 @@ function Profile() {
         ) : (
           <>
             <Container>
-              <div>
+              <div className="clan-img-cont">
                 <img
                   src={CLanLogo}
                   alt=""
                   width={200}
                   style={{ marginTop: "50px" }}
+                />
+                <img
+                  src="/assets/clan.png"
+                  alt="clan logo"
+                  className="clan-logo"
                 />
               </div>
               <h2>
@@ -611,6 +623,14 @@ const ProfileSection = styled.div`
   font-size: 24px;
   color: white;
   font-family: "Cormorant Unicase", serif;
+  .profile-img-cont {
+    position: relative;
+    .profile-img {
+      position: absolute;
+      left: 63px;
+      top: 57px;
+    }
+  }
   h5 {
     color: #c5c3c3;
     text-transform: lowercase;
@@ -648,6 +668,16 @@ const Container = styled.div`
   position: relative;
   margin-top: 260px;
   margin-bottom: -180px;
+  .clan-img-cont {
+    position: relative;
+    .clan-logo {
+      position: absolute;
+      left: 60px;
+      top: 104px;
+      width: 79px;
+      z-index: -1;
+    }
+  }
   .team-name {
     text-transform: capitalize;
   }
