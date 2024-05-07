@@ -2,10 +2,11 @@ import styled from "styled-components";
 import garen from "/footer/garen.png";
 import talon from "/footer/talon.png";
 import Flogo from "/footer/footerLogo.png";
-import gmail from "/footer/mdi_gmail.png";
+
 import tiktok from "/footer/mage_tiktok-circle.png";
 import fb from "/footer/ic_outline-facebook.png";
 import discord from "/footer/ic_outline-discord.png";
+import { YoutubeOutlined } from "@ant-design/icons";
 const Footer: React.FC = () => {
   return (
     <FooterComponents>
@@ -20,18 +21,22 @@ const Footer: React.FC = () => {
         <img src={Flogo} alt="Flogo" />
         <FooterSocialsWrapper>
           <span>
-            <a href="#">
-              <img src={gmail} alt="gmail" />
+            <a
+              href="https://www.youtube.com/@korvina9201"
+              target="_blank"
+              className="yt"
+            >
+              <YoutubeOutlined />
             </a>
-            <a href="#">
+            <a href="https://www.tiktok.com/@korvinayoutube" target="_blank">
               <img src={tiktok} alt="tiktok" />
             </a>
           </span>
           <span>
-            <a href="#">
+            <a href="https://www.facebook.com/Legendshub.ge" target="_blank">
               <img src={fb} alt="fb" />
             </a>
-            <a href="#">
+            <a href="#" target="_blank">
               <img src={discord} alt="discord" />
             </a>
           </span>
@@ -70,6 +75,11 @@ const FooterSocialsWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+  }
+
+  .yt {
+    font-size: 48px;
+    color: #f5ac44;
   }
 `;
 

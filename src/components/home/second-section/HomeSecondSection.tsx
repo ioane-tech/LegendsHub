@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CarouselComp from "../../carousel/CarouselComp";
+// import CarouselComp from "../../carousel/CarouselComp";
 import border from "/assets/Vector2.png";
 import borderIcon from "/assets/Content2.png";
 import knight from "/assets/knight.png";
@@ -7,7 +7,7 @@ import light from "/assets/light.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthProvider";
-
+import rules from "/rules/Rules.pdf"
 const HomeSecondSection = () => {
   const { token, team } = useContext(AuthContext);
   return (
@@ -17,7 +17,7 @@ const HomeSecondSection = () => {
         <img src={borderIcon} />
       </BorderContainer>
       <CarouselCont>
-        <CarouselComp />
+        {/* <CarouselComp /> */}
       </CarouselCont>
       <Announcement>
         <h2>Announcement</h2>
@@ -25,16 +25,16 @@ const HomeSecondSection = () => {
           <FirstSide>
             <AnnouncementCompCont $right={true}>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Tournament Name</p>
+                <h3>Pre tournament (Summer split)</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
                 <p>Registration start date</p>
-                <h3>3/23/2024</h3>
+                <h3>5/24/2024</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
                 <p>Duration</p>
-                <h3>4 Month</h3>
+                <h3>3 Week</h3>
               </AnnouncementComp>
               <AnnouncementComp>
                 <p>Team size</p>
@@ -66,7 +66,7 @@ const HomeSecondSection = () => {
               style={
                 (!token && !team) || (token && team) ? { top: "60px" } : {}
               }
-            />
+              />
             <img src={light} />
             {token !== null && !team ? (
               <Link to="/teamRegister">
@@ -77,6 +77,7 @@ const HomeSecondSection = () => {
         </section>
       </Announcement>
       <BottomBorder />
+      <a href={rules} download className="test-button">-- Download Rules --</a>
     </Section>
   );
 };
@@ -90,6 +91,12 @@ const Section = styled.section`
   height: 120vh;
   padding-top: 170px;
   color: white;
+  .test-button{
+    margin-left: 120px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
   @media (max-height: 900px) {
     height: 130vh;
   }
