@@ -6,8 +6,8 @@ const StandingsList = () => {
       <div className="standingsList-wrapper">
         <img src={grayball} alt="" />
         <div>
-          <h1>G2 Esports</h1>
-          <p>7W-2L</p>
+          <h1>Team name</h1>
+          <p>0W-0L</p>
         </div>
       </div>
     </StandingsListCover>
