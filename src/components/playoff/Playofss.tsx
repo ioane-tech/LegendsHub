@@ -22,24 +22,24 @@ const Playofss: React.FC = () => {
                 <PlayoffsBoxDivider>
                   <PlayoffBox>
                     <img src={grayball} alt="grayball" />
-                    <h2>TBD</h2>
+                    <h2>Team</h2>
                     <h3>0</h3>
                   </PlayoffBox>
                   <PlayoffBox>
                     <img src={grayball} alt="grayball" />
-                    <h2>TBD</h2>
+                    <h2>Team</h2>
                     <h3>0</h3>
                   </PlayoffBox>
                 </PlayoffsBoxDivider>
                 <PlayoffsBoxDivider>
                   <PlayoffBox>
                     <img src={grayball} alt="grayball" />
-                    <h2>TBD</h2>
+                    <h2>Team</h2>
                     <h3>0</h3>
                   </PlayoffBox>
                   <PlayoffBox>
                     <img src={grayball} alt="grayball" />
-                    <h2>TBD</h2>
+                    <h2>Team</h2>
                     <h3>0</h3>
                   </PlayoffBox>
                 </PlayoffsBoxDivider>
@@ -50,12 +50,12 @@ const Playofss: React.FC = () => {
               <PlayoffsBoxDivider>
                 <PlayoffBox>
                   <img src={grayball} alt="grayball" />
-                  <h2>TBD</h2>
+                  <h2>Team</h2>
                   <h3>0</h3>
                 </PlayoffBox>
                 <PlayoffBox>
                   <img src={grayball} alt="grayball" />
-                  <h2>TBD</h2>
+                  <h2>Team</h2>
                   <h3>0</h3>
                 </PlayoffBox>
               </PlayoffsBoxDivider>
