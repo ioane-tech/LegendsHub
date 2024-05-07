@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CarouselComp from "../../carousel/CarouselComp";
+// import CarouselComp from "../../carousel/CarouselComp";
 import border from "/assets/Vector2.png";
 import borderIcon from "/assets/Content2.png";
 import knight from "/assets/knight.png";
@@ -17,7 +17,7 @@ const HomeSecondSection = () => {
         <img src={borderIcon} />
       </BorderContainer>
       <CarouselCont>
-        <CarouselComp />
+        {/* <CarouselComp /> */}
       </CarouselCont>
       <Announcement>
         <h2>Announcement</h2>
