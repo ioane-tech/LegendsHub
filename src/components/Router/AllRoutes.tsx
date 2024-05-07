@@ -13,6 +13,7 @@ import { useContext, useEffect } from "react";
 import axios from "../../api/axios";
 import AuthContext from "../../context/AuthProvider";
 import NotFoundPage from "../not-found/NotFoundPage";
+import AboutContact from "../about/AboutContact";
 
 function AllRoutes() {
   const { team, setTeam, token } = useContext(AuthContext);
@@ -63,6 +64,7 @@ function AllRoutes() {
           path="/standings/pre-tournament-brackets"
           element={<PreTournament />}
         />
+        <Route path="/about" element={<AboutContact />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
