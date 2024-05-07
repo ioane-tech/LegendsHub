@@ -98,12 +98,12 @@ const Header = () => {
           <NavLink to="/" style={pathname === "/" ? { color: "#F08018" } : {}}>
             home
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/schedules"
             style={pathname === "/schedules" ? { color: "#F08018" } : {}}
           >
             schedule
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/standings/playoffs"
             style={
