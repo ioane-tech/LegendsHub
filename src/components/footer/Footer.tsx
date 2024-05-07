@@ -20,18 +20,18 @@ const Footer: React.FC = () => {
         <img src={Flogo} alt="Flogo" />
         <FooterSocialsWrapper>
           <span>
-            <a href="#">
+            <a href="https://www.youtube.com/@korvina9201" target="_blank">
               <img src={gmail} alt="gmail" />
             </a>
-            <a href="#">
+            <a href="https://www.tiktok.com/@korvinayoutube" target="_blank">
               <img src={tiktok} alt="tiktok" />
             </a>
           </span>
           <span>
-            <a href="#">
+            <a href="https://www.facebook.com/Legendshub.ge" target="_blank">
               <img src={fb} alt="fb" />
             </a>
-            <a href="#">
+            <a href="#" target="_blank">
               <img src={discord} alt="discord" />
             </a>
           </span>
