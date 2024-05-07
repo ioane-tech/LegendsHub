@@ -25,16 +25,16 @@ const HomeSecondSection = () => {
           <FirstSide>
             <AnnouncementCompCont $right={true}>
               <AnnouncementComp $bottom={true}>
-                <p>Who holds the championship</p>
-                <h3>Nikusha Xulordava</h3>
+                <p>Tournament Name</p>
+                <h3>Pre tournament (Summer split)</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
                 <p>Registration start date</p>
-                <h3>3/23/2024</h3>
+                <h3>5/24/2024</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
                 <p>Duration</p>
-                <h3>4 Month</h3>
+                <h3>3 Week</h3>
               </AnnouncementComp>
               <AnnouncementComp>
                 <p>Team size</p>
