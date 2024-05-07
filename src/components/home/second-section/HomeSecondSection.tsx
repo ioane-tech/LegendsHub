@@ -66,7 +66,7 @@ const HomeSecondSection = () => {
               style={
                 (!token && !team) || (token && team) ? { top: "60px" } : {}
               }
-            />
+              />
             <img src={light} />
             {token !== null && !team ? (
               <Link to="/teamRegister">
@@ -77,6 +77,7 @@ const HomeSecondSection = () => {
         </section>
       </Announcement>
       <BottomBorder />
+      <a className="test-button">Download Rules</a>
     </Section>
   );
 };
@@ -90,6 +91,9 @@ const Section = styled.section`
   height: 120vh;
   padding-top: 170px;
   color: white;
+  .test-button{
+    margin-left: 120px;
+  }
   @media (max-height: 900px) {
     height: 130vh;
   }
