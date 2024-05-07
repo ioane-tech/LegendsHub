@@ -7,7 +7,7 @@ import light from "/assets/light.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthProvider";
-
+import rules from "/rules/Rules.pdf"
 const HomeSecondSection = () => {
   const { token, team } = useContext(AuthContext);
   return (
@@ -77,7 +77,7 @@ const HomeSecondSection = () => {
         </section>
       </Announcement>
       <BottomBorder />
-      <a className="test-button">Download Rules</a>
+      <a href={rules} download className="test-button">-- Download Rules --</a>
     </Section>
   );
 };
@@ -93,6 +93,9 @@ const Section = styled.section`
   color: white;
   .test-button{
     margin-left: 120px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
   }
   @media (max-height: 900px) {
     height: 130vh;
