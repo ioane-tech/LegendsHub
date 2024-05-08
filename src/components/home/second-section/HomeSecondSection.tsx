@@ -8,8 +8,45 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthProvider";
 import rules from "/rules/Rules.pdf"
+
+import { RegisterButton } from "../../../styled-components/register-button";
+import axios from "../../../api/axios";
+import { toast } from "react-toastify";
+
 const HomeSecondSection = () => {
   const { token, team } = useContext(AuthContext);
+
+
+  const teamRegisterHandler = async() =>{
+    try{
+      const response = await axios.post("/api/tournament-registrations/",
+        {
+          tournament: 1,
+          team: team?.id
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      if (response.status === 201) {
+        toast.success("Team registered succesfully on tournament");
+      } 
+      else {
+        toast.error("Unexpected error occurred while registering");
+      }
+      console.log(response.status)
+    }catch(arr:any){
+      console.log(arr)
+      if(arr.response.status === 400){
+        toast.error("You should have all players");
+      }
+      else{
+        toast.error("Something wrong, try again!");
+      }
+    }
+  }
   return (
     <Section>
       <BorderContainer>
@@ -77,7 +114,14 @@ const HomeSecondSection = () => {
         </section>
       </Announcement>
       <BottomBorder />
-      <a href={rules} download className="test-button">-- Download Rules --</a>
+
+      <div className="team_register_container"> 
+        <a href={rules} download className="test-button">-- Download Rules --</a>
+        <RegisterButton onClick={teamRegisterHandler} style={{width:"300px",marginLeft:'100px'}}>
+          Team register
+        </RegisterButton>
+      </div>
+      
     </Section>
   );
 };
@@ -96,6 +140,11 @@ const Section = styled.section`
     cursor: pointer;
     text-decoration: none;
     color: white;
+  }
+  .team_register_container{
+    display: flex;
+    flex-direction: column;
+    
   }
   @media (max-height: 900px) {
     height: 130vh;
