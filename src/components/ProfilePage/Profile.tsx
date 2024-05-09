@@ -20,7 +20,12 @@ import { Modal, Badge } from "antd";
 import Draggable from "react-draggable";
 import type { DraggableData, DraggableEvent } from "react-draggable";
 import { toast } from "react-toastify";
-import {DeleteOutlined} from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
+
+type DeleteTypes = {
+  id: number;
+};
+
 function Profile() {
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [idInput, setIdInput] = useState<string | null>(null);
@@ -246,6 +251,22 @@ function Profile() {
     }
   };
 
+  // delete notifications
+  const deleteNotificationsHandler = async ({ id }: DeleteTypes) => {
+    try {
+      await axios.delete(`/api/notification/${id}/`,{
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setNotificationsData((prevData) =>
+        prevData.filter((notif) => notif.id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <LoginBg />
@@ -467,31 +488,26 @@ function Profile() {
 
       <Modal
         title={
-          <div className="notifications-delete-handler">
-            <div
-              style={{
-                width: "100%",
-                cursor: "move",
-              }}
-              onMouseOver={() => {
-                if (disabled) {
-                  setDisabled(false);
-                }
-              }}
-              onMouseOut={() => {
-                setDisabled(true);
-              }}
-              // fix eslintjsx-a11y/mouse-events-have-key-events
-              // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
-              onFocus={() => {}}
-              onBlur={() => {}}
-              // end
-            >
-              Notifications
-            </div>
-            <div className="notification-deletion">
-              <DeleteOutlined />
-            </div>
+          <div
+            style={{
+              width: "100%",
+              cursor: "move",
+            }}
+            onMouseOver={() => {
+              if (disabled) {
+                setDisabled(false);
+              }
+            }}
+            onMouseOut={() => {
+              setDisabled(true);
+            }}
+            // fix eslintjsx-a11y/mouse-events-have-key-events
+            // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
+            onFocus={() => {}}
+            onBlur={() => {}}
+            // end
+          >
+            Notifications
           </div>
         }
         open={open}
@@ -547,19 +563,30 @@ function Profile() {
           ) : null
         )}
         {/* notifications */}
-        {notificationsData.map((notifs: NotificationTypes) => {
-          return (
-            <NotificationBox key={notifs.id}>
-              <div className="notification-wrapper">
-                <img src={lissProfile} alt="profile-pic" />
-                <span className="notif-message">{notifs.message}</span>
-                <span className="notif-date">
-                  {formatNotificationDate(notifs.created_at)}
-                </span>
-              </div>
-            </NotificationBox>
-          );
-        })}
+        <div className="notification-main_wrapper">
+          {notificationsData.map((notifs: NotificationTypes) => {
+            return (
+              <NotificationBox key={notifs.id}>
+                <div className="notification-wrapper">
+                  <img src={lissProfile} alt="profile-pic" />
+                  <span className="notif-message">{notifs.message}</span>
+                  <span className="notif-date">
+                    {formatNotificationDate(notifs.created_at)}
+                  </span>
+
+                  <div
+                    onClick={() =>
+                      deleteNotificationsHandler({ id: notifs.id })
+                    }
+                    className="notification-deletion"
+                  >
+                    <DeleteOutlined />
+                  </div>
+                </div>
+              </NotificationBox>
+            );
+          })}
+        </div>
       </Modal>
     </div>
   );
@@ -789,6 +816,9 @@ const ProfileModal = styled.div`
 const NotificationBox = styled.div`
   background: rgba(208, 208, 208, 0.49);
 
+  .notification-deletion {
+    cursor: pointer;
+  }
   .notification-wrapper {
     display: flex;
     justify-content: center;
@@ -800,6 +830,7 @@ const NotificationBox = styled.div`
       font-weight: 400 !important;
       font-size: 16px;
       line-height: 21.1px;
+      width: 90%;
       color: #000000;
     }
     .notif-date {
