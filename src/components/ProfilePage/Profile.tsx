@@ -20,7 +20,7 @@ import { Modal, Badge } from "antd";
 import Draggable from "react-draggable";
 import type { DraggableData, DraggableEvent } from "react-draggable";
 import { toast } from "react-toastify";
-
+import {DeleteOutlined} from "@ant-design/icons";
 function Profile() {
   const [modalHandler, setModalHandler] = useState<boolean>(false);
   const [idInput, setIdInput] = useState<string | null>(null);
@@ -467,26 +467,31 @@ function Profile() {
 
       <Modal
         title={
-          <div
-            style={{
-              width: "100%",
-              cursor: "move",
-            }}
-            onMouseOver={() => {
-              if (disabled) {
-                setDisabled(false);
-              }
-            }}
-            onMouseOut={() => {
-              setDisabled(true);
-            }}
-            // fix eslintjsx-a11y/mouse-events-have-key-events
-            // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
-            onFocus={() => {}}
-            onBlur={() => {}}
-            // end
-          >
-            Notifications
+          <div className="notifications-delete-handler">
+            <div
+              style={{
+                width: "100%",
+                cursor: "move",
+              }}
+              onMouseOver={() => {
+                if (disabled) {
+                  setDisabled(false);
+                }
+              }}
+              onMouseOut={() => {
+                setDisabled(true);
+              }}
+              // fix eslintjsx-a11y/mouse-events-have-key-events
+              // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
+              onFocus={() => {}}
+              onBlur={() => {}}
+              // end
+            >
+              Notifications
+            </div>
+            <div className="notification-deletion">
+              <DeleteOutlined />
+            </div>
           </div>
         }
         open={open}
@@ -788,7 +793,6 @@ const NotificationBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column-reverse;
     padding: 18px 20px;
     gap: 10px;
     .notif-message {
