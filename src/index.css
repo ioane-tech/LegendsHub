@@ -223,3 +223,11 @@ body {
   background: rgba(255, 255, 255, 1);
   transition: 0.3s;
 }
+
+.ant-modal-title{
+  width: 90%;
+}
+.notification-main_wrapper{
+  display: flex;
+  flex-direction: column-reverse;
+}
