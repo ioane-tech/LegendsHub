@@ -788,6 +788,7 @@ const NotificationBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column-reverse;
     padding: 18px 20px;
     gap: 10px;
     .notif-message {
