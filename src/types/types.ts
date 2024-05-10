@@ -41,3 +41,9 @@ type NotificationTypes = {
   message: string;
   created_at: string;
 };
+type TournamentRegistration = {
+  id: number;
+  created_time: string;
+  tournament: number;
+  team:number;
+};
