@@ -5,7 +5,7 @@ import borderIcon from "/assets/Content2.png";
 import knight from "/assets/knight.png";
 import light from "/assets/light.png";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/AuthProvider";
 import rules from "/rules/Rules.pdf"
 
@@ -13,9 +13,25 @@ import { RegisterButton } from "../../../styled-components/register-button";
 import axios from "../../../api/axios";
 import { toast } from "react-toastify";
 
+
 const HomeSecondSection = () => {
   const { token, team } = useContext(AuthContext);
 
+  const [tournamentRegistrations, setTournamentRegistrations] = useState<TournamentRegistration[] | null>(null);
+
+  useEffect(() => {
+      async () => {
+        const response = await axios.get("/api/tournament-registrations/", {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+        setTournamentRegistrations(response.data)
+
+    }
+  }, []);
+  console.log(tournamentRegistrations)
 
   const teamRegisterHandler = async() =>{
     try{
@@ -117,9 +133,33 @@ const HomeSecondSection = () => {
 
       <div className="team_register_container"> 
         <a href={rules} download className="test-button">-- Download Rules --</a>
-        <RegisterButton onClick={teamRegisterHandler} style={{width:"300px",marginLeft:'100px'}}>
-          Team register
-        </RegisterButton>
+        {
+          token && team &&
+            (
+              tournamentRegistrations !== null?
+                tournamentRegistrations?.map((value, key) => (     
+                  value.team === team?.id ? 
+                  null
+                  :
+                  (
+                    <RegisterButton 
+                      onClick={teamRegisterHandler} 
+                      style={{width: "300px", marginLeft: '100px'}}
+                      key={key}
+                    >
+                      Team register
+                    </RegisterButton>
+                  )
+                ))
+              :
+              <RegisterButton 
+                onClick={teamRegisterHandler} 
+                style={{width: "300px", marginLeft: '100px'}}
+              >
+                Team register
+              </RegisterButton>
+            )
+        }
       </div>
       
     </Section>
