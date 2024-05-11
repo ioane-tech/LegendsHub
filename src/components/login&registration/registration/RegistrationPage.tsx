@@ -48,8 +48,8 @@ function RegistrationPage() {
     try {
       await axios.post("/registration/", {
         username: watch("email"),
-        full_name: watch("fullName").toLocaleLowerCase(),
-        in_game_name: watch("gameName").toLocaleLowerCase(),
+        full_name: watch("fullName"),
+        in_game_name: watch("gameName"),
         password: watch("password"),
       });
       const response = await axios.post("/login/", {
