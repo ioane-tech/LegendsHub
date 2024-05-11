@@ -6,7 +6,16 @@ import PlayerIconJungle from "/lanes/position_jungle.png";
 import PlayerIconBot from "/lanes/position_bottom.png";
 import PlayerIconSup from "/lanes/position_support.png";
 
-const TopCardClan = () => {
+type Props = {
+  members: teamMember[];
+  name: string;
+};
+
+const TopCardClan = ({ members, name }: Props) => {
+  const positionMember = (position: string) => {
+    return members.find((member) => member.role === position);
+  };
+
   return (
     <Container>
       <VideoContainer>
@@ -14,7 +23,7 @@ const TopCardClan = () => {
           <source src={"/assets/teaminformationbaner.webm"} />
         </video>
       </VideoContainer>
-      <h2>Crew Name</h2>
+      <h2>{name}</h2>
       <div className="clan-img-cont">
         <img src={CLanLogo} alt="" width={200} className="clan-border" />
         <img src="/assets/clan.png" alt="clan logo" className="clan-logo" />
@@ -22,23 +31,33 @@ const TopCardClan = () => {
       <ul>
         <li>
           <img src={PlayerIconTop} width={30} alt="" />
-          Player Name
+          {positionMember("Top lane")
+            ? positionMember("Top lane")?.in_game_name
+            : "player name"}
         </li>
         <li>
           <img src={PlayerIconMid} width={30} alt="" />
-          Player Name
+          {positionMember("Mid lane")
+            ? positionMember("Mid lane")?.in_game_name
+            : "player name"}
         </li>
         <li>
           <img src={PlayerIconJungle} width={30} alt="" />
-          Player Name
+          {positionMember("Jungle")
+            ? positionMember("Jungle")?.in_game_name
+            : "player name"}
         </li>
         <li>
           <img src={PlayerIconBot} width={30} alt="" />
-          Player Name
+          {positionMember("Bot lane")
+            ? positionMember("Bot lane")?.in_game_name
+            : "player name"}
         </li>
         <li>
           <img src={PlayerIconSup} width={30} alt="" />
-          Player Name
+          {positionMember("Support")
+            ? positionMember("Support")?.in_game_name
+            : "player name"}
         </li>
       </ul>
     </Container>
@@ -74,10 +93,12 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       gap: 10px;
+      text-transform: capitalize;
     }
   }
   h2 {
     margin-top: 100px;
+    text-transform: capitalize;
   }
 `;
 

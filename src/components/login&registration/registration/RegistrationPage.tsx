@@ -1,4 +1,4 @@
- import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import LoginBg from "../LoginBg";
 import GoldenButton from "../../../styled-components/golden-button";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -48,8 +48,8 @@ function RegistrationPage() {
     try {
       await axios.post("/registration/", {
         username: watch("email"),
-        full_name: watch("fullName"),
-        in_game_name: watch("gameName"),
+        full_name: watch("fullName").toLocaleLowerCase(),
+        in_game_name: watch("gameName").toLocaleLowerCase(),
         password: watch("password"),
       });
       const response = await axios.post("/login/", {

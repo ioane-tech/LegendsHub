@@ -40,7 +40,7 @@ function TeamRegister() {
       await axios.post(
         "/api/teams/",
         {
-          name: watch("teamName"),
+          name: watch("teamName").toLocaleLowerCase(),
           creator_role: position,
         },
         {
