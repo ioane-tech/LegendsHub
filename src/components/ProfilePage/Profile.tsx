@@ -254,7 +254,7 @@ function Profile() {
   // delete notifications
   const deleteNotificationsHandler = async ({ id }: DeleteTypes) => {
     try {
-      await axios.delete(`/api/notification/${id}/`,{
+      await axios.delete(`/api/notification/${id}/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -268,7 +268,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div style={{ paddingBottom: "100px" }}>
       <LoginBg />
 
       <NavLink to="/" style={{ position: "absolute", left: "5%", top: "40px" }}>
@@ -605,7 +605,8 @@ const ProfileContainer = styled.div`
   width: 600px;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
-
+  height: 900px;
+  padding-bottom: 100px;
   .logout {
     background: linear-gradient(90deg, #f08018 29.56%, #f8e47d 106.64%);
     cursor: pointer;
@@ -693,13 +694,11 @@ const CreateTeamButton = styled.button`
 
 const Container = styled.div`
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   color: white;
   position: relative;
   margin-top: 260px;
-  margin-bottom: -180px;
   .clan-img-cont {
     position: relative;
     .clan-logo {
