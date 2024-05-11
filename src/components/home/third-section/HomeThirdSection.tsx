@@ -1,15 +1,42 @@
 import styled from "styled-components";
 import TopCardClan from "../../top-clan-card/TopCardClan";
 import Footer from "../../footer/Footer";
+import axios from "../../../api/axios";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const HomeThirdSection = () => {
+  const [teams, setTeams] = useState<teamType[]>([]);
+  useEffect(() => {
+    const getTeams = async () => {
+      const response = await axios.get("api/teams_list/");
+      setTeams(response.data);
+    };
+    getTeams();
+  }, []);
+  console.log(teams);
+
   return (
     <>
       <ThirdContainer>
         <ThirdSection>
-          <TopCardClan />
-          <TopCardClan />
-          <TopCardClan />
+          <Swiper
+            className="carousel-of-teams"
+            modules={[Autoplay]}
+            spaceBetween={0}
+            slidesPerView={3}
+            autoplay={true}
+            loop={true}
+          >
+            {teams.map((team) => (
+              <SwiperSlide key={team.id}>
+                <TopCardClan name={team.name} members={team.members} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </ThirdSection>
       </ThirdContainer>
       <Footer />
@@ -33,6 +60,7 @@ const ThirdSection = styled.section`
   justify-content: space-around;
   align-items: center;
   padding-top: 15%;
+  .carousel-of-teams {
+    display: flex;
+  }
 `;
-
-
