@@ -9,15 +9,17 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 const HomeThirdSection = () => {
-  const [teams, setTeams] = useState<teamType[]>([]);
+  const [registeredTeams, setRegisteredTeams] = useState<teamType[]>([]);
   useEffect(() => {
     const getTeams = async () => {
       const response = await axios.get("api/teams_list/");
-      setTeams(response.data);
+      const registeredTeamsResponse = response.data.filter((team: teamType) => {
+        return team.status === true;
+      });
+      setRegisteredTeams(registeredTeamsResponse);
     };
     getTeams();
   }, []);
-  console.log(teams);
 
   return (
     <>
@@ -27,11 +29,11 @@ const HomeThirdSection = () => {
             className="carousel-of-teams"
             modules={[Autoplay]}
             spaceBetween={0}
-            slidesPerView={3}
+            slidesPerView={registeredTeams.length >= 4 ? 3 : 1}
             autoplay={true}
             loop={true}
           >
-            {teams.map((team) => (
+            {registeredTeams.map((team) => (
               <SwiperSlide key={team.id}>
                 <TopCardClan name={team.name} members={team.members} />
               </SwiperSlide>
