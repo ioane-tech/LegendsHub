@@ -7,38 +7,50 @@ import light from "/assets/light.png";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/AuthProvider";
-import rules from "/rules/Rules.pdf"
+import rules from "/rules/Rules.pdf";
 
 import { RegisterButton } from "../../../styled-components/register-button";
 import axios from "../../../api/axios";
 import { toast } from "react-toastify";
 
+type Props = {
+  token: string | null;
+};
 
-const HomeSecondSection = () => {
-  const { token, team } = useContext(AuthContext);
-
-  const [tournamentRegistrations, setTournamentRegistrations] = useState<TournamentRegistration[] | null>(null);
+const HomeSecondSection = ({ token }: Props) => {
+  const { team } = useContext(AuthContext);
+  const [tournamentRegistrations, setTournamentRegistrations] = useState<
+    TournamentRegistration[] | null
+  >(null);
 
   useEffect(() => {
-      async () => {
-        const response = await axios.get("/api/tournament-registrations/", {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
-        setTournamentRegistrations(response.data)
-
-    }
+    const getTournamentRegisteredTeams = async () => {
+      if (!token) {
+        return;
+      }
+      const response = await axios.get("/api/tournament-registrations/", {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      setTournamentRegistrations(response.data);
+    };
+    getTournamentRegisteredTeams();
   }, []);
-  console.log(tournamentRegistrations)
 
-  const teamRegisterHandler = async() =>{
-    try{
-      const response = await axios.post("/api/tournament-registrations/",
+  const isOnTournament = () => {
+    return tournamentRegistrations?.some((registeredTeam) => {
+      return registeredTeam.team === team?.id;
+    });
+  };
+
+  const teamRegisterHandler = async () => {
+    try {
+      const response = await axios.post(
+        "/api/tournament-registrations/",
         {
           tournament: 1,
-          team: team?.id
+          team: team?.id,
         },
         {
           headers: {
@@ -48,30 +60,26 @@ const HomeSecondSection = () => {
       );
       if (response.status === 201) {
         toast.success("Team registered succesfully on tournament");
-      } 
-      else {
+      } else {
         toast.error("Unexpected error occurred while registering");
       }
-      console.log(response.status)
-    }catch(arr:any){
-      console.log(arr)
-      if(arr.response.status === 400){
+      console.log(response.status);
+    } catch (arr: any) {
+      console.log(arr);
+      if (arr.response.status === 400) {
         toast.error("You should have all players");
-      }
-      else{
+      } else {
         toast.error("Something wrong, try again!");
       }
     }
-  }
+  };
   return (
     <Section>
       <BorderContainer>
         <img src={border} />
         <img src={borderIcon} />
       </BorderContainer>
-      <CarouselCont>
-        {/* <CarouselComp /> */}
-      </CarouselCont>
+      <CarouselCont>{/* <CarouselComp /> */}</CarouselCont>
       <Announcement>
         <h2>Announcement</h2>
         <section>
@@ -119,7 +127,7 @@ const HomeSecondSection = () => {
               style={
                 (!token && !team) || (token && team) ? { top: "60px" } : {}
               }
-              />
+            />
             <img src={light} />
             {token !== null && !team ? (
               <Link to="/teamRegister">
@@ -131,37 +139,19 @@ const HomeSecondSection = () => {
       </Announcement>
       <BottomBorder />
 
-      <div className="team_register_container"> 
-        <a href={rules} download className="test-button">-- Download Rules --</a>
-        {
-          token && team &&
-            (
-              tournamentRegistrations !== null?
-                tournamentRegistrations?.map((value, key) => (     
-                  value.team === team?.id ? 
-                  null
-                  :
-                  (
-                    <RegisterButton 
-                      onClick={teamRegisterHandler} 
-                      style={{width: "300px", marginLeft: '100px'}}
-                      key={key}
-                    >
-                      Team register
-                    </RegisterButton>
-                  )
-                ))
-              :
-              <RegisterButton 
-                onClick={teamRegisterHandler} 
-                style={{width: "300px", marginLeft: '100px'}}
-              >
-                Team register
-              </RegisterButton>
-            )
-        }
+      <div className="team_register_container">
+        <a href={rules} download className="test-button">
+          -- Download Rules --
+        </a>
+        {token && team && isOnTournament() === false && (
+          <RegisterButton
+            onClick={teamRegisterHandler}
+            style={{ width: "300px", marginLeft: "100px" }}
+          >
+            Team register
+          </RegisterButton>
+        )}
       </div>
-      
     </Section>
   );
 };
@@ -175,16 +165,15 @@ const Section = styled.section`
   height: 120vh;
   padding-top: 170px;
   color: white;
-  .test-button{
+  .test-button {
     margin-left: 120px;
     cursor: pointer;
     text-decoration: none;
     color: white;
   }
-  .team_register_container{
+  .team_register_container {
     display: flex;
     flex-direction: column;
-    
   }
   @media (max-height: 900px) {
     height: 130vh;

@@ -38,7 +38,7 @@ const Home = () => {
           <img src={FirstHomeBorderIcon} />
         </div>
       </FirstSection>
-      <HomeSecondSection />
+      <HomeSecondSection token={Token} />
       <HomeThirdSection />
     </HomeContainer>
   );
