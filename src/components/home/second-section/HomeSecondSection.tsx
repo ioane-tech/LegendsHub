@@ -90,8 +90,8 @@ const HomeSecondSection = ({ token }: Props) => {
                 <h3>Pre tournament (Summer split)</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
-                <p>Registration start date</p>
-                <h3>5/24/2024</h3>
+                <p>Registration end date</p>
+                <h3>5/29/2024</h3>
               </AnnouncementComp>
               <AnnouncementComp $bottom={true}>
                 <p>Duration</p>
