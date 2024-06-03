@@ -3,8 +3,9 @@ import bracket from "/assets/pre-tournament/Vector-175.png";
 
 type Props = {
   position?: "reverse";
+  teamName?: string;
 };
-const SeventhBracket = ({ position }: Props) => {
+const SeventhBracket = ({ position, teamName }: Props) => {
   const StyledSeventhBracket = styled.div`
     position: relative;
     img {
@@ -21,7 +22,7 @@ const SeventhBracket = ({ position }: Props) => {
   return (
     <StyledSeventhBracket>
       <img src={bracket} alt="" width={90} height={30} />
-      <p>Team name</p>
+      <p>{teamName}</p>
     </StyledSeventhBracket>
   );
 };
