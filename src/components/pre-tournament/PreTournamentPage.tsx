@@ -20,13 +20,13 @@ const PreTournament = () => {
         </NavLink>
         <div className="main-bracket">
           <div className="second-brackets">
-            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
-            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
-            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
+            <SecondBracket firstTeam={"Ropegang"} secondTeam={"G5STAR"} />
+            <SecondBracket firstTeam={"Kutaisi Blacks"} secondTeam={"Kai Ha 2"} />
+            <SecondBracket firstTeam={"*Azri Ar Aq*"} secondTeam={"izOlirebuli Wyvdiadelebi"} />
           </div>
           <div className="third-brackets">
             <ThirdBracket />
-            <ThirdBracket secondTeam="Team name" />
+            <ThirdBracket secondTeam="300NoSnake" />
           </div>
           <div className="fourth-brackets">
             <FourthBracket />
@@ -46,23 +46,23 @@ const PreTournament = () => {
           </div>
           <div className="third-brackets">
             <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" secondTeam="Team name" />
+            <ThirdBracket position="reverse" secondTeam="Diablo" />
           </div>
           <div className="second-brackets">
             <SecondBracket
               position="reverse"
-              firstTeam={"Team name"}
-              secondTeam={"Team name"}
+              firstTeam={"WHITEBLOODS"}
+              secondTeam={"Team Gap"}
             />
             <SecondBracket
               position="reverse"
-              firstTeam={"Team name"}
-              secondTeam={"Team name"}
+              firstTeam={"BloodReapers"}
+              secondTeam={"Project:Destroy"}
             />
             <SecondBracket
               position="reverse"
-              firstTeam={"Team name"}
-              secondTeam={"Team name"}
+              firstTeam={"ADC In 2024"}
+              secondTeam={"Shadow Sentinels Esports"}
             />
           </div>
         </div>
