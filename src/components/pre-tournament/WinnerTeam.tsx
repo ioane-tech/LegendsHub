@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import winner from "/assets/pre-tournament/winner.png";
 
-const WinnerTeam = () => {
+type Props = {
+  winnerTeam?: string;
+};
+
+const WinnerTeam = ({ winnerTeam }: Props) => {
   return (
     <WinnerContainer>
       <img src={winner} alt="" />
-      <span>Winner</span>
+      <span>{winnerTeam ? winnerTeam : "Winner"}</span>
     </WinnerContainer>
   );
 };

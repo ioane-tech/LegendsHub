@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import Header from "../header/Header";
-import FirstBracket from "./FirstBracket";
 import SecondBracket from "./SecondBracket";
 import ThirdBracket from "./ThirdBracket";
 import FourthBracket from "./FourthBracket";
-import FifthBracket from "./FifthBracket";
-import SixthBracket from "./SixthBracket";
 import SeventhBracket from "./SeventhBracket";
 import Footer from "../footer/Footer";
 import WinnerTeam from "./WinnerTeam";
@@ -22,81 +19,19 @@ const PreTournament = () => {
           <GoldenButton>back</GoldenButton>
         </NavLink>
         <div className="main-bracket">
-          <div className="first-brackets">
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-            <FirstBracket />
-          </div>
           <div className="second-brackets">
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
-            <SecondBracket />
+            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
+            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
+            <SecondBracket firstTeam={"Team name"} secondTeam={"Team name"} />
           </div>
           <div className="third-brackets">
             <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
-            <ThirdBracket />
+            <ThirdBracket secondTeam="Team name" />
           </div>
           <div className="fourth-brackets">
             <FourthBracket />
-            <FourthBracket />
-            <FourthBracket />
-            <FourthBracket />
           </div>
-          <div className="fifth-brackets">
-            <FifthBracket />
-            <FifthBracket />
-          </div>
-          <div className="sixth-brackets">
-            <SixthBracket />
-          </div>
+
           <div className="seventh-brackets">
             <SeventhBracket />
           </div>
@@ -106,80 +41,29 @@ const PreTournament = () => {
           <div className="seventh-brackets">
             <SeventhBracket position="reverse" />
           </div>
-          <div className="sixth-brackets">
-            <SixthBracket position="reverse" />
-          </div>
-          <div className="fifth-brackets">
-            <FifthBracket position="reverse" />
-            <FifthBracket position="reverse" />
-          </div>
           <div className="fourth-brackets">
-            <FourthBracket position="reverse" />
-            <FourthBracket position="reverse" />
-            <FourthBracket position="reverse" />
             <FourthBracket position="reverse" />
           </div>
           <div className="third-brackets">
             <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" />
+            <ThirdBracket position="reverse" secondTeam="Team name" />
           </div>
           <div className="second-brackets">
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-            <SecondBracket position="reverse" />
-          </div>
-          <div className="first-brackets">
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
-            <FirstBracket position="reverse" />
+            <SecondBracket
+              position="reverse"
+              firstTeam={"Team name"}
+              secondTeam={"Team name"}
+            />
+            <SecondBracket
+              position="reverse"
+              firstTeam={"Team name"}
+              secondTeam={"Team name"}
+            />
+            <SecondBracket
+              position="reverse"
+              firstTeam={"Team name"}
+              secondTeam={"Team name"}
+            />
           </div>
         </div>
       </StyledMain>
@@ -216,12 +100,6 @@ const StyledMain = styled.main`
   }
   .main-bracket {
     display: flex;
-    .first-brackets {
-      padding-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
     .second-brackets {
       padding-top: 28px;
       display: flex;
@@ -240,17 +118,8 @@ const StyledMain = styled.main`
       flex-direction: column;
       gap: 214px;
     }
-    .fifth-brackets {
-      padding-top: 215px;
-      display: flex;
-      flex-direction: column;
-      gap: 428px;
-    }
-    .sixth-brackets {
-      padding-top: 435px;
-    }
     .seventh-brackets {
-      padding-top: 895px;
+      padding-top: 215px;
     }
     .winner {
       height: 100%;

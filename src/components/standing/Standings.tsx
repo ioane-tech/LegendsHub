@@ -24,8 +24,6 @@ const Standings = () => {
             <StandingsList />
             <StandingsList />
             <StandingsList />
-            <StandingsList />
-            <StandingsList />
           </div>
         </div>
       </StandingsMainContainer>

@@ -3,9 +3,11 @@ import bracket from "/assets/pre-tournament/Vector-119.png";
 
 type Props = {
   position?: "reverse";
+  firstTeam?: string;
+  secondTeam?: string;
 };
 
-const ThirdBracket = ({ position }: Props) => {
+const ThirdBracket = ({ position, firstTeam, secondTeam }: Props) => {
   const StyledThirdBracket = styled.div`
     position: relative;
     color: #f7bb21;
@@ -27,9 +29,9 @@ const ThirdBracket = ({ position }: Props) => {
   `;
   return (
     <StyledThirdBracket>
-      <p className="first-name">Team name</p>
+      <p className="first-name">{firstTeam}</p>
       <img src={bracket} alt="" width={80} height={120} />
-      <p className="second-name">Team name</p>
+      <p className="second-name">{secondTeam}</p>
     </StyledThirdBracket>
   );
 };
