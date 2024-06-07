@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "../header/Header";
-import SecondBracket from "./SecondBracket";
+// import SecondBracket from "./SecondBracket";
 import ThirdBracket from "./ThirdBracket";
 import FourthBracket from "./FourthBracket";
 import SeventhBracket from "./SeventhBracket";
@@ -19,17 +19,17 @@ const PreTournament = () => {
           <GoldenButton>back</GoldenButton>
         </NavLink>
         <div className="main-bracket">
-          <div className="second-brackets">
+          {/* <div className="second-brackets">
             <SecondBracket firstTeam={"Ropegang"} secondTeam={"G5STAR"} />
             <SecondBracket firstTeam={"Kutaisi Blacks"} secondTeam={"Kai Ha 2"} />
             <SecondBracket firstTeam={"*Azri Ar Aq*"} secondTeam={"izOlirebuli Wyvdiadelebi"} />
-          </div>
+          </div> */}
           <div className="third-brackets">
-            <ThirdBracket />
-            <ThirdBracket secondTeam="300NoSnake" />
+            <ThirdBracket firstTeam="ROPEGANG" secondTeam="Kutaisi Blacks"/>
+            <ThirdBracket secondTeam="300NoSnake" firstTeam="izOlirebuli Wyvdiadelebi"/>
           </div>
           <div className="fourth-brackets">
-            <FourthBracket />
+            <FourthBracket  />
           </div>
 
           <div className="seventh-brackets">
@@ -42,13 +42,13 @@ const PreTournament = () => {
             <SeventhBracket position="reverse" />
           </div>
           <div className="fourth-brackets">
-            <FourthBracket position="reverse" />
+            <FourthBracket position="reverse"  />
           </div>
           <div className="third-brackets">
-            <ThirdBracket position="reverse" />
-            <ThirdBracket position="reverse" secondTeam="Diablo" />
+            <ThirdBracket position="reverse"  firstTeam="WHITEBLOODS" secondTeam="Project:Destroy" />
+            <ThirdBracket position="reverse" secondTeam="Diablo" firstTeam="Shadow Sentinels Esports" />
           </div>
-          <div className="second-brackets">
+          {/* <div className="second-brackets">
             <SecondBracket
               position="reverse"
               firstTeam={"WHITEBLOODS"}
@@ -64,7 +64,7 @@ const PreTournament = () => {
               firstTeam={"ADC In 2024"}
               secondTeam={"Shadow Sentinels Esports"}
             />
-          </div>
+          </div> */}
         </div>
       </StyledMain>
       <Footer />

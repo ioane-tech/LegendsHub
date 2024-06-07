@@ -11,20 +11,21 @@ const ThirdBracket = ({ position, firstTeam, secondTeam }: Props) => {
   const StyledThirdBracket = styled.div`
     position: relative;
     color: #f7bb21;
-    font-size: 12px;
+    font-size: 16px;
     img {
       transform: ${() => (position === "reverse" ? "rotate(180deg)" : "")};
     }
     .first-name {
       position: absolute;
-      left: 0;
-      top: -15px;
-      left: 7px;
+      top: -20px;
+      left: -25px;
+      width: 200px;
     }
     .second-name {
       position: absolute;
-      left: 7px;
-      bottom: 5px;
+      left: -25px;
+      bottom: -20px;
+      width: 150px;
     }
   `;
   return (
