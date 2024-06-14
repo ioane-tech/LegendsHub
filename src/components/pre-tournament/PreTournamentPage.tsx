@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "../header/Header";
 // import SecondBracket from "./SecondBracket";
-import ThirdBracket from "./ThirdBracket";
+// import ThirdBracket from "./ThirdBracket";
 import FourthBracket from "./FourthBracket";
 import SeventhBracket from "./SeventhBracket";
 import Footer from "../footer/Footer";
@@ -24,12 +24,12 @@ const PreTournament = () => {
             <SecondBracket firstTeam={"Kutaisi Blacks"} secondTeam={"Kai Ha 2"} />
             <SecondBracket firstTeam={"*Azri Ar Aq*"} secondTeam={"izOlirebuli Wyvdiadelebi"} />
           </div> */}
-          <div className="third-brackets">
+          {/* <div className="third-brackets">
             <ThirdBracket firstTeam="ROPEGANG" secondTeam="Kutaisi Blacks"/>
             <ThirdBracket secondTeam="300NoSnake" firstTeam="izOlirebuli Wyvdiadelebi"/>
-          </div>
+          </div> */}
           <div className="fourth-brackets">
-            <FourthBracket  />
+            <FourthBracket firstTeam="300NoSnake" secondTeam="ROPEGANG" />
           </div>
 
           <div className="seventh-brackets">
@@ -42,12 +42,12 @@ const PreTournament = () => {
             <SeventhBracket position="reverse" />
           </div>
           <div className="fourth-brackets">
-            <FourthBracket position="reverse"  />
+            <FourthBracket position="reverse" firstTeam="WHITEBLOODS"  secondTeam="Diablo" />
           </div>
-          <div className="third-brackets">
+          {/* <div className="third-brackets">
             <ThirdBracket position="reverse"  firstTeam="WHITEBLOODS" secondTeam="Project:Destroy" />
             <ThirdBracket position="reverse" secondTeam="Diablo" firstTeam="Shadow Sentinels Esports" />
-          </div>
+          </div> */}
           {/* <div className="second-brackets">
             <SecondBracket
               position="reverse"
