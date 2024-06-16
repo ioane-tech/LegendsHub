@@ -33,16 +33,20 @@ const PreTournament = () => {
           </div>
 
           <div className="seventh-brackets">
-            <SeventhBracket />
+            <SeventhBracket teamName="300NoSnake" />
           </div>
           <div className="winner">
             <WinnerTeam />
           </div>
           <div className="seventh-brackets">
-            <SeventhBracket position="reverse" />
+            <SeventhBracket position="reverse" teamName="Diablo" />
           </div>
           <div className="fourth-brackets">
-            <FourthBracket position="reverse" firstTeam="WHITEBLOODS"  secondTeam="Diablo" />
+            <FourthBracket
+              position="reverse"
+              firstTeam="WHITEBLOODS"
+              secondTeam="Diablo"
+            />
           </div>
           {/* <div className="third-brackets">
             <ThirdBracket position="reverse"  firstTeam="WHITEBLOODS" secondTeam="Project:Destroy" />
